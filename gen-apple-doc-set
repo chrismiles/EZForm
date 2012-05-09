@@ -1,0 +1,20 @@
+#!/bin/sh
+
+which appledoc > /dev/null
+
+if [ $? -eq 0 ]; then
+
+  appledoc --project-name EZForm --project-company "Chris Miles" --company-id info.chrismiles --output . EZForm
+  
+  if [ -e "docset-installed.txt" ]; then
+    echo
+    cat docset-installed.txt
+    echo
+    rm docset-installed.txt
+  fi
+
+else
+
+  echo "appledoc is required. Get it from http://gentlebytes.com/appledoc/"
+
+fi

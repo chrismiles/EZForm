@@ -23,7 +23,7 @@
 //
 
 /*
- * Version: 1.0
+ * Version: 1.0.1
  */
 
 /*
@@ -42,6 +42,8 @@
 #import "EZFormTextField.h"
 #import "EZFormInputAccessoryViewProtocols.h"
 #import "EZFormCommonValidators.h"
+#import "EZFormRadioChoiceViewController.h"
+
 
 typedef enum {
     EZFormInputAccessoryTypeNone = 0,

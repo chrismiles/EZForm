@@ -19,8 +19,8 @@
 		8369765A15494EA10070EDEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8369763815494EA00070EDEC /* Foundation.framework */; };
 		8369766215494EA10070EDEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8369766015494EA10070EDEC /* InfoPlist.strings */; };
 		8369766515494EA10070EDEC /* EZFormDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8369766415494EA10070EDEC /* EZFormDemoTests.m */; };
+		8370ED3215675D37005C1E97 /* EZFormRadioChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8370ED3115675D37005C1E97 /* EZFormRadioChoiceViewController.m */; };
 		8373217715512FB900DCC3FB /* EZFDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373217315512FB900DCC3FB /* EZFDAppDelegate.m */; };
-		837E9D771553D217008EEA37 /* EZFDRegistrationRadioChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 837E9D761553D217008EEA37 /* EZFDRegistrationRadioChoiceViewController.m */; };
 		8392788C154FA3C900102B6B /* EZForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 83927877154FA3C900102B6B /* EZForm.m */; };
 		8392788D154FA3C900102B6B /* EZForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 83927877154FA3C900102B6B /* EZForm.m */; };
 		8392788E154FA3C900102B6B /* EZFormBooleanField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83927879154FA3C900102B6B /* EZFormBooleanField.m */; };
@@ -75,10 +75,10 @@
 		8369766115494EA10070EDEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8369766315494EA10070EDEC /* EZFormDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EZFormDemoTests.h; sourceTree = "<group>"; };
 		8369766415494EA10070EDEC /* EZFormDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZFormDemoTests.m; sourceTree = "<group>"; };
+		8370ED3015675D37005C1E97 /* EZFormRadioChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormRadioChoiceViewController.h; sourceTree = "<group>"; };
+		8370ED3115675D37005C1E97 /* EZFormRadioChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormRadioChoiceViewController.m; sourceTree = "<group>"; };
 		8373217215512FB900DCC3FB /* EZFDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDAppDelegate.h; sourceTree = "<group>"; };
 		8373217315512FB900DCC3FB /* EZFDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDAppDelegate.m; sourceTree = "<group>"; };
-		837E9D751553D217008EEA37 /* EZFDRegistrationRadioChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDRegistrationRadioChoiceViewController.h; sourceTree = "<group>"; };
-		837E9D761553D217008EEA37 /* EZFDRegistrationRadioChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDRegistrationRadioChoiceViewController.m; sourceTree = "<group>"; };
 		83927875154FA3C900102B6B /* EZForm+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EZForm+Private.h"; sourceTree = "<group>"; };
 		83927876154FA3C900102B6B /* EZForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZForm.h; sourceTree = "<group>"; };
 		83927877154FA3C900102B6B /* EZForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZForm.m; sourceTree = "<group>"; };
@@ -141,8 +141,6 @@
 			children = (
 				8329EAF0155339E900ED3F5E /* EZFDRegistrationFormViewController.h */,
 				8329EAF1155339E900ED3F5E /* EZFDRegistrationFormViewController.m */,
-				837E9D751553D217008EEA37 /* EZFDRegistrationRadioChoiceViewController.h */,
-				837E9D761553D217008EEA37 /* EZFDRegistrationRadioChoiceViewController.m */,
 			);
 			path = "Registration Form";
 			sourceTree = "<group>";
@@ -265,6 +263,8 @@
 				83927882154FA3C900102B6B /* EZFormInputAccessoryViewProtocols.h */,
 				83927883154FA3C900102B6B /* EZFormInvalidIndicatorTriangleExclamationView.h */,
 				83927884154FA3C900102B6B /* EZFormInvalidIndicatorTriangleExclamationView.m */,
+				8370ED3015675D37005C1E97 /* EZFormRadioChoiceViewController.h */,
+				8370ED3115675D37005C1E97 /* EZFormRadioChoiceViewController.m */,
 				83927885154FA3C900102B6B /* EZFormRadioField.h */,
 				83927886154FA3C900102B6B /* EZFormRadioField.m */,
 				83927887154FA3C900102B6B /* EZFormStandardInputAccessoryView.h */,
@@ -431,7 +431,7 @@
 				83F323AF15527268006FC7B2 /* EZFDMainMenuViewController.m in Sources */,
 				8329EAF2155339E900ED3F5E /* EZFDRegistrationFormViewController.m in Sources */,
 				83F8FF961553A1F700FC8C82 /* EZFormUtility.m in Sources */,
-				837E9D771553D217008EEA37 /* EZFDRegistrationRadioChoiceViewController.m in Sources */,
+				8370ED3215675D37005C1E97 /* EZFormRadioChoiceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,5 @@
 //
-//  main.m
-//  EZFormDemo
+//  EZForm
 //
 //  Copyright 2012 Chris Miles. All rights reserved.
 //
@@ -24,12 +23,33 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EZForm.h"
 
-#import "EZFDAppDelegate.h"
+/** A table view controller to use for presenting radio field choices.
+ *
+ *  An EZFormRadioChoiceViewController can be used to
+ *  conveniently present radio field choices to the user.
+ *  The form model is updated when the user makes a selection.
+ *
+ *  Values for the form and radioFieldKey properties are both
+ *  required.
+ *
+ *  To customise the view and style, the view controller can be
+ *  subclassed.
+ */
 
-int main(int argc, char *argv[])
-{
-	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([EZFDAppDelegate class]));
-	}
-}
+@interface EZFormRadioChoiceViewController : UITableViewController
+
+/** The form containing the radio field.
+ *
+ *  A form is required.
+ */
+@property (nonatomic, retain) EZForm *form;
+
+/** The key of the radio field.
+ *
+ *  A key is required.
+ */
+@property (nonatomic, copy) NSString *radioFieldKey;
+
+@end

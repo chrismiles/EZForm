@@ -1,21 +1,34 @@
 //
-//  EZFDRegistrationRadioChoiceViewController.m
-//  EZFormDemo
+//  EZForm
 //
-//  Created by Chris Miles on 4/05/12.
-//  Copyright (c) 2012 Chris Miles. All rights reserved.
+//  Copyright 2012 Chris Miles. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//  
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//  
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
-#import "EZFDRegistrationRadioChoiceViewController.h"
+#import "EZFormRadioChoiceViewController.h"
 
-@interface EZFDRegistrationRadioChoiceViewController ()
-
-@end
-
-@implementation EZFDRegistrationRadioChoiceViewController
+@implementation EZFormRadioChoiceViewController
 
 @synthesize form = _form;
 @synthesize radioFieldKey = _radioFieldKey;
+
 
 - (void)dealloc
 {
@@ -27,6 +40,18 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    if (self.navigationController) {
+	/* If managed by a nav controller then return rotation choice of previous view
+	 * controller in the stack (if any).
+	 */
+	NSInteger thisIndex = [self.navigationController.viewControllers indexOfObject:self];
+	if (thisIndex != NSNotFound && thisIndex > 0) {
+	    UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:thisIndex-1];
+	    return [previousViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+	}
+    }
+
+    // Default behaviour; subclass to customize
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 	return YES;
     }
@@ -51,8 +76,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FormRadioFieldChoice";
+    static NSString *CellIdentifier = @"FormRadioFieldChoiceCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (nil == cell) {
+	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
     
     EZFormRadioField *field = (EZFormRadioField *)[self.form formFieldForKey:self.radioFieldKey];
     NSString *choiceKey = [[field choiceKeys] objectAtIndex:indexPath.row];
@@ -60,7 +89,8 @@
     
     if ([[self.form modelValueForKey:self.radioFieldKey] isEqualToString:choiceKey]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
+    }
+    else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
@@ -96,7 +126,8 @@
 	
         if ([selection isEqualToString:choiceKey]) {
 	    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
+        }
+	else {
 	    cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }

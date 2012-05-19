@@ -461,11 +461,11 @@
             </objects>
             <point key="canvasLocation" x="1137" y="596"/>
         </scene>
-        <!--Registration Radio Choice View Controller-->
+        <!--Form Radio Choice View Controller-->
         <scene sceneID="bWg-w9-YNO">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7c-Lz-LjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="RIR-Nr-hn4" customClass="EZFDRegistrationRadioChoiceViewController" sceneMemberID="viewController">
+                <tableViewController id="RIR-Nr-hn4" customClass="EZFormRadioChoiceViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="jSk-QJ-ZgC">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -525,9 +525,6 @@
                 <relationship kind="outlet" name="subscribeFieldTableViewCell" candidateClass="UITableViewCell"/>
             </relationships>
         </class>
-        <class className="EZFDRegistrationRadioChoiceViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EZFDRegistrationRadioChoiceViewController.h"/>
-        </class>
         <class className="EZFDSimpleLoginFormViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EZFDSimpleLoginFormViewController.h"/>
             <relationships>
@@ -537,6 +534,9 @@
                 <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
+        </class>
+        <class className="EZFormRadioChoiceViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EZFormRadioChoiceViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

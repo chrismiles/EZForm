@@ -99,9 +99,9 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
     /* Wire up form fields to user interface elements.
      * This needs to be done after the views are loaded (e.g. in viewDidLoad).
      */
-    EZFormTextField *usernameField = (EZFormTextField *)[self.loginForm formFieldForKey:EZFDLoginFormUsernameKey];
+    EZFormTextField *usernameField = [self.loginForm formFieldForKey:EZFDLoginFormUsernameKey];
     [usernameField useTextField:self.usernameTextField];
-    EZFormTextField *passwordField = (EZFormTextField *)[self.loginForm formFieldForKey:EZFDLoginFormPasswordKey];
+    EZFormTextField *passwordField = [self.loginForm formFieldForKey:EZFDLoginFormPasswordKey];
     [passwordField useTextField:self.passwordTextField];
     
     /* Automatically scroll (or move) the given view if needed to

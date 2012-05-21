@@ -79,7 +79,7 @@
     }
 }
 
-- (EZFormField *)formFieldForKey:(NSString *)key
+- (id)formFieldForKey:(NSString *)key
 {
     EZFormField *result = nil;
     for (EZFormField *formField in self.formFields) {

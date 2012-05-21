@@ -70,7 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    EZFormRadioField *field = (EZFormRadioField *)[self.form formFieldForKey:self.radioFieldKey];
+    EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     return [field.choices count];
 }
 
@@ -83,7 +83,7 @@
 	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    EZFormRadioField *field = (EZFormRadioField *)[self.form formFieldForKey:self.radioFieldKey];
+    EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     NSString *choiceKey = [[field choiceKeys] objectAtIndex:indexPath.row];
     cell.textLabel.text = [field.choices valueForKey:choiceKey];
     
@@ -102,7 +102,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EZFormRadioField *field = (EZFormRadioField *)[self.form formFieldForKey:self.radioFieldKey];
+    EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     NSString *choiceKey = [[field choiceKeys] objectAtIndex:indexPath.row];
     [self.form setModelValue:choiceKey forKey:self.radioFieldKey];
     
@@ -117,7 +117,7 @@
 - (void)updateCellCheckmarks
 {
     NSString *selection = [self.form modelValueForKey:self.radioFieldKey];
-    EZFormRadioField *field = (EZFormRadioField *)[self.form formFieldForKey:self.radioFieldKey];
+    EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     NSArray *choiceKeys = [field choiceKeys];
     
     for (UITableViewCell *cell in [self.tableView visibleCells]) {

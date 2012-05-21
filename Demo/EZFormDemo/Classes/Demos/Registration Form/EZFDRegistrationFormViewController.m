@@ -194,21 +194,21 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     /* Wire up form fields to user interface elements.
      * This needs to be done after the views are loaded (e.g. in viewDidLoad).
      */
-    EZFormTextField *firstnameField = (EZFormTextField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormFirstNameKey];
+    EZFormTextField *firstnameField = [self.registrationForm formFieldForKey:EZFDRegistrationFormFirstNameKey];
     [firstnameField useTextField:self.firstnameTextField];
-    EZFormTextField *lastnameField = (EZFormTextField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormLastNameKey];
+    EZFormTextField *lastnameField = [self.registrationForm formFieldForKey:EZFDRegistrationFormLastNameKey];
     [lastnameField useTextField:self.lastnameTextField];
-    EZFormTextField *ageField = (EZFormTextField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormAgeKey];
+    EZFormTextField *ageField = [self.registrationForm formFieldForKey:EZFDRegistrationFormAgeKey];
     [ageField useTextField:self.ageTextField];
-    EZFormTextField *genderField = (EZFormTextField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormGenderKey];
+    EZFormTextField *genderField = [self.registrationForm formFieldForKey:EZFDRegistrationFormGenderKey];
     [genderField useLabel:self.genderFieldLabel];
-    EZFormTextField *emailField = (EZFormTextField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormEmailKey];
+    EZFormTextField *emailField = [self.registrationForm formFieldForKey:EZFDRegistrationFormEmailKey];
     [emailField useTextField:self.emailTextField];
-    EZFormBooleanField *subscribeField = (EZFormBooleanField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormSubscribeKey];
+    EZFormBooleanField *subscribeField = [self.registrationForm formFieldForKey:EZFDRegistrationFormSubscribeKey];
     [subscribeField useTableViewCell:self.subscribeFieldTableViewCell];
-    EZFormTextField *bioField = (EZFormTextField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormBioKey];
+    EZFormTextField *bioField = [self.registrationForm formFieldForKey:EZFDRegistrationFormBioKey];
     [bioField useTextView:self.bioTextView];
-    EZFormBooleanField *acceptTermsField = (EZFormBooleanField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormAcceptTermsKey];
+    EZFormBooleanField *acceptTermsField = [self.registrationForm formFieldForKey:EZFDRegistrationFormAcceptTermsKey];
     [acceptTermsField useTableViewCell:self.acceptTermsFieldTableViewCell];
     
     /* Automatically scroll (or move) the given view if needed to
@@ -283,11 +283,11 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell == self.subscribeFieldTableViewCell) {
-	EZFormBooleanField *subscribeField = (EZFormBooleanField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormSubscribeKey];
+	EZFormBooleanField *subscribeField = [self.registrationForm formFieldForKey:EZFDRegistrationFormSubscribeKey];
 	[subscribeField toggleValue];
     }
     else if (cell == self.acceptTermsFieldTableViewCell) {
-	EZFormBooleanField *acceptTermsField = (EZFormBooleanField *)[self.registrationForm formFieldForKey:EZFDRegistrationFormAcceptTermsKey];
+	EZFormBooleanField *acceptTermsField = [self.registrationForm formFieldForKey:EZFDRegistrationFormAcceptTermsKey];
 	[acceptTermsField toggleValue];
     }
     else {

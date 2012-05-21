@@ -106,9 +106,10 @@ typedef enum {
  *
  *  @param key The key of the form field to return.
  *
- *  @returns A form field object.
+ *  @returns A form field object (subclass of EZFormField) for the specified key.
+ *	Or nil of no form field object exists for the specified key.
  */
-- (EZFormField *)formFieldForKey:(NSString *)key;
+- (id)formFieldForKey:(NSString *)key;
 
 /** Returns a boolean value indicating whether the form values are currently all valid.
  *

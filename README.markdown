@@ -106,10 +106,10 @@ For example:
     /* Wire up form fields to user interface elements.
      * This needs to be done after the views are loaded (e.g. in viewDidLoad).
      */
-    EZFormTextField *nameField = (EZFormTextField *)[_myForm formFieldForKey:@"name"];
+    EZFormTextField *nameField = [_myForm formFieldForKey:@"name"];
     [nameField useTextField:self.nameTextField];
     
-    EZFormTextField *emailField = (EZFormTextField *)[_myForm formFieldForKey:@"email"];
+    EZFormTextField *emailField = [_myForm formFieldForKey:@"email"];
     [_myForm useTextField:self.emailTextField];
     
     /* Automatically scroll (or move) the given view if needed to

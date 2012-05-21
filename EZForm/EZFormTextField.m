@@ -311,11 +311,6 @@ typedef enum {
     return YES;
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    [self.form formFieldInputFinished:self];
-}
-
 
 #pragma mark - UITextViewDelegate methods
 

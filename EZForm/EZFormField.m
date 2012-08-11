@@ -157,7 +157,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: 0x%x key=\"%@\">", [self class], self, self.key];
+    return [NSString stringWithFormat:@"<%@: %p key=\"%@\">", [self class], self, self.key];
 }
 
 

@@ -169,9 +169,39 @@ The EZForm Master branch is non-ARC. However, producing an ARC version is easy a
 To generate an ARC version simply open the demo app project in Xcode and select: Edit / Refactor / Convert to Objective-C ARC... The project should convert cleanly and the ARC-ready EZForm source can then be copied to your project. If any ARC problems, please raise an issue.
 
 
+Support
+-------
+
+EZForm is provided open source with no warranty and no guarantee of support.
+However, best effort is made to address [issues][1] raised on Github.
+
+If you would like assistance with integrating EZForm or modifying it for your
+needs, contact the author Chris Miles <miles.chris@gmail.com> for consulting
+opportunities.
+
+[1]: https://github.com/chrismiles/EZForm/issues "EZForm issues on Github"
+
+
 License
 -------
 
-EZForm is released open source with a MIT license. See LICENSE file in the source.
+EZForm is Copyright (c) 2011-2012 Chris Miles and released open source
+under a MIT license:
 
-Use it freely for private or commercial use. Attribution is appreciated.
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.

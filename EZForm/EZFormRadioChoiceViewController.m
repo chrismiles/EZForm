@@ -44,7 +44,7 @@
 	/* If managed by a nav controller then return rotation choice of previous view
 	 * controller in the stack (if any).
 	 */
-	NSInteger thisIndex = [self.navigationController.viewControllers indexOfObject:self];
+	NSUInteger thisIndex = [self.navigationController.viewControllers indexOfObject:self];
 	if (thisIndex != NSNotFound && thisIndex > 0) {
 	    UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:thisIndex-1];
 	    return [previousViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
@@ -71,7 +71,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
-    return [field.choices count];
+    return (NSInteger)[field.choices count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +84,7 @@
     }
     
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
-    NSString *choiceKey = [[field choiceKeys] objectAtIndex:indexPath.row];
+    NSString *choiceKey = [[field choiceKeys] objectAtIndex:(NSUInteger)indexPath.row];
     cell.textLabel.text = [field.choices valueForKey:choiceKey];
     
     if ([[self.form modelValueForKey:self.radioFieldKey] isEqualToString:choiceKey]) {
@@ -103,7 +103,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
-    NSString *choiceKey = [[field choiceKeys] objectAtIndex:indexPath.row];
+    NSString *choiceKey = [[field choiceKeys] objectAtIndex:(NSUInteger)indexPath.row];
     [self.form setModelValue:choiceKey forKey:self.radioFieldKey];
     
     [self updateCellCheckmarks];
@@ -122,7 +122,7 @@
     
     for (UITableViewCell *cell in [self.tableView visibleCells]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSString *choiceKey = [choiceKeys objectAtIndex:indexPath.row];
+        NSString *choiceKey = [choiceKeys objectAtIndex:(NSUInteger)indexPath.row];
 	
         if ([selection isEqualToString:choiceKey]) {
 	    cell.accessoryType = UITableViewCellAccessoryCheckmark;

@@ -119,7 +119,7 @@
     if (!_validationDisabled) {
 	id value = [self fieldValue];
 	
-	for (int i=0; result && i < [validationBlocks count]; i++) {
+	for (unsigned i=0; result && i < [validationBlocks count]; i++) {
 	    BOOL (^validator)(id value) = [validationBlocks objectAtIndex:i];
 	    result = validator(value);
 	}

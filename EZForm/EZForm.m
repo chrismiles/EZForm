@@ -286,15 +286,15 @@
 	NSInteger startIndex;
 	NSInteger indexIncrement;
 	if (searchForwards) {
-	    startIndex = fieldIndex+1;
+	    startIndex = (NSInteger)fieldIndex+1;
 	    indexIncrement = 1;
 	}
 	else {
-	    startIndex = fieldIndex-1;
+	    startIndex = (NSInteger)fieldIndex-1;
 	    indexIncrement = -1;
 	}
-	for (NSInteger index=startIndex; index >= 0 && index < [self.formFields count]; index += indexIncrement) {
-	    EZFormField *aFormField = [self.formFields objectAtIndex:index];
+	for (NSInteger index=startIndex; index >= 0 && index < (NSInteger)[self.formFields count]; index += indexIncrement) {
+	    EZFormField *aFormField = [self.formFields objectAtIndex:(NSUInteger)index];
 	    if ([aFormField canBecomeFirstResponder]) {
 		result = aFormField;
 		break;

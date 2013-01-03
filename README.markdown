@@ -116,7 +116,7 @@ For example:
     [nameField useTextField:self.nameTextField];
     
     EZFormTextField *emailField = [_myForm formFieldForKey:@"email"];
-    [_myForm useTextField:self.emailTextField];
+    [emailField useTextField:self.emailTextField];
     
     /* Automatically scroll (or move) the given view if needed to
      * keep the active form field control visible.

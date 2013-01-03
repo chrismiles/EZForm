@@ -39,7 +39,7 @@ typedef enum {
     BOOL _internalValue;
 }
 
-@property (nonatomic, retain) UIView *userControl;
+@property (nonatomic, strong) UIView *userControl;
 @property (nonatomic, assign) EZFormBooleanFieldUserControlType userControlType;
 
 - (void)updateUI;
@@ -196,11 +196,5 @@ typedef enum {
 
 #pragma mark - Memory management
 
-- (void)dealloc
-{
-    [userControl release];
-    
-    [super dealloc];
-}
 
 @end

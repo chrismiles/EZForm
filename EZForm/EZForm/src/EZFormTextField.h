@@ -191,7 +191,7 @@ typedef BOOL (*TEXTFIELDFILTER)(id);
  *
  *  Also see invalidIndicatorPosition.
  */
-@property (nonatomic, retain) UIView *invalidIndicatorView;
+@property (nonatomic, strong) UIView *invalidIndicatorView;
 
 /** Where to position the invalid indicator view.
  *

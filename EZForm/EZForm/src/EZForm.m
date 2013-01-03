@@ -37,9 +37,9 @@
     CGRect _visibleKeyboardFrame;
 }
 
-@property (nonatomic, retain)	NSMutableArray		*formFields;
-@property (nonatomic, retain)	UIView			*inputAccessoryStandardView;
-@property (nonatomic, retain)	UIView			*viewToAutoScroll;
+@property (nonatomic, strong)	NSMutableArray		*formFields;
+@property (nonatomic, strong)	UIView			*inputAccessoryStandardView;
+@property (nonatomic, strong)	UIView			*viewToAutoScroll;
 
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField;
 - (void)updateInputAccessoryForEditingFormField:(EZFormField *)formField;
@@ -51,7 +51,7 @@
 @implementation EZForm
 
 @synthesize autoScrollForKeyboardInputPaddingSize;
-@synthesize delegate;
+@synthesize delegate=_delegate;
 @synthesize formFields;
 @synthesize inputAccessoryStandardView;
 @synthesize inputAccessoryType;
@@ -185,7 +185,7 @@
     UIView *invalidIndicatorView = nil;
     
     if (EZFormInvalidIndicatorViewTypeTriangleExclamation == invalidIndicatorViewType) {
-	invalidIndicatorView = [[[EZFormInvalidIndicatorTriangleExclamationView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)] autorelease];
+	invalidIndicatorView = [[EZFormInvalidIndicatorTriangleExclamationView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
     }
     
     return invalidIndicatorView;
@@ -196,6 +196,7 @@
 
 - (void)formFieldDidChangeValue:(EZFormField *)formField
 {
+    __strong id<EZFormDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(form:didUpdateValueForField:modelIsValid:)]) {
 	BOOL isValid = [self isFormValid];
 	[delegate form:self didUpdateValueForField:formField modelIsValid:isValid];
@@ -210,6 +211,7 @@
 	 * table view cell.
 	 */
 	NSIndexPath *indexPath = nil;
+	__strong id<EZFormDelegate> delegate = self.delegate;
 	if ([delegate respondsToSelector:@selector(form:indexPathToAutoScrollTableForFieldKey:)]) {
 	    indexPath = [delegate form:self indexPathToAutoScrollTableForFieldKey:formField.key];
 	}
@@ -321,6 +323,7 @@
     }
     else {
 	[formField resignFirstResponder];
+	__strong id<EZFormDelegate> delegate = self.delegate;
 	if ([delegate respondsToSelector:@selector(formInputFinishedOnLastField:)]) {
 	    [delegate formInputFinishedOnLastField:self];
 	}
@@ -331,6 +334,7 @@
 {
     [self updateInputAccessoryForEditingFormField:formField];
     
+    __strong id<EZFormDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(form:fieldDidBeginEditing:)]) {
 	[delegate form:self fieldDidBeginEditing:formField];
     }
@@ -346,7 +350,7 @@
 	if (nil == self.inputAccessoryStandardView) {
 	    // Create and cache it
 	    // It will be resized automatically to match keyboard
-	    EZFormStandardInputAccessoryView *accessoryView = [[[EZFormStandardInputAccessoryView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)] autorelease];
+	    EZFormStandardInputAccessoryView *accessoryView = [[EZFormStandardInputAccessoryView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
 	    accessoryView.inputAccessoryViewDelegate = self;
 	    self.inputAccessoryStandardView = accessoryView;
 	}
@@ -476,11 +480,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-    [formFields release];
-    [inputAccessoryStandardView release];
-    [viewToAutoScroll release];
     
-    [super dealloc];
 }
 
 @end

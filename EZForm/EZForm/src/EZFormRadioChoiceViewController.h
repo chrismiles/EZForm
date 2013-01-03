@@ -44,7 +44,7 @@
  *
  *  A form is required.
  */
-@property (nonatomic, retain) EZForm *form;
+@property (nonatomic, strong) EZForm *form;
 
 /** The key of the radio field.
  *

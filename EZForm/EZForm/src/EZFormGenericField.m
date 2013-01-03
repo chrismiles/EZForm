@@ -34,8 +34,8 @@ typedef enum {
 
 @interface EZFormGenericField ()
 
-@property (nonatomic, retain) id internalValue;
-@property (nonatomic, retain) UIView *userControl;
+@property (nonatomic, strong) id internalValue;
+@property (nonatomic, strong) UIView *userControl;
 @property (nonatomic, assign) EZFormGenericFieldUserControlType userControlType;
 
 - (void)updateUI;
@@ -173,10 +173,7 @@ typedef enum {
 {
     [self unwireUserControl];
     
-    [_internalValue release];
-    [userControl release];
     
-    [super dealloc];
 }
 
 @end

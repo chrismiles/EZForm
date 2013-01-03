@@ -29,11 +29,11 @@
 
 @interface EZFDSimpleLoginFormViewController : UIViewController <EZFormDelegate>
 
-@property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (retain, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 
-@property (retain, nonatomic) IBOutlet UIView *invalidIndicatorKeyView;
-@property (retain, nonatomic) IBOutlet UIButton *loginButton;
-@property (retain, nonatomic) IBOutlet UIView *loginFormView;
+@property (strong, nonatomic) IBOutlet UIView *invalidIndicatorKeyView;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UIView *loginFormView;
 
 @end

@@ -42,8 +42,8 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 }
 
 @property (nonatomic, assign) BOOL validationDisabled;
-@property (nonatomic, assign, readonly) EZForm *form;
-@property (nonatomic, retain) UIView *inputAccessoryView;
+@property (nonatomic, weak, readonly) EZForm *form;
+@property (nonatomic, strong) UIView *inputAccessoryView;
 @property (nonatomic, copy) NSString *key;
 
 

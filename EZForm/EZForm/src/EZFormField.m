@@ -31,14 +31,14 @@
     NSMutableArray *validationBlocks;
 }
 
-@property (nonatomic, assign, readwrite) EZForm *form;
+@property (nonatomic, weak, readwrite) EZForm *form;
 @end
 
 
 @implementation EZFormField
 
 @synthesize validationDisabled=_validationDisabled;
-@synthesize form;
+@synthesize form=_form;
 @synthesize key;
 
 - (id)fieldValue
@@ -59,7 +59,8 @@
 	[(id<EZFormFieldConcrete>)self updateView];
     }
     
-    [self.form formFieldDidChangeValue:self];
+    __strong EZForm *form = self.form;
+    [form formFieldDidChangeValue:self];
 }
 
 - (void)becomeFirstResponder
@@ -109,7 +110,7 @@
 
 - (void)addValidator:(BOOL (^)(id value))validator
 {
-    [validationBlocks addObject:[[validator copy] autorelease]];
+    [validationBlocks addObject:[validator copy]];
 }
 
 - (BOOL)isValid
@@ -176,11 +177,4 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [key release];
-    [validationBlocks release];
-    
-    [super dealloc];
-}
 @end

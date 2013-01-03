@@ -434,6 +434,7 @@
 		8369766915494EA10070EDEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EZFormDemo/EZFormDemo-Prefix.pch";
 				INFOPLIST_FILE = "EZFormDemo/EZFormDemo-Info.plist";
@@ -448,6 +449,7 @@
 		8369766A15494EA10070EDEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EZFormDemo/EZFormDemo-Prefix.pch";
 				INFOPLIST_FILE = "EZFormDemo/EZFormDemo-Info.plist";

@@ -33,7 +33,7 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
 
 
 @interface EZFDSimpleLoginFormViewController ()
-@property (nonatomic, retain) EZForm *loginForm;
+@property (nonatomic, strong) EZForm *loginForm;
 @end
 
 
@@ -63,7 +63,7 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
      * Enables a validation rule of 1 character minimum.
      * Limits the input text field to 32 characters maximum (when hooked up to a control).
      */
-    EZFormTextField *usernameField = [[[EZFormTextField alloc] initWithKey:EZFDLoginFormUsernameKey] autorelease];
+    EZFormTextField *usernameField = [[EZFormTextField alloc] initWithKey:EZFDLoginFormUsernameKey];
     usernameField.validationMinCharacters = 1;
     usernameField.inputMaxCharacters = 32;
     usernameField.invalidIndicatorView = [EZForm formInvalidIndicatorViewForType:EZFormInvalidIndicatorViewTypeTriangleExclamation size:CGSizeMake(kFormInvalidIndicatorViewSize, kFormInvalidIndicatorViewSize)];
@@ -73,24 +73,13 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
      * Enables a validation rule of 3 character minimum.
      * Limits the input text field to 32 characters maximum (when hooked up to a control).
      */
-    EZFormTextField *passwordField = [[[EZFormTextField alloc] initWithKey:EZFDLoginFormPasswordKey] autorelease];
+    EZFormTextField *passwordField = [[EZFormTextField alloc] initWithKey:EZFDLoginFormPasswordKey];
     passwordField.validationMinCharacters = 4;
     passwordField.inputMaxCharacters = 32;
     passwordField.invalidIndicatorView = [EZForm formInvalidIndicatorViewForType:EZFormInvalidIndicatorViewTypeTriangleExclamation size:CGSizeMake(kFormInvalidIndicatorViewSize, kFormInvalidIndicatorViewSize)];
     [_loginForm addFormField:passwordField];
 }
 
-- (void)dealloc
-{
-    [_loginButton release];
-    [_loginForm release];
-    [_passwordTextField release];
-    [_usernameTextField release];
-    
-    [_loginFormView release];
-    [_invalidIndicatorKeyView release];
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {
@@ -193,7 +182,7 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
 {
     #pragma unused(sender)
     
-    [[[[UIAlertView alloc] initWithTitle:@"Success" message:nil delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+    [[[UIAlertView alloc] initWithTitle:@"Success" message:nil delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
 }
 
 @end

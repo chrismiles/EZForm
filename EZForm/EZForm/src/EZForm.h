@@ -74,7 +74,7 @@ typedef enum {
  *  You can use the delegate to receive messages from EZForm
  *  such as when a field value changes.
  */
-@property (nonatomic, assign) id<EZFormDelegate> delegate;
+@property (nonatomic, weak) id<EZFormDelegate> delegate;
 
 /** Select an input accessory to use for text input fields.
  *

@@ -25,18 +25,20 @@
 #import "EZFormStandardInputAccessoryView.h"
 
 @interface EZFormStandardInputAccessoryView ()
-@property (nonatomic, retain) UISegmentedControl *previousNextControl;
+@property (nonatomic, strong) UISegmentedControl *previousNextControl;
 @end
 
 
 @implementation EZFormStandardInputAccessoryView
 
-@synthesize inputAccessoryViewDelegate;
+@synthesize inputAccessoryViewDelegate=_inputAccessoryViewDelegate;
 @synthesize previousNextControl=_previousNextControl;
 
 - (void)previousNextAction:(id)sender
 {
     UISegmentedControl *control = (UISegmentedControl *)sender;
+    __strong id<EZFormInputAccessoryViewDelegate> inputAccessoryViewDelegate = self.inputAccessoryViewDelegate;
+    
     if (0 == control.selectedSegmentIndex) {
 	[inputAccessoryViewDelegate inputAccessoryViewSelectedPreviousField];
     }
@@ -49,6 +51,7 @@
 {
     #pragma unused(sender)
 
+    __strong id<EZFormInputAccessoryViewDelegate> inputAccessoryViewDelegate = self.inputAccessoryViewDelegate;
     [inputAccessoryViewDelegate inputAccessoryViewDone];
 }
 
@@ -77,19 +80,13 @@
 	_previousNextControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	_previousNextControl.momentary = YES;
 	[_previousNextControl addTarget:self action:@selector(previousNextAction:) forControlEvents:UIControlEventValueChanged];
-	UIBarButtonItem *previousNextItem = [[[UIBarButtonItem alloc] initWithCustomView:self.previousNextControl] autorelease];
-	UIBarButtonItem *flexibleItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-	UIBarButtonItem *doneItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)] autorelease];
+	UIBarButtonItem *previousNextItem = [[UIBarButtonItem alloc] initWithCustomView:self.previousNextControl];
+	UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
 	[self setItems:[NSArray arrayWithObjects:previousNextItem, flexibleItem, doneItem, nil]];
     }
     return self;
 }
 
-- (void)dealloc
-{
-    [_previousNextControl release];
-    
-    [super dealloc];
-}
 
 @end

@@ -49,8 +49,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 #pragma mark - EZFDRegistrationFormViewController private interface -
 
 @interface EZFDRegistrationFormViewController ()
-@property (nonatomic, retain) NSDictionary *formCells;
-@property (nonatomic, retain) EZForm *registrationForm;
+@property (nonatomic, strong) NSDictionary *formCells;
+@property (nonatomic, strong) EZForm *registrationForm;
 @end
 
 
@@ -98,12 +98,12 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
      * Enables a validation rule of 1 character minimum.
      * Limits the input text field to 32 characters maximum (when hooked up to a control).
      */
-    EZFormTextField *firstnameField = [[[EZFormTextField alloc] initWithKey:EZFDRegistrationFormFirstNameKey] autorelease];
+    EZFormTextField *firstnameField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormFirstNameKey];
     firstnameField.validationMinCharacters = 1;
     firstnameField.inputMaxCharacters = 32;
     [_registrationForm addFormField:firstnameField];
     
-    EZFormTextField *lastnameField = [[[EZFormTextField alloc] initWithKey:EZFDRegistrationFormLastNameKey] autorelease];
+    EZFormTextField *lastnameField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormLastNameKey];
     lastnameField.validationMinCharacters = 1;
     lastnameField.inputMaxCharacters = 32;
     [_registrationForm addFormField:lastnameField];
@@ -114,7 +114,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
      * Limits the input text field to 3 characters maximum (when hooked up to a control).
      * Restricts input to numeric characters only and numbers within a specified range.
      */
-    EZFormTextField *ageField = [[[EZFormTextField alloc] initWithKey:EZFDRegistrationFormAgeKey] autorelease];
+    EZFormTextField *ageField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormAgeKey];
     ageField.validationMinCharacters = 1;
     ageField.inputMaxCharacters = 3;
     [ageField addInputFilter:^BOOL(id input) {
@@ -125,7 +125,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     /*
      *
      */
-    EZFormRadioField *genderField = [[[EZFormRadioField alloc] initWithKey:EZFDRegistrationFormGenderKey] autorelease];
+    EZFormRadioField *genderField = [[EZFormRadioField alloc] initWithKey:EZFDRegistrationFormGenderKey];
     [genderField setChoicesFromArray:[NSArray arrayWithObjects:@"Female", @"Male", @"Not specified", nil]];
     genderField.validationRequiresSelection = YES;
     genderField.validationRestrictedToChoiceValues = YES;
@@ -136,7 +136,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
      * Enables a validation rule that requires an email address format "x@y.z"
      * Limits the input text field to 128 characters maximum (when hooked up to a control).
      */
-    EZFormTextField *emailField = [[[EZFormTextField alloc] initWithKey:EZFDRegistrationFormEmailKey] autorelease];
+    EZFormTextField *emailField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormEmailKey];
     emailField.inputMaxCharacters = 128;
     [emailField addValidator:EZFormEmailAddressValidator];
     [emailField addInputFilter:EZFormEmailAddressInputFilter];
@@ -145,47 +145,26 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     /*
      *
      */
-    EZFormBooleanField *subscribeField = [[[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormSubscribeKey] autorelease];
+    EZFormBooleanField *subscribeField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormSubscribeKey];
     [subscribeField setFieldValue:[NSNumber numberWithBool:YES]];
     [_registrationForm addFormField:subscribeField];
     
     /*
      *
      */
-    EZFormTextField *bioField = [[[EZFormTextField alloc] initWithKey:EZFDRegistrationFormBioKey] autorelease];
+    EZFormTextField *bioField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormBioKey];
     bioField.inputMaxCharacters = 200;
     [_registrationForm addFormField:bioField];
     
     /*
      *
      */
-    EZFormBooleanField *acceptTermsField = [[[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormAcceptTermsKey] autorelease];
+    EZFormBooleanField *acceptTermsField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormAcceptTermsKey];
     acceptTermsField.validationStates = EZFormBooleanFieldStateOn;
     [acceptTermsField setFieldValue:[NSNumber numberWithBool:NO]];
     [_registrationForm addFormField:acceptTermsField];
 }
 
-- (void)dealloc
-{
-    [_registrationForm release];
-    [_firstnameTextField release];
-    [_formCells release];
-    [_lastnameTextField release];
-    [_ageTextField release];
-    [_genderFieldLabel release];
-    [_emailTextField release];
-    [_subscribeFieldTableViewCell release];
-    [_bioTextView release];
-    [_acceptTermsFieldTableViewCell release];
-    [_registerButton release];
-    [_firstNameTableViewCell release];
-    [_lastnameTableViewCell release];
-    [_ageTableViewCell release];
-    [_genderTableViewCell release];
-    [_emailTableViewCell release];
-    [_bioTableViewCell release];
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {
@@ -378,7 +357,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     #pragma unused(sender)
     
     NSString *message = [NSString stringWithFormat:@"%@", [self.registrationForm modelValues]];
-    [[[[UIAlertView alloc] initWithTitle:@"Success" message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
+    [[[UIAlertView alloc] initWithTitle:@"Success" message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] show];
 }
 
 @end

@@ -30,13 +30,6 @@
 @synthesize radioFieldKey = _radioFieldKey;
 
 
-- (void)dealloc
-{
-    [_form release];
-    [_radioFieldKey release];
-    
-    [super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -84,7 +77,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (nil == cell) {
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];

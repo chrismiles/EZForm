@@ -27,6 +27,6 @@
 
 @interface EZFormStandardInputAccessoryView : UIToolbar <EZFormInputAccessoryViewProtocol>
 
-@property (nonatomic, assign) id<EZFormInputAccessoryViewDelegate> inputAccessoryViewDelegate;
+@property (nonatomic, weak) id<EZFormInputAccessoryViewDelegate> inputAccessoryViewDelegate;
 
 @end

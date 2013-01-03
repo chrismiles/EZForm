@@ -41,7 +41,7 @@
  *  The key of a selected choice will be returned as the model value.
  *  The value of the choice is what is to be displayed to the user.
  */
-@property (nonatomic, retain) NSDictionary *choices;
+@property (nonatomic, strong) NSDictionary *choices;
 
 /** Set a value to display when no choice has been selected.
  *

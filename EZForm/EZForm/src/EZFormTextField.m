@@ -41,8 +41,8 @@ typedef enum {
 }
 
 @property (nonatomic, copy) NSString *internalValue;
-@property (nonatomic, retain) NSMutableArray *inputFilterBlocks;
-@property (nonatomic, retain) UIView *userControl;
+@property (nonatomic, strong) NSMutableArray *inputFilterBlocks;
+@property (nonatomic, strong) UIView *userControl;
 @property (nonatomic, assign) EZFormTextFieldUserControlType userControlType;
 
 - (void)updateUI;
@@ -101,7 +101,7 @@ typedef enum {
 
 - (void)addInputFilter:(BOOL(^)(id input))inputFilter
 {
-    [self.inputFilterBlocks addObject:[[inputFilter copy] autorelease]];
+    [self.inputFilterBlocks addObject:[inputFilter copy]];
 }
 
 - (void)removeInputFilters
@@ -124,7 +124,9 @@ typedef enum {
     [textField removeTarget:self action:@selector(textFieldEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textField setDelegate:nil];
     
-    if (textField.inputAccessoryView == [self.form inputAccessoryView]) {
+    __strong EZForm *form = self.form;
+    
+    if (textField.inputAccessoryView == [form inputAccessoryView]) {
 	textField.inputAccessoryView = nil;
     }
 }
@@ -132,8 +134,9 @@ typedef enum {
 - (void)unwireTextView
 {
     UITextView *textView = (UITextView *)self.userControl;
+    __strong EZForm *form = self.form;
     
-    if (textView.inputAccessoryView == [self.form inputAccessoryView]) {
+    if (textView.inputAccessoryView == [form inputAccessoryView]) {
 	textView.inputAccessoryView = nil;
     }
 }
@@ -155,9 +158,11 @@ typedef enum {
     UITextField *textField = (UITextField *)self.userControl;
     textField.delegate = self;
     
+    __strong EZForm *form = self.form;
+
     if (nil == textField.inputAccessoryView) {
 	// set standard input accessory view, only if one not already assigned
-	textField.inputAccessoryView = [self.form inputAccessoryView];
+	textField.inputAccessoryView = [form inputAccessoryView];
     }
     
     [textField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -168,10 +173,12 @@ typedef enum {
 {
     UITextView *textView = (UITextView *)self.userControl;
     textView.delegate = self;
-    
+
+    __strong EZForm *form = self.form;
+
     if (nil == textView.inputAccessoryView) {
 	// set standard input accessory view, only if one not already assigned
-	textView.inputAccessoryView = [self.form inputAccessoryView];
+	textView.inputAccessoryView = [form inputAccessoryView];
     }
 }
 
@@ -186,7 +193,8 @@ typedef enum {
 {
     #pragma unused(sender)
     
-    [self.form formFieldInputFinished:self];
+    __strong EZForm *form = self.form;
+    [form formFieldInputFinished:self];
 }
 
 - (BOOL)isInputValid:(NSString *)inputStr
@@ -302,7 +310,8 @@ typedef enum {
 {
     #pragma unused(textField)
     
-    [self.form formFieldDidBeginEditing:self];
+    __strong EZForm *form = self.form;
+    [form formFieldDidBeginEditing:self];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -324,7 +333,8 @@ typedef enum {
 {
     #pragma unused(textView)
 
-    [self.form formFieldDidBeginEditing:self];
+    __strong EZForm *form = self.form;
+    [form formFieldDidBeginEditing:self];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -424,11 +434,7 @@ typedef enum {
 {
     [self unwireUserControl];
     
-    [_internalValue release];
-    [_inputFilterBlocks release];
-    [userControl release];
     
-    [super dealloc];
 }
 
 @end

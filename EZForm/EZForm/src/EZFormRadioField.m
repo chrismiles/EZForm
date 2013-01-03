@@ -29,9 +29,9 @@
 #pragma mark - EZFormRadioField class extension
 
 @interface EZFormRadioField ()
-@property (nonatomic, retain) id currentSelection;
-@property (nonatomic, retain) NSArray *orderedKeys;
-@property (nonatomic, retain) UILabel *userLabel;
+@property (nonatomic, strong) id currentSelection;
+@property (nonatomic, strong) NSArray *orderedKeys;
+@property (nonatomic, strong) UILabel *userLabel;
 
 - (void)updateUI;
 @end
@@ -66,8 +66,6 @@
 
 - (void)setChoices:(NSDictionary *)newChoices
 {
-    [newChoices retain];
-    [_choices release];
     _choices = newChoices;
     
     self.orderedKeys = [newChoices allKeys];
@@ -143,15 +141,5 @@
 
 #pragma mark - Memory management
 
-- (void)dealloc
-{
-    [_choices release];
-    [currentSelection release];
-    [orderedKeys release];
-    [unselected release];
-    [userLabel release];
-    
-    [super dealloc];
-}
 
 @end

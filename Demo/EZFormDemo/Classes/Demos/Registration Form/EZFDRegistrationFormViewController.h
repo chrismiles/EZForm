@@ -28,21 +28,21 @@
 
 @interface EZFDRegistrationFormViewController : UITableViewController <EZFormDelegate>
 
-@property (retain, nonatomic) IBOutlet UITableViewCell *acceptTermsFieldTableViewCell;
-@property (retain, nonatomic) IBOutlet UITableViewCell *ageTableViewCell;
-@property (retain, nonatomic) IBOutlet UITableViewCell *bioTableViewCell;
-@property (retain, nonatomic) IBOutlet UITableViewCell *emailTableViewCell;
-@property (retain, nonatomic) IBOutlet UITableViewCell *firstNameTableViewCell;
-@property (retain, nonatomic) IBOutlet UITableViewCell *genderTableViewCell;
-@property (retain, nonatomic) IBOutlet UITableViewCell *lastnameTableViewCell;
-@property (retain, nonatomic) IBOutlet UITableViewCell *subscribeFieldTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *acceptTermsFieldTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *ageTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *bioTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *emailTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *firstNameTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *genderTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *lastnameTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *subscribeFieldTableViewCell;
 
-@property (retain, nonatomic) IBOutlet UITextField *ageTextField;
-@property (retain, nonatomic) IBOutlet UITextView *bioTextView;
-@property (retain, nonatomic) IBOutlet UITextField *emailTextField;
-@property (retain, nonatomic) IBOutlet UITextField *firstnameTextField;
-@property (retain, nonatomic) IBOutlet UILabel *genderFieldLabel;
-@property (retain, nonatomic) IBOutlet UITextField *lastnameTextField;
-@property (retain, nonatomic) IBOutlet UIButton *registerButton;
+@property (strong, nonatomic) IBOutlet UITextField *ageTextField;
+@property (strong, nonatomic) IBOutlet UITextView *bioTextView;
+@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+@property (strong, nonatomic) IBOutlet UITextField *firstnameTextField;
+@property (strong, nonatomic) IBOutlet UILabel *genderFieldLabel;
+@property (strong, nonatomic) IBOutlet UITextField *lastnameTextField;
+@property (strong, nonatomic) IBOutlet UIButton *registerButton;
 
 @end

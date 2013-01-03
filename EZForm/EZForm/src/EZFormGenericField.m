@@ -47,11 +47,6 @@ typedef enum {
 
 @implementation EZFormGenericField
 
-@synthesize internalValue=_internalValue;
-@synthesize userControl;
-@synthesize userControlType;
-@synthesize validationNotNil;
-
 
 #pragma mark - Public methods
 

@@ -26,7 +26,4 @@
 
 @implementation EZFDAppDelegate
 
-@synthesize window = _window;
-
-
 @end

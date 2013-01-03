@@ -26,7 +26,7 @@
 #import "EZFormField.h"
 #import "EZFormFieldConcreteProtocol.h"
 
-typedef enum {
+typedef enum : NSInteger {
     EZFormTextFieldInvalidIndicatorPositionRight = 0,
     EZFormTextFieldInvalidIndicatorPositionLeft,
 } EZFormTextFieldInvalidIndicatorPosition;

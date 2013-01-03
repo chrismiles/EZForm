@@ -41,14 +41,6 @@
 
 @implementation EZFormRadioField
 
-@synthesize choices=_choices;
-@synthesize currentSelection;
-@synthesize orderedKeys;
-@synthesize unselected;
-@synthesize userLabel;
-@synthesize validationRequiresSelection;
-@synthesize validationRestrictedToChoiceValues;
-
 
 #pragma mark - Public methods
 
@@ -123,10 +115,10 @@
     
     id value = [self fieldValue];
     
-    if (validationRequiresSelection && nil == self.currentSelection) {
+    if (self.validationRequiresSelection && nil == self.currentSelection) {
 	result = NO;
     }
-    else if (validationRestrictedToChoiceValues && ![[self.choices allKeys] containsObject:value]) {
+    else if (self.validationRestrictedToChoiceValues && ![[self.choices allKeys] containsObject:value]) {
 	result = NO;
     }
     

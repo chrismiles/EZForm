@@ -31,8 +31,6 @@
 
 @implementation EZFormStandardInputAccessoryView
 
-@synthesize inputAccessoryViewDelegate=_inputAccessoryViewDelegate;
-@synthesize previousNextControl=_previousNextControl;
 
 - (void)previousNextAction:(id)sender
 {

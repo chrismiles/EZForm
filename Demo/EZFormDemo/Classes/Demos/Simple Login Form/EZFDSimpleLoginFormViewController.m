@@ -39,12 +39,6 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
 
 @implementation EZFDSimpleLoginFormViewController
 
-@synthesize loginButton = _loginButton;
-@synthesize loginFormView = _loginFormView;
-@synthesize loginForm = _loginForm;
-@synthesize passwordTextField = _passwordTextField;
-@synthesize usernameTextField = _usernameTextField;
-@synthesize invalidIndicatorKeyView = _invalidIndicatorKeyView;
 
 - (void)awakeFromNib
 {

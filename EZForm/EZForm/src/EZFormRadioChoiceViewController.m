@@ -26,10 +26,6 @@
 
 @implementation EZFormRadioChoiceViewController
 
-@synthesize form = _form;
-@synthesize radioFieldKey = _radioFieldKey;
-
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

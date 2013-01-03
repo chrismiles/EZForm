@@ -45,12 +45,12 @@
 #import "EZFormRadioChoiceViewController.h"
 
 
-typedef enum {
+typedef enum : NSInteger {
     EZFormInputAccessoryTypeNone = 0,
     EZFormInputAccessoryTypeStandard,
 } EZFormInputAccessoryType;
 
-typedef enum {
+typedef enum : NSInteger {
     EZFormInvalidIndicatorViewTypeTriangleExclamation = 1,
 } EZFormInvalidIndicatorViewType;
 

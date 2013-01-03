@@ -26,7 +26,7 @@
 #import "EZFormField.h"
 #import "EZFormFieldConcreteProtocol.h"
 
-typedef enum {
+typedef enum : NSInteger {
     EZFormBooleanFieldStateAny = 0,
     EZFormBooleanFieldStateOn = 1,
     EZFormBooleanFieldStateOff = 2

@@ -52,10 +52,6 @@ typedef enum {
 
 @implementation EZFormBooleanField
 
-@synthesize userControl;
-@synthesize userControlType;
-@synthesize validationStates;
-
 
 #pragma mark - Public methods
 
@@ -112,10 +108,10 @@ typedef enum {
 
 - (void)unwireUserControl
 {
-    if (EZFormBooleanFieldUserControlTypeButton == userControlType) {
+    if (EZFormBooleanFieldUserControlTypeButton == self.userControlType) {
 	[self unwireButton];
     }
-    else if (EZFormBooleanFieldUserControlTypeSwitch == userControlType) {
+    else if (EZFormBooleanFieldUserControlTypeSwitch == self.userControlType) {
 	[self unwireSwitch];
     }
     

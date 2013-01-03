@@ -50,13 +50,6 @@
 
 @implementation EZForm
 
-@synthesize autoScrollForKeyboardInputPaddingSize;
-@synthesize delegate=_delegate;
-@synthesize formFields;
-@synthesize inputAccessoryStandardView;
-@synthesize inputAccessoryType;
-@synthesize viewToAutoScroll;
-
 
 #pragma mark - Public Methods
 
@@ -237,7 +230,7 @@
 	if (formFieldView) {
 	    CGRect convertedFrame = [formFieldView.superview convertRect:formFieldView.frame toView:self.viewToAutoScroll];
 	    convertedFrame = CGRectInset(convertedFrame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
-	    [(UIScrollView *)viewToAutoScroll scrollRectToVisible:convertedFrame animated:YES];
+	    [(UIScrollView *)self.viewToAutoScroll scrollRectToVisible:convertedFrame animated:YES];
 	}
     }
     else if ([self.viewToAutoScroll isKindOfClass:[UIView class]]) {
@@ -474,7 +467,7 @@
 
 - (void)dealloc
 {
-    for (EZFormField *formField in formFields) {
+    for (EZFormField *formField in _formFields) {
 	formField.form = nil;
     }
     

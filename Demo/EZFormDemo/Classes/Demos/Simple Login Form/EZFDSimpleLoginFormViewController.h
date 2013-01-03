@@ -24,7 +24,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "EZForm.h"
 #import <EZForm/EZForm.h>
 
 @interface EZFDSimpleLoginFormViewController : UIViewController <EZFormDelegate>

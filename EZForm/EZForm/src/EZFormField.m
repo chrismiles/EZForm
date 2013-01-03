@@ -37,9 +37,6 @@
 
 @implementation EZFormField
 
-@synthesize validationDisabled=_validationDisabled;
-@synthesize form=_form;
-@synthesize key;
 
 - (id)fieldValue
 {

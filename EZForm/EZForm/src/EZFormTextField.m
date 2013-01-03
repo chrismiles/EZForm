@@ -26,7 +26,7 @@
 #import "EZForm+Private.h"
 
 
-typedef enum {
+typedef enum : NSInteger {
     EZFormTextFieldUserControlTypeNone = 0,
     EZFormTextFieldUserControlTypeTextField = 1,
     EZFormTextFieldUserControlTypeTextView = 2,
@@ -56,16 +56,6 @@ typedef enum {
 #pragma mark - EZFormTextField implementation
 
 @implementation EZFormTextField
-
-@synthesize inputFilterBlocks = _inputFilterBlocks;
-@synthesize inputMaxCharacters;
-@synthesize internalValue=_internalValue;
-@synthesize invalidIndicatorPosition = _invalidIndicatorPosition;
-@synthesize invalidIndicatorView;
-@synthesize trimWhitespace;
-@synthesize userControl;
-@synthesize userControlType;
-@synthesize validationMinCharacters;
 
 
 #pragma mark - Public methods
@@ -199,7 +189,7 @@ typedef enum {
 
 - (BOOL)isInputValid:(NSString *)inputStr
 {
-    if (self.inputMaxCharacters > 0 && [inputStr length] > inputMaxCharacters) {
+    if (self.inputMaxCharacters > 0 && [inputStr length] > self.inputMaxCharacters) {
 	return NO;
     }
     
@@ -271,7 +261,7 @@ typedef enum {
     NSString *resultingString = [text stringByReplacingCharactersInRange:range withString:string];
     
     if (self.trimWhitespace) {
-	if (self.inputMaxCharacters > 0 && [resultingString length] > inputMaxCharacters) {
+	if (self.inputMaxCharacters > 0 && [resultingString length] > self.inputMaxCharacters) {
 	    // Prevent non-trimmed string from exceeding max chars
 	    return NO;
 	}
@@ -422,7 +412,7 @@ typedef enum {
 - (id)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey])) {
-	trimWhitespace = YES;
+	_trimWhitespace = YES;
 	_invalidIndicatorPosition = EZFormTextFieldInvalidIndicatorPositionRight;
 	_inputFilterBlocks = [[NSMutableArray alloc] init];
     }
@@ -433,8 +423,6 @@ typedef enum {
 - (void)dealloc
 {
     [self unwireUserControl];
-    
-    
 }
 
 @end

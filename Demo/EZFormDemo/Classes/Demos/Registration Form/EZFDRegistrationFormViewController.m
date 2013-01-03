@@ -58,24 +58,6 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
 @implementation EZFDRegistrationFormViewController
 
-@synthesize ageTextField = _ageTextField;
-@synthesize ageTableViewCell = _ageTableViewCell;
-@synthesize bioTableViewCell = _bioTableViewCell;
-@synthesize acceptTermsFieldTableViewCell = _acceptTermsFieldTableViewCell;
-@synthesize bioTextView = _bioTextView;
-@synthesize emailTableViewCell = _emailTableViewCell;
-@synthesize emailTextField = _emailTextField;
-@synthesize firstnameTextField = _firstnameTextField;
-@synthesize firstNameTableViewCell = _firstNameTableViewCell;
-@synthesize genderTableViewCell = _genderTableViewCell;
-@synthesize formCells = _formCells;
-@synthesize genderFieldLabel = _genderFieldLabel;
-@synthesize lastnameTableViewCell = _lastnameTableViewCell;
-@synthesize lastnameTextField = _lastnameTextField;
-@synthesize registerButton = _registerButton;
-@synthesize registrationForm = _registrationForm;
-@synthesize subscribeFieldTableViewCell = _subscribeFieldTableViewCell;
-
 
 #pragma mark -
 

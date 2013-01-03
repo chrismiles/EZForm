@@ -55,6 +55,8 @@ Add EZForm/EZForm.xcodeproj to your project (or workspace).
 
 Add `libEZForm.a` to the Linked Frameworks and Libraries for your project.
 
+Add `-ObjC` to "Other Linker Flags" in your target's build settings.
+
 Import the main header:
 
 ```objective-c 

@@ -126,7 +126,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
      *
      */
     EZFormRadioField *genderField = [[EZFormRadioField alloc] initWithKey:EZFDRegistrationFormGenderKey];
-    [genderField setChoicesFromArray:[NSArray arrayWithObjects:@"Female", @"Male", @"Not specified", nil]];
+    [genderField setChoicesFromArray:@[@"Female", @"Male", @"Not specified"]];
     genderField.validationRequiresSelection = YES;
     genderField.validationRestrictedToChoiceValues = YES;
     [_registrationForm addFormField:genderField];
@@ -146,7 +146,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
      *
      */
     EZFormBooleanField *subscribeField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormSubscribeKey];
-    [subscribeField setFieldValue:[NSNumber numberWithBool:YES]];
+    [subscribeField setFieldValue:@YES];
     [_registrationForm addFormField:subscribeField];
     
     /*
@@ -161,7 +161,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
      */
     EZFormBooleanField *acceptTermsField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormAcceptTermsKey];
     acceptTermsField.validationStates = EZFormBooleanFieldStateOn;
-    [acceptTermsField setFieldValue:[NSNumber numberWithBool:NO]];
+    [acceptTermsField setFieldValue:@NO];
     [_registrationForm addFormField:acceptTermsField];
 }
 
@@ -199,15 +199,13 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
      * Record a mapping of form field keys to table view cells.
      * Will be used for showing field validity.
      */
-    self.formCells = [NSDictionary dictionaryWithObjectsAndKeys:
-		      self.firstNameTableViewCell, EZFDRegistrationFormFirstNameKey,
-		      self.lastnameTableViewCell, EZFDRegistrationFormLastNameKey,
-		      self.ageTableViewCell, EZFDRegistrationFormAgeKey,
-		      self.genderTableViewCell, EZFDRegistrationFormGenderKey,
-		      self.emailTableViewCell, EZFDRegistrationFormEmailKey,
-		      self.bioTableViewCell, EZFDRegistrationFormBioKey,
-		      self.acceptTermsFieldTableViewCell, EZFDRegistrationFormAcceptTermsKey,
-		      nil];
+    self.formCells = @{EZFDRegistrationFormFirstNameKey: self.firstNameTableViewCell,
+		      EZFDRegistrationFormLastNameKey: self.lastnameTableViewCell,
+		      EZFDRegistrationFormAgeKey: self.ageTableViewCell,
+		      EZFDRegistrationFormGenderKey: self.genderTableViewCell,
+		      EZFDRegistrationFormEmailKey: self.emailTableViewCell,
+		      EZFDRegistrationFormBioKey: self.bioTableViewCell,
+		      EZFDRegistrationFormAcceptTermsKey: self.acceptTermsFieldTableViewCell};
     
     /*
      * Update validity indication for each field.

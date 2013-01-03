@@ -39,7 +39,7 @@
 	 */
 	NSUInteger thisIndex = [self.navigationController.viewControllers indexOfObject:self];
 	if (thisIndex != NSNotFound && thisIndex > 0) {
-	    UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:thisIndex-1];
+	    UIViewController *previousViewController = (self.navigationController.viewControllers)[thisIndex-1];
 	    return [previousViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 	}
     }
@@ -81,7 +81,7 @@
     }
     
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
-    NSString *choiceKey = [[field choiceKeys] objectAtIndex:(NSUInteger)indexPath.row];
+    NSString *choiceKey = [field choiceKeys][(NSUInteger)indexPath.row];
     cell.textLabel.text = [field.choices valueForKey:choiceKey];
     
     if ([[self.form modelValueForKey:self.radioFieldKey] isEqualToString:choiceKey]) {
@@ -100,7 +100,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
-    NSString *choiceKey = [[field choiceKeys] objectAtIndex:(NSUInteger)indexPath.row];
+    NSString *choiceKey = [field choiceKeys][(NSUInteger)indexPath.row];
     [self.form setModelValue:choiceKey forKey:self.radioFieldKey];
     
     [self updateCellCheckmarks];
@@ -119,7 +119,7 @@
     
     for (UITableViewCell *cell in [self.tableView visibleCells]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSString *choiceKey = [choiceKeys objectAtIndex:(NSUInteger)indexPath.row];
+        NSString *choiceKey = choiceKeys[(NSUInteger)indexPath.row];
 	
         if ([selection isEqualToString:choiceKey]) {
 	    cell.accessoryType = UITableViewCellAccessoryCheckmark;

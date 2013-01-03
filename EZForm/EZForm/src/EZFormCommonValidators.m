@@ -91,7 +91,7 @@ EZFormValidateEmailFormat(NSString *value)
 	return NO;
     }
     
-    NSString *domain = [[value componentsSeparatedByString:@"@"] objectAtIndex:1];
+    NSString *domain = [value componentsSeparatedByString:@"@"][1];
     
     if ([domain length] < 3) {
 	return NO;
@@ -133,7 +133,7 @@ EZFormFilterInputForEmailAddressFormat(NSString *input)
 	    return NO;
 	}
 	
-	NSString *domain = [[input componentsSeparatedByString:@"@"] objectAtIndex:1];
+	NSString *domain = [input componentsSeparatedByString:@"@"][1];
 	
 	range = [domain rangeOfString:@"."];
 	if (range.location != NSNotFound) {

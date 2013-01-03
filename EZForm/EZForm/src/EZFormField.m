@@ -121,7 +121,7 @@
 	id value = [self fieldValue];
 	
 	for (unsigned i=0; result && i < [validationBlocks count]; i++) {
-	    BOOL (^validator)(id value) = [validationBlocks objectAtIndex:i];
+	    BOOL (^validator)(id value) = validationBlocks[i];
 	    result = validator(value);
 	}
 	

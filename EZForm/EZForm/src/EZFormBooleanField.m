@@ -126,12 +126,12 @@ typedef enum {
 - (void)buttonTouchUpAction:(UIButton *)button
 {
     button.selected = !button.selected;
-    [self setFieldValue:[NSNumber numberWithBool:button.selected]];
+    [self setFieldValue:@(button.selected)];
 }
 
 - (void)switchValueChangedAction:(UISwitch *)switchControl
 {
-    [self setFieldValue:[NSNumber numberWithBool:switchControl.on]];
+    [self setFieldValue:@(switchControl.on)];
 }
 
 - (void)updateUI
@@ -153,7 +153,7 @@ typedef enum {
 
 - (id)actualFieldValue
 {
-    return [NSNumber numberWithBool:_internalValue];
+    return @(_internalValue);
 }
 
 - (void)setActualFieldValue:(id)value
@@ -192,9 +192,5 @@ typedef enum {
 {
     [self updateUI];
 }
-
-
-#pragma mark - Memory management
-
 
 @end

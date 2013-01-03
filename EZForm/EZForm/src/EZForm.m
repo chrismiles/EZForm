@@ -296,7 +296,7 @@
 	    indexIncrement = -1;
 	}
 	for (NSInteger index=startIndex; index >= 0 && index < (NSInteger)[self.formFields count]; index += indexIncrement) {
-	    EZFormField *aFormField = [self.formFields objectAtIndex:(NSUInteger)index];
+	    EZFormField *aFormField = (self.formFields)[(NSUInteger)index];
 	    if ([aFormField canBecomeFirstResponder]) {
 		result = aFormField;
 		break;
@@ -422,8 +422,8 @@
 
 - (void)keyboardWillShowNotification:(NSNotification *)notification
 {
-    _visibleKeyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    _keyboardAnimationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    _visibleKeyboardFrame = [[notification userInfo][UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    _keyboardAnimationDuration = [[notification userInfo][UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     if (self.viewToAutoScroll && ![self.viewToAutoScroll isKindOfClass:[UITableView class]]) {
 	// Exception for table views: they will scroll automatically to reveal field holding first responder
@@ -440,14 +440,14 @@
     _visibleKeyboardFrame = CGRectZero;
     
     if (self.viewToAutoScroll) {
-	NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+	NSTimeInterval animationDuration = [[notification userInfo][UIKeyboardAnimationDurationUserInfoKey] doubleValue];
         [self revertAutoScrolledViewAnimationDuration:animationDuration];
     }
 }
 
 - (void)keyboardWillChangeFrameNotification:(NSNotification *)notification
 {
-    _visibleKeyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    _visibleKeyboardFrame = [[notification userInfo][UIKeyboardFrameEndUserInfoKey] CGRectValue];
 }
 
 

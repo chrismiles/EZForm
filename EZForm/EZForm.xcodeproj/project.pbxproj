@@ -1,0 +1,504 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		839EE8CB169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
+		839EE8DA169529DE00B9DCA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8D9169529DE00B9DCA8 /* SenTestingKit.framework */; };
+		839EE8DD169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
+		839EE8E0169529DE00B9DCA8 /* libEZForm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8C7169529DE00B9DCA8 /* libEZForm.a */; };
+		839EE8E6169529DE00B9DCA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 839EE8E4169529DE00B9DCA8 /* InfoPlist.strings */; };
+		839EE8E9169529DE00B9DCA8 /* EZFormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8E8169529DE00B9DCA8 /* EZFormTests.m */; };
+		839EE90D16952A3D00B9DCA8 /* EZForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F516952A3D00B9DCA8 /* EZForm.m */; };
+		839EE90E16952A3D00B9DCA8 /* EZFormBooleanField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F716952A3D00B9DCA8 /* EZFormBooleanField.m */; };
+		839EE90F16952A3D00B9DCA8 /* EZFormCommonValidators.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F916952A3D00B9DCA8 /* EZFormCommonValidators.m */; };
+		839EE91016952A3D00B9DCA8 /* EZFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8FC16952A3D00B9DCA8 /* EZFormField.m */; };
+		839EE91116952A3D00B9DCA8 /* EZFormGenericField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8FF16952A3D00B9DCA8 /* EZFormGenericField.m */; };
+		839EE91216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE90216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m */; };
+		839EE91316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE90416952A3D00B9DCA8 /* EZFormRadioChoiceViewController.m */; };
+		839EE91416952A3D00B9DCA8 /* EZFormRadioField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE90616952A3D00B9DCA8 /* EZFormRadioField.m */; };
+		839EE91516952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE90816952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.m */; };
+		839EE91616952A3D00B9DCA8 /* EZFormTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE90A16952A3D00B9DCA8 /* EZFormTextField.m */; };
+		839EE91716952A3D00B9DCA8 /* UIView+EZFormUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE90C16952A3D00B9DCA8 /* UIView+EZFormUtility.m */; };
+		839EE91916952AB900B9DCA8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE91816952AB900B9DCA8 /* UIKit.framework */; };
+		839EE92916952BA800B9DCA8 /* EZForm.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE8F416952A3D00B9DCA8 /* EZForm.h */; };
+		839EE92A16952BA800B9DCA8 /* EZFormBooleanField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE8F616952A3D00B9DCA8 /* EZFormBooleanField.h */; };
+		839EE92B16952BA800B9DCA8 /* EZFormCommonValidators.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE8F816952A3D00B9DCA8 /* EZFormCommonValidators.h */; };
+		839EE92C16952BA800B9DCA8 /* EZFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE8FB16952A3D00B9DCA8 /* EZFormField.h */; };
+		839EE93016952C5C00B9DCA8 /* EZFormFieldConcreteProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE8FD16952A3D00B9DCA8 /* EZFormFieldConcreteProtocol.h */; };
+		839EE93116952CF800B9DCA8 /* EZFormGenericField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE8FE16952A3D00B9DCA8 /* EZFormGenericField.h */; };
+		839EE93216952D0500B9DCA8 /* EZFormRadioField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90516952A3D00B9DCA8 /* EZFormRadioField.h */; };
+		839EE93316952D0500B9DCA8 /* EZFormTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90916952A3D00B9DCA8 /* EZFormTextField.h */; };
+		839EE93416952D2200B9DCA8 /* EZFormInputAccessoryViewProtocols.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90016952A3D00B9DCA8 /* EZFormInputAccessoryViewProtocols.h */; };
+		839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		839EE8DE169529DE00B9DCA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 839EE8BE169529DE00B9DCA8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 839EE8C6169529DE00B9DCA8;
+			remoteInfo = EZForm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		839EE8C5169529DE00B9DCA8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */,
+				839EE93416952D2200B9DCA8 /* EZFormInputAccessoryViewProtocols.h in CopyFiles */,
+				839EE93216952D0500B9DCA8 /* EZFormRadioField.h in CopyFiles */,
+				839EE93316952D0500B9DCA8 /* EZFormTextField.h in CopyFiles */,
+				839EE93116952CF800B9DCA8 /* EZFormGenericField.h in CopyFiles */,
+				839EE93016952C5C00B9DCA8 /* EZFormFieldConcreteProtocol.h in CopyFiles */,
+				839EE92916952BA800B9DCA8 /* EZForm.h in CopyFiles */,
+				839EE92A16952BA800B9DCA8 /* EZFormBooleanField.h in CopyFiles */,
+				839EE92B16952BA800B9DCA8 /* EZFormCommonValidators.h in CopyFiles */,
+				839EE92C16952BA800B9DCA8 /* EZFormField.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		839EE8C7169529DE00B9DCA8 /* libEZForm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZForm.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		839EE8CA169529DE00B9DCA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		839EE8CE169529DE00B9DCA8 /* EZForm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZForm-Prefix.pch"; sourceTree = "<group>"; };
+		839EE8D8169529DE00B9DCA8 /* EZFormTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZFormTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		839EE8D9169529DE00B9DCA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		839EE8E3169529DE00B9DCA8 /* EZFormTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EZFormTests-Info.plist"; sourceTree = "<group>"; };
+		839EE8E5169529DE00B9DCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		839EE8E7169529DE00B9DCA8 /* EZFormTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EZFormTests.h; sourceTree = "<group>"; };
+		839EE8E8169529DE00B9DCA8 /* EZFormTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZFormTests.m; sourceTree = "<group>"; };
+		839EE8F316952A3D00B9DCA8 /* EZForm+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EZForm+Private.h"; sourceTree = "<group>"; };
+		839EE8F416952A3D00B9DCA8 /* EZForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZForm.h; sourceTree = "<group>"; };
+		839EE8F516952A3D00B9DCA8 /* EZForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZForm.m; sourceTree = "<group>"; };
+		839EE8F616952A3D00B9DCA8 /* EZFormBooleanField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormBooleanField.h; sourceTree = "<group>"; };
+		839EE8F716952A3D00B9DCA8 /* EZFormBooleanField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormBooleanField.m; sourceTree = "<group>"; };
+		839EE8F816952A3D00B9DCA8 /* EZFormCommonValidators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormCommonValidators.h; sourceTree = "<group>"; };
+		839EE8F916952A3D00B9DCA8 /* EZFormCommonValidators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormCommonValidators.m; sourceTree = "<group>"; };
+		839EE8FA16952A3D00B9DCA8 /* EZFormField+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EZFormField+Private.h"; sourceTree = "<group>"; };
+		839EE8FB16952A3D00B9DCA8 /* EZFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormField.h; sourceTree = "<group>"; };
+		839EE8FC16952A3D00B9DCA8 /* EZFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormField.m; sourceTree = "<group>"; };
+		839EE8FD16952A3D00B9DCA8 /* EZFormFieldConcreteProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormFieldConcreteProtocol.h; sourceTree = "<group>"; };
+		839EE8FE16952A3D00B9DCA8 /* EZFormGenericField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormGenericField.h; sourceTree = "<group>"; };
+		839EE8FF16952A3D00B9DCA8 /* EZFormGenericField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormGenericField.m; sourceTree = "<group>"; };
+		839EE90016952A3D00B9DCA8 /* EZFormInputAccessoryViewProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormInputAccessoryViewProtocols.h; sourceTree = "<group>"; };
+		839EE90116952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormInvalidIndicatorTriangleExclamationView.h; sourceTree = "<group>"; };
+		839EE90216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormInvalidIndicatorTriangleExclamationView.m; sourceTree = "<group>"; };
+		839EE90316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormRadioChoiceViewController.h; sourceTree = "<group>"; };
+		839EE90416952A3D00B9DCA8 /* EZFormRadioChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormRadioChoiceViewController.m; sourceTree = "<group>"; };
+		839EE90516952A3D00B9DCA8 /* EZFormRadioField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormRadioField.h; sourceTree = "<group>"; };
+		839EE90616952A3D00B9DCA8 /* EZFormRadioField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormRadioField.m; sourceTree = "<group>"; };
+		839EE90716952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormStandardInputAccessoryView.h; sourceTree = "<group>"; };
+		839EE90816952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormStandardInputAccessoryView.m; sourceTree = "<group>"; };
+		839EE90916952A3D00B9DCA8 /* EZFormTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormTextField.h; sourceTree = "<group>"; };
+		839EE90A16952A3D00B9DCA8 /* EZFormTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormTextField.m; sourceTree = "<group>"; };
+		839EE90B16952A3D00B9DCA8 /* UIView+EZFormUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EZFormUtility.h"; sourceTree = "<group>"; };
+		839EE90C16952A3D00B9DCA8 /* UIView+EZFormUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EZFormUtility.m"; sourceTree = "<group>"; };
+		839EE91816952AB900B9DCA8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		839EE8C4169529DE00B9DCA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				839EE91916952AB900B9DCA8 /* UIKit.framework in Frameworks */,
+				839EE8CB169529DE00B9DCA8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		839EE8D4169529DE00B9DCA8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				839EE8DA169529DE00B9DCA8 /* SenTestingKit.framework in Frameworks */,
+				839EE8DD169529DE00B9DCA8 /* Foundation.framework in Frameworks */,
+				839EE8E0169529DE00B9DCA8 /* libEZForm.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		839EE8BC169529DE00B9DCA8 = {
+			isa = PBXGroup;
+			children = (
+				839EE8CC169529DE00B9DCA8 /* EZForm */,
+				839EE8E1169529DE00B9DCA8 /* EZFormTests */,
+				839EE8C9169529DE00B9DCA8 /* Frameworks */,
+				839EE8C8169529DE00B9DCA8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		839EE8C8169529DE00B9DCA8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				839EE8C7169529DE00B9DCA8 /* libEZForm.a */,
+				839EE8D8169529DE00B9DCA8 /* EZFormTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		839EE8C9169529DE00B9DCA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				839EE8CA169529DE00B9DCA8 /* Foundation.framework */,
+				839EE8D9169529DE00B9DCA8 /* SenTestingKit.framework */,
+				839EE91816952AB900B9DCA8 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		839EE8CC169529DE00B9DCA8 /* EZForm */ = {
+			isa = PBXGroup;
+			children = (
+				839EE8F216952A3D00B9DCA8 /* src */,
+				839EE8CD169529DE00B9DCA8 /* Supporting Files */,
+			);
+			path = EZForm;
+			sourceTree = "<group>";
+		};
+		839EE8CD169529DE00B9DCA8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				839EE8CE169529DE00B9DCA8 /* EZForm-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		839EE8E1169529DE00B9DCA8 /* EZFormTests */ = {
+			isa = PBXGroup;
+			children = (
+				839EE8E7169529DE00B9DCA8 /* EZFormTests.h */,
+				839EE8E8169529DE00B9DCA8 /* EZFormTests.m */,
+				839EE8E2169529DE00B9DCA8 /* Supporting Files */,
+			);
+			path = EZFormTests;
+			sourceTree = "<group>";
+		};
+		839EE8E2169529DE00B9DCA8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				839EE8E3169529DE00B9DCA8 /* EZFormTests-Info.plist */,
+				839EE8E4169529DE00B9DCA8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		839EE8F216952A3D00B9DCA8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				839EE8F316952A3D00B9DCA8 /* EZForm+Private.h */,
+				839EE8F416952A3D00B9DCA8 /* EZForm.h */,
+				839EE8F516952A3D00B9DCA8 /* EZForm.m */,
+				839EE8F616952A3D00B9DCA8 /* EZFormBooleanField.h */,
+				839EE8F716952A3D00B9DCA8 /* EZFormBooleanField.m */,
+				839EE8F816952A3D00B9DCA8 /* EZFormCommonValidators.h */,
+				839EE8F916952A3D00B9DCA8 /* EZFormCommonValidators.m */,
+				839EE8FA16952A3D00B9DCA8 /* EZFormField+Private.h */,
+				839EE8FB16952A3D00B9DCA8 /* EZFormField.h */,
+				839EE8FC16952A3D00B9DCA8 /* EZFormField.m */,
+				839EE8FD16952A3D00B9DCA8 /* EZFormFieldConcreteProtocol.h */,
+				839EE8FE16952A3D00B9DCA8 /* EZFormGenericField.h */,
+				839EE8FF16952A3D00B9DCA8 /* EZFormGenericField.m */,
+				839EE90016952A3D00B9DCA8 /* EZFormInputAccessoryViewProtocols.h */,
+				839EE90116952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.h */,
+				839EE90216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m */,
+				839EE90316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.h */,
+				839EE90416952A3D00B9DCA8 /* EZFormRadioChoiceViewController.m */,
+				839EE90516952A3D00B9DCA8 /* EZFormRadioField.h */,
+				839EE90616952A3D00B9DCA8 /* EZFormRadioField.m */,
+				839EE90716952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.h */,
+				839EE90816952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.m */,
+				839EE90916952A3D00B9DCA8 /* EZFormTextField.h */,
+				839EE90A16952A3D00B9DCA8 /* EZFormTextField.m */,
+				839EE90B16952A3D00B9DCA8 /* UIView+EZFormUtility.h */,
+				839EE90C16952A3D00B9DCA8 /* UIView+EZFormUtility.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		839EE8C6169529DE00B9DCA8 /* EZForm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 839EE8EC169529DE00B9DCA8 /* Build configuration list for PBXNativeTarget "EZForm" */;
+			buildPhases = (
+				839EE8C3169529DE00B9DCA8 /* Sources */,
+				839EE8C4169529DE00B9DCA8 /* Frameworks */,
+				839EE8C5169529DE00B9DCA8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EZForm;
+			productName = EZForm;
+			productReference = 839EE8C7169529DE00B9DCA8 /* libEZForm.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		839EE8D7169529DE00B9DCA8 /* EZFormTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 839EE8EF169529DE00B9DCA8 /* Build configuration list for PBXNativeTarget "EZFormTests" */;
+			buildPhases = (
+				839EE8D3169529DE00B9DCA8 /* Sources */,
+				839EE8D4169529DE00B9DCA8 /* Frameworks */,
+				839EE8D5169529DE00B9DCA8 /* Resources */,
+				839EE8D6169529DE00B9DCA8 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				839EE8DF169529DE00B9DCA8 /* PBXTargetDependency */,
+			);
+			name = EZFormTests;
+			productName = EZFormTests;
+			productReference = 839EE8D8169529DE00B9DCA8 /* EZFormTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		839EE8BE169529DE00B9DCA8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = EZForm;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Chris Miles";
+			};
+			buildConfigurationList = 839EE8C1169529DE00B9DCA8 /* Build configuration list for PBXProject "EZForm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 839EE8BC169529DE00B9DCA8;
+			productRefGroup = 839EE8C8169529DE00B9DCA8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				839EE8C6169529DE00B9DCA8 /* EZForm */,
+				839EE8D7169529DE00B9DCA8 /* EZFormTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		839EE8D5169529DE00B9DCA8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				839EE8E6169529DE00B9DCA8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		839EE8D6169529DE00B9DCA8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		839EE8C3169529DE00B9DCA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				839EE90D16952A3D00B9DCA8 /* EZForm.m in Sources */,
+				839EE90E16952A3D00B9DCA8 /* EZFormBooleanField.m in Sources */,
+				839EE90F16952A3D00B9DCA8 /* EZFormCommonValidators.m in Sources */,
+				839EE91016952A3D00B9DCA8 /* EZFormField.m in Sources */,
+				839EE91116952A3D00B9DCA8 /* EZFormGenericField.m in Sources */,
+				839EE91216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m in Sources */,
+				839EE91316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.m in Sources */,
+				839EE91416952A3D00B9DCA8 /* EZFormRadioField.m in Sources */,
+				839EE91516952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.m in Sources */,
+				839EE91616952A3D00B9DCA8 /* EZFormTextField.m in Sources */,
+				839EE91716952A3D00B9DCA8 /* UIView+EZFormUtility.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		839EE8D3169529DE00B9DCA8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				839EE8E9169529DE00B9DCA8 /* EZFormTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		839EE8DF169529DE00B9DCA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 839EE8C6169529DE00B9DCA8 /* EZForm */;
+			targetProxy = 839EE8DE169529DE00B9DCA8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		839EE8E4169529DE00B9DCA8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				839EE8E5169529DE00B9DCA8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		839EE8EA169529DE00B9DCA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		839EE8EB169529DE00B9DCA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		839EE8ED169529DE00B9DCA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/EZForm.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EZForm/EZForm-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		839EE8EE169529DE00B9DCA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/EZForm.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EZForm/EZForm-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		839EE8F0169529DE00B9DCA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EZForm/EZForm-Prefix.pch";
+				INFOPLIST_FILE = "EZFormTests/EZFormTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		839EE8F1169529DE00B9DCA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EZForm/EZForm-Prefix.pch";
+				INFOPLIST_FILE = "EZFormTests/EZFormTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		839EE8C1169529DE00B9DCA8 /* Build configuration list for PBXProject "EZForm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				839EE8EA169529DE00B9DCA8 /* Debug */,
+				839EE8EB169529DE00B9DCA8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		839EE8EC169529DE00B9DCA8 /* Build configuration list for PBXNativeTarget "EZForm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				839EE8ED169529DE00B9DCA8 /* Debug */,
+				839EE8EE169529DE00B9DCA8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		839EE8EF169529DE00B9DCA8 /* Build configuration list for PBXNativeTarget "EZFormTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				839EE8F0169529DE00B9DCA8 /* Debug */,
+				839EE8F1169529DE00B9DCA8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 839EE8BE169529DE00B9DCA8 /* Project object */;
+}

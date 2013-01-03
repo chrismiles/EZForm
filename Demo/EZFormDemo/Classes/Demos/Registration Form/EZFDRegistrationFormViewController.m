@@ -24,7 +24,8 @@
 //
 
 #import "EZFDRegistrationFormViewController.h"
-#import "EZFormCommonValidators.h"
+//#import "EZFormCommonValidators.h"
+#import <EZForm/EZFormCommonValidators.h>
 
 #define kFieldLabelTag 101
 

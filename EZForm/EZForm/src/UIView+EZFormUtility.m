@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-#import "EZFormUtility.h"
+#import "UIView+EZFormUtility.h"
 
 @implementation UIView (EZFormUtility)
 

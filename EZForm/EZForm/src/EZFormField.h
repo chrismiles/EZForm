@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 typedef BOOL (*VALIDATOR)(id);			    // function validator

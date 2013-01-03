@@ -27,7 +27,7 @@
 #import "EZFormField+Private.h"
 #import "EZFormStandardInputAccessoryView.h"
 #import "EZFormInvalidIndicatorTriangleExclamationView.h"
-#import "EZFormUtility.h"
+#import "UIView+EZFormUtility.h"
 
 #pragma mark - EZForm class extension
 

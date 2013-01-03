@@ -23,30 +23,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8329EAF0155339E900ED3F5E /* EZFDRegistrationFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDRegistrationFormViewController.h; sourceTree = "<group>"; };
-		8329EAF1155339E900ED3F5E /* EZFDRegistrationFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDRegistrationFormViewController.m; sourceTree = "<group>"; };
+		8329EAF0155339E900ED3F5E /* EZFDRegistrationFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZFDRegistrationFormViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8329EAF1155339E900ED3F5E /* EZFDRegistrationFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFDRegistrationFormViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8369763215494EA00070EDEC /* EZFormDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZFormDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8369763615494EA00070EDEC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8369763815494EA00070EDEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8369763A15494EA00070EDEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8369763E15494EA00070EDEC /* EZFormDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EZFormDemo-Info.plist"; sourceTree = "<group>"; };
 		8369764015494EA00070EDEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8369764215494EA00070EDEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8369764215494EA00070EDEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8369764415494EA00070EDEC /* EZFormDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZFormDemo-Prefix.pch"; sourceTree = "<group>"; };
 		8369764915494EA00070EDEC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8369765F15494EA10070EDEC /* EZFormDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EZFormDemoTests-Info.plist"; sourceTree = "<group>"; };
 		8369766115494EA10070EDEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8369766315494EA10070EDEC /* EZFormDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EZFormDemoTests.h; sourceTree = "<group>"; };
-		8369766415494EA10070EDEC /* EZFormDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZFormDemoTests.m; sourceTree = "<group>"; };
+		8369766315494EA10070EDEC /* EZFormDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZFormDemoTests.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8369766415494EA10070EDEC /* EZFormDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFormDemoTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8373217215512FB900DCC3FB /* EZFDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDAppDelegate.h; sourceTree = "<group>"; };
-		8373217315512FB900DCC3FB /* EZFDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDAppDelegate.m; sourceTree = "<group>"; };
+		8373217315512FB900DCC3FB /* EZFDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFDAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		839EE936169534C100B9DCA8 /* libEZForm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEZForm.a; sourceTree = "<group>"; };
 		839EE93816953BE300B9DCA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		83F323A215522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDSimpleLoginFormViewController.h; sourceTree = "<group>"; };
-		83F323A315522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDSimpleLoginFormViewController.m; sourceTree = "<group>"; };
+		83F323A215522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZFDSimpleLoginFormViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		83F323A315522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFDSimpleLoginFormViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		83F323AA15526988006FC7B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		83F323AD15527268006FC7B2 /* EZFDMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDMainMenuViewController.h; sourceTree = "<group>"; };
-		83F323AE15527268006FC7B2 /* EZFDMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDMainMenuViewController.m; sourceTree = "<group>"; };
+		83F323AD15527268006FC7B2 /* EZFDMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZFDMainMenuViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		83F323AE15527268006FC7B2 /* EZFDMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFDMainMenuViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,6 @@
 		8369762715494EA00070EDEC = {
 			isa = PBXGroup;
 			children = (
-				839EE93816953BE300B9DCA8 /* Default-568h@2x.png */,
 				8369763C15494EA00070EDEC /* EZFormDemo */,
 				8369765D15494EA10070EDEC /* EZFormDemoTests */,
 				839EE92F16952BF400B9DCA8 /* Libs */,
@@ -109,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				8373217115512FB900DCC3FB /* Classes */,
+				839EE93A1695488600B9DCA8 /* Resources */,
 				8373217B1551300100DCC3FB /* Storyboards */,
 				8369763D15494EA00070EDEC /* Supporting Files */,
 			);
@@ -179,6 +179,15 @@
 			);
 			name = Libs;
 			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		839EE93A1695488600B9DCA8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				839EE93816953BE300B9DCA8 /* Default-568h@2x.png */,
+			);
+			name = Resources;
+			path = ..;
+			sourceTree = "<group>";
 		};
 		83F3239F155227CE006FC7B2 /* Demos */ = {
 			isa = PBXGroup;

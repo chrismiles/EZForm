@@ -52,7 +52,7 @@
     }
 
     // Default behaviour; subclass to customize
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 	return YES;
     }
     else {
@@ -65,11 +65,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    #pragma unused(tableView)
+
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    #pragma unused(tableView, section)
+
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     return (NSInteger)[field.choices count];
 }

@@ -141,6 +141,8 @@
 
 - (void)setInputAccessoryView:(UIView *)inputAccessoryView
 {
+    #pragma unused(inputAccessoryView)
+    
     // No operation, by default
     // Override in concrete subclasses, if relevant
 }

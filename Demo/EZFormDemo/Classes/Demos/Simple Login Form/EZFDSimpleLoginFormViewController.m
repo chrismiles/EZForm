@@ -142,7 +142,7 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 	return YES;
     }
     else {
@@ -174,6 +174,8 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
 
 - (void)form:(EZForm *)form didUpdateValueForField:(EZFormField *)formField modelIsValid:(BOOL)isValid
 {
+    #pragma unused(form, formField, isValid)
+    
     [self updateViewsForFormValidity];
 }
 
@@ -189,6 +191,8 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
 
 - (IBAction)loginAction:(id)sender
 {
+    #pragma unused(sender)
+    
     [[[[UIAlertView alloc] initWithTitle:@"Success" message:nil delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
 }
 

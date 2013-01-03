@@ -24,7 +24,6 @@
 //
 
 #import "EZFDRegistrationFormViewController.h"
-//#import "EZFormCommonValidators.h"
 #import <EZForm/EZFormCommonValidators.h>
 
 #define kFieldLabelTag 101
@@ -234,7 +233,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     /*
      * Update validity indication for each field.
      */
-    [self.formCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [self.formCells enumerateKeysAndObjectsUsingBlock:^(id key, __unused id obj, __unused BOOL *stop) {
 	[self updateValidityIndicatorForField:[self.registrationForm formFieldForKey:key]];
     }];
     
@@ -269,7 +268,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 	return YES;
     }
     else {
@@ -310,6 +309,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    #pragma unused(sender)
+    
     if ([[segue identifier] isEqualToString:@"RegistrationFormGenderChoices"])
     {
         EZFormRadioChoiceViewController *viewController = [segue destinationViewController];
@@ -356,6 +357,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
 - (void)form:(EZForm *)form didUpdateValueForField:(EZFormField *)formField modelIsValid:(BOOL)isValid
 {
+    #pragma unused(form, isValid)
+    
     [self updateValidityIndicatorForField:formField];
     [self updateRegisterButtonForFormValidity];
 }
@@ -372,6 +375,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
 - (IBAction)registerAction:(id)sender
 {
+    #pragma unused(sender)
+    
     NSString *message = [NSString stringWithFormat:@"%@", [self.registrationForm modelValues]];
     [[[[UIAlertView alloc] initWithTitle:@"Success" message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil] autorelease] show];
 }

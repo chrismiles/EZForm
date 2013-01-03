@@ -47,6 +47,8 @@
 
 - (void)doneAction:(id)sender
 {
+    #pragma unused(sender)
+
     [inputAccessoryViewDelegate inputAccessoryViewDone];
 }
 

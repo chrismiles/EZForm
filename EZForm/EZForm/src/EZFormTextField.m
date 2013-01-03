@@ -184,6 +184,8 @@ typedef enum {
 
 - (void)textFieldEditingDidEndOnExit:(id)sender
 {
+    #pragma unused(sender)
+    
     [self.form formFieldInputFinished:self];
 }
 
@@ -298,6 +300,8 @@ typedef enum {
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    #pragma unused(textField)
+    
     [self.form formFieldDidBeginEditing:self];
 }
 
@@ -308,6 +312,8 @@ typedef enum {
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    #pragma unused(textField)
+
     return YES;
 }
 
@@ -316,6 +322,8 @@ typedef enum {
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
+    #pragma unused(textView)
+
     [self.form formFieldDidBeginEditing:self];
 }
 

@@ -38,6 +38,8 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    #pragma unused(rect)
+    
     CGContextRef c = UIGraphicsGetCurrentContext();
     CGRect bounds = self.bounds;
     

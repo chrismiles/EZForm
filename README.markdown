@@ -43,18 +43,22 @@ Features
 
  * Invalid field indicators. EZForm can automatically show invalid indicator views on text fields that fail validation. Invalid indicator views can be user-supplied or supplied by EZForm.
 
+ * EZForm comes with an optional table view controller subclass that can be used to conveniently present radio choice selections, `EZFormRadioChoiceViewController`.
+
 
 Quick Start
 -----------
 
 Git clone the source.
 
-Copy the EZForm directory to your project and add the contained files to your target.
+Add EZForm/EZForm.xcodeproj to your project (or workspace).
+
+Add `libEZForm.a` to the Linked Frameworks and Libraries for your project.
 
 Import the main header:
 
 ```objective-c 
-#import "EZForm.h"
+#import <EZForm/EZForm.h>
 ```
 
 Create an EZForm instance and add some EZFormField subclass instances to it. For example:
@@ -74,7 +78,7 @@ Create an EZForm instance and add some EZFormField subclass instances to it. For
      * Enables a validation rule of 1 character minimum.
      * Limits the input text field to 32 characters maximum (when hooked up to a control).
      */
-    EZFormTextField *nameField = [[[EZFormTextField alloc] initWithKey:@"name"] autorelease];
+    EZFormTextField *nameField = [[EZFormTextField alloc] initWithKey:@"name"];
     nameField.validationMinCharacters = 1;
     nameField.inputMaxCharacters = 32;
     [_myForm addFormField:nameField];
@@ -85,7 +89,7 @@ Create an EZForm instance and add some EZFormField subclass instances to it. For
      * Limits the input text field to 128 characters maximum and filters input
      * to assist with entering a valid email address (when hooked up to a control).
      */
-    EZFormTextField *emailField = [[[EZFormTextField alloc] initWithKey:@"email"] autorelease];
+    EZFormTextField *emailField = [[EZFormTextField alloc] initWithKey:@"email"];
     emailField.inputMaxCharacters = 128;
     [emailField addValidator:EZFormEmailAddressValidator];
     [emailField addInputFilter:EZFormEmailAddressInputFilter];
@@ -136,7 +140,7 @@ See the demo app source for more examples of how to work with EZForm.
 Demo
 ----
 
-A demo universal iOS app is included with the source, containing some example form implementations. The demo app requires iOS 5 (it uses Storyboards).
+A demo universal iOS app is included with the source, containing some example form implementations.
 
 ![Simple Login Form Demo](https://lh5.googleusercontent.com/-eSo0Mi9Yx_I/T6mX9MyjGsI/AAAAAAAAAQY/ACZzzPUanJo/s640/screen-capture.png "Simple Login Form Demo")
 ![Registration Form Demo](https://lh4.googleusercontent.com/-It-OMpRf1XE/T6mX7tgsLcI/AAAAAAAAAQM/fUvPyPGrwpc/s640/screen-capture-1.png "Registration Form Demo")
@@ -156,17 +160,15 @@ To generate the document set using appledoc from the command-line, cd to the roo
 Requirements
 ------------
 
-EZForm is compatible with iOS 4 and upwards.
+EZForm is compatible with iOS 5 and upwards.  EZForm uses automatic reference counting (ARC).
 
-The demo app included with the source requires iOS 5 (it uses Storyboards).
+The demo app included with the source requires iOS 5.
 
 
 ARC
 ---
 
-The EZForm Master branch is non-ARC. However, producing an ARC version is easy as EZForm memory management is kept clean and ARC-conversion ready.
-
-To generate an ARC version simply open the demo app project in Xcode and select: Edit / Refactor / Convert to Objective-C ARC... The project should convert cleanly and the ARC-ready EZForm source can then be copied to your project. If any ARC problems, please raise an issue.
+EZForm uses automatic reference counting (ARC).
 
 
 Support
@@ -185,7 +187,7 @@ opportunities.
 License
 -------
 
-EZForm is Copyright (c) 2011-2012 Chris Miles and released open source
+EZForm is Copyright (c) 2011-2013 Chris Miles and released open source
 under a MIT license:
 
     Permission is hereby granted, free of charge, to any person obtaining a copy

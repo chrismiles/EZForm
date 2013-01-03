@@ -186,6 +186,18 @@ opportunities.
 [1]: https://github.com/chrismiles/EZForm/issues "EZForm issues on Github"
 
 
+Used In
+-------
+
+EZForm has been used in these iOS projects:
+
+* "Paper Baron" - <https://itunes.apple.com/au/app/paper-baron/id484826203?mt=8>
+* "Locayta Notes" - <https://itunes.apple.com/au/app/locayta-notes/id393819477?mt=8>
+* "Coles App" - <https://itunes.apple.com/au/app/coles-app/id529118855?mt=8>
+* "SEEK - Jobs" - <https://itunes.apple.com/au/app/seek-jobs/id520400855?mt=8>
+* _Your app here - let us know_
+
+
 License
 -------
 

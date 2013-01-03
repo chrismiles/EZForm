@@ -16,6 +16,7 @@
 		8369764A15494EA00070EDEC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8369764815494EA00070EDEC /* MainStoryboard.storyboard */; };
 		8373217715512FB900DCC3FB /* EZFDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373217315512FB900DCC3FB /* EZFDAppDelegate.m */; };
 		839EE937169534C100B9DCA8 /* libEZForm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE936169534C100B9DCA8 /* libEZForm.a */; };
+		839EE93916953BE300B9DCA8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 839EE93816953BE300B9DCA8 /* Default-568h@2x.png */; };
 		83F323A415522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F323A315522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m */; };
 		83F323AB15526988006FC7B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F323AA15526988006FC7B2 /* QuartzCore.framework */; };
 		83F323AF15527268006FC7B2 /* EZFDMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F323AE15527268006FC7B2 /* EZFDMainMenuViewController.m */; };
@@ -40,6 +41,7 @@
 		8373217215512FB900DCC3FB /* EZFDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDAppDelegate.h; sourceTree = "<group>"; };
 		8373217315512FB900DCC3FB /* EZFDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDAppDelegate.m; sourceTree = "<group>"; };
 		839EE936169534C100B9DCA8 /* libEZForm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEZForm.a; sourceTree = "<group>"; };
+		839EE93816953BE300B9DCA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		83F323A215522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDSimpleLoginFormViewController.h; sourceTree = "<group>"; };
 		83F323A315522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDSimpleLoginFormViewController.m; sourceTree = "<group>"; };
 		83F323AA15526988006FC7B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -75,6 +77,7 @@
 		8369762715494EA00070EDEC = {
 			isa = PBXGroup;
 			children = (
+				839EE93816953BE300B9DCA8 /* Default-568h@2x.png */,
 				8369763C15494EA00070EDEC /* EZFormDemo */,
 				8369765D15494EA10070EDEC /* EZFormDemoTests */,
 				839EE92F16952BF400B9DCA8 /* Libs */,
@@ -258,6 +261,7 @@
 			files = (
 				8369764115494EA00070EDEC /* InfoPlist.strings in Resources */,
 				8369764A15494EA00070EDEC /* MainStoryboard.storyboard in Resources */,
+				839EE93916953BE300B9DCA8 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

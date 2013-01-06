@@ -93,8 +93,19 @@ typedef enum : NSInteger {
 @property (nonatomic, assign) EZFormInputAccessoryType inputAccessoryType;
 
 /** Padding around field user views when auto scrolling is enabled.
+ *
+ *  Ignored when auto scrolling a UITableView unless
+ *  autoScrollForKeyboardInputVisibleRect is used.
+ *
+ *  Also see -autoScrollViewForKeyboardInput:
  */
 @property (nonatomic, assign) CGSize autoScrollForKeyboardInputPaddingSize;
+
+/** Area of auto scrolling view to ensure is always visible when keyboard present.
+ *
+ *  Also see -autoScrollViewForKeyboardInput:
+ */
+@property (nonatomic, assign) CGRect autoScrollForKeyboardInputVisibleRect;
 
 /** Adds a field to the form.
  *

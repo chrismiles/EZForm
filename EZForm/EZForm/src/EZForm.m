@@ -32,8 +32,11 @@
 #pragma mark - EZForm class extension
 
 @interface EZForm () {
+    UIEdgeInsets _autoScrolledViewOriginalContentInset;
     CGRect _autoScrolledViewOriginalFrame;
+    UIEdgeInsets _autoScrolledViewOriginalScrollIndicatorInsets;
     NSTimeInterval _keyboardAnimationDuration;
+    BOOL _scrollViewInsetsWereSaved;
     CGRect _visibleKeyboardFrame;
 }
 
@@ -226,36 +229,73 @@
 	}
     }
     else if ([self.viewToAutoScroll isKindOfClass:[UIScrollView class]]) {
-	UIView *formFieldView = [formField userView];
-	if (formFieldView) {
-	    CGRect convertedFrame = [formFieldView.superview convertRect:formFieldView.frame toView:self.viewToAutoScroll];
-	    convertedFrame = CGRectInset(convertedFrame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
-	    [(UIScrollView *)self.viewToAutoScroll scrollRectToVisible:convertedFrame animated:YES];
+	if (! CGRectIsEmpty(self.autoScrollForKeyboardInputVisibleRect)) {
+	    CGRect scrollRect = CGRectInset(self.autoScrollForKeyboardInputVisibleRect, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
+	    [(UIScrollView *)self.viewToAutoScroll scrollRectToVisible:scrollRect animated:YES];
+	}
+	else {
+	    UIView *formFieldView = [formField userView];
+	    if (formFieldView) {
+		CGRect convertedFrame = [formFieldView.superview convertRect:formFieldView.frame toView:self.viewToAutoScroll];
+		convertedFrame = CGRectInset(convertedFrame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
+		[(UIScrollView *)self.viewToAutoScroll scrollRectToVisible:convertedFrame animated:YES];
+	    }
 	}
     }
     else if ([self.viewToAutoScroll isKindOfClass:[UIView class]]) {
 	/* Scroll an arbitrary view by adjusting its frame enough to reveal the form field view
 	 * from beneath the system keyboard.
 	 */
-	UIView *formFieldView = [formField userView];
-	if (formFieldView) {
-	    CGRect fieldViewFrame = CGRectInset(formFieldView.frame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
-	    CGRect relativeKeyboardFrame = [formFieldView.window convertRect:_visibleKeyboardFrame toView:formFieldView.superview];
+	CGRect fieldViewFrame = CGRectNull;
+	if (CGRectIsEmpty(self.autoScrollForKeyboardInputVisibleRect)) {
+	    UIView *formFieldView = [formField userView];
+	    if (formFieldView) fieldViewFrame = formFieldView.frame;
+	}
+	else {
+	    fieldViewFrame = CGRectInset(self.autoScrollForKeyboardInputVisibleRect, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
+	}
+	
+	if (! CGRectIsNull(fieldViewFrame)) {
+	    fieldViewFrame = CGRectInset(fieldViewFrame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
+
+	    CGRect relativeKeyboardFrame = [self.viewToAutoScroll.window convertRect:_visibleKeyboardFrame toView:self.viewToAutoScroll];
 	    
 	    if (CGRectIntersectsRect(fieldViewFrame, relativeKeyboardFrame)) {
+		CGRect newFrame = self.viewToAutoScroll.frame;
 		CGFloat dy = CGRectGetMaxY(fieldViewFrame) - CGRectGetMinY(relativeKeyboardFrame);
-		
+		newFrame.origin.y -= dy;
+
 		if (CGRectIsNull(_autoScrolledViewOriginalFrame)) {
 		    _autoScrolledViewOriginalFrame = self.viewToAutoScroll.frame;
 		}
 		
-		CGRect frame = self.viewToAutoScroll.frame;
-		frame.origin.y -= dy;
 		[UIView animateWithDuration:_keyboardAnimationDuration animations:^{
-		    self.viewToAutoScroll.frame = frame;
+		    self.viewToAutoScroll.frame = newFrame;
 		}];
 	    }
 	}
+    }
+}
+
+- (void)adjustScrollViewForVisibleKeyboard
+{
+    UIScrollView *scrollView = (UIScrollView *)self.viewToAutoScroll;
+    CGRect intersectsRect = CGRectIntersection([scrollView.window convertRect:scrollView.frame fromView:scrollView], _visibleKeyboardFrame);
+    if (intersectsRect.size.height > 0.0f) {
+	UIEdgeInsets contentInset = scrollView.contentInset;
+	UIEdgeInsets scrollIndicatorInsets = scrollView.scrollIndicatorInsets;
+	
+	_autoScrolledViewOriginalContentInset = contentInset;
+	_autoScrolledViewOriginalScrollIndicatorInsets = scrollIndicatorInsets;
+	_scrollViewInsetsWereSaved = YES;
+	
+	contentInset.bottom += intersectsRect.size.height;
+	scrollIndicatorInsets.bottom += intersectsRect.size.height;
+	
+	[UIView animateWithDuration:_keyboardAnimationDuration animations:^{
+	    scrollView.contentInset = contentInset;
+	    scrollView.scrollIndicatorInsets = scrollIndicatorInsets;
+	}];
     }
 }
 
@@ -270,6 +310,23 @@
 	
 	_autoScrolledViewOriginalFrame = CGRectNull;
     }
+    
+    if (_scrollViewInsetsWereSaved && [self.viewToAutoScroll isKindOfClass:[UIScrollView class]]) {
+	UIScrollView *scrollView = (UIScrollView *)self.viewToAutoScroll;
+	UIEdgeInsets autoScrolledViewOriginalContentInset = _autoScrolledViewOriginalContentInset;
+	UIEdgeInsets autoScrolledViewOriginalScrollIndicatorInsets = _autoScrolledViewOriginalScrollIndicatorInsets;
+	[UIView animateWithDuration:animationDuration animations:^{
+	    if (! UIEdgeInsetsEqualToEdgeInsets(autoScrolledViewOriginalContentInset, scrollView.contentInset)) {
+		[scrollView setContentInset:autoScrolledViewOriginalContentInset];
+	    }
+	    if (! UIEdgeInsetsEqualToEdgeInsets(autoScrolledViewOriginalScrollIndicatorInsets, scrollView.scrollIndicatorInsets)) {
+		[scrollView setScrollIndicatorInsets:autoScrolledViewOriginalScrollIndicatorInsets];
+	    }
+	}];
+    }
+    _autoScrolledViewOriginalContentInset = UIEdgeInsetsZero;
+    _autoScrolledViewOriginalScrollIndicatorInsets = UIEdgeInsetsZero;
+    _scrollViewInsetsWereSaved = NO;
 }
 
 - (EZFormField *)firstResponderCapableFormFieldAfterField:(EZFormField *)formField searchForwards:(BOOL)searchForwards
@@ -418,8 +475,14 @@
     _visibleKeyboardFrame = [[notification userInfo][UIKeyboardFrameEndUserInfoKey] CGRectValue];
     _keyboardAnimationDuration = [[notification userInfo][UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
-    if (self.viewToAutoScroll && ![self.viewToAutoScroll isKindOfClass:[UITableView class]]) {
-	// Exception for table views: they will scroll automatically to reveal field holding first responder
+    BOOL shouldAutoScroll = (self.viewToAutoScroll && (! [self.viewToAutoScroll isKindOfClass:[UITableView class]]));
+    // Exception for table views: they will scroll automatically to reveal field holding first responder
+    
+    if (shouldAutoScroll) {
+	
+	if ([self.viewToAutoScroll isKindOfClass:[UIScrollView class]] && ! [self.viewToAutoScroll isKindOfClass:[UITableView class]]) {
+	    [self adjustScrollViewForVisibleKeyboard];
+	}
 	
 	EZFormField *formField = [self formFieldForFirstResponder];
 	if (formField) {
@@ -441,6 +504,7 @@
 - (void)keyboardWillChangeFrameNotification:(NSNotification *)notification
 {
     _visibleKeyboardFrame = [[notification userInfo][UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    _keyboardAnimationDuration = [[notification userInfo][UIKeyboardAnimationDurationUserInfoKey] doubleValue];
 }
 
 
@@ -451,8 +515,12 @@
     if ((self = [super init])) {
 	self.formFields = [NSMutableArray array];
 	
+	_autoScrolledViewOriginalContentInset = UIEdgeInsetsZero;
 	_autoScrolledViewOriginalFrame = CGRectNull;
-	self.autoScrollForKeyboardInputPaddingSize = CGSizeMake(10.0f, 10.0f);
+	_autoScrolledViewOriginalScrollIndicatorInsets = UIEdgeInsetsZero;
+	_autoScrollForKeyboardInputPaddingSize = CGSizeMake(0.0f, 10.0f);
+	_autoScrollForKeyboardInputVisibleRect = CGRectZero;
+	_scrollViewInsetsWereSaved = NO;
 	
 	// Subscribe to keyboard visible notifications
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];

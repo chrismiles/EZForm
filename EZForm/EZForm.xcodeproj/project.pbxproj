@@ -432,6 +432,7 @@
 					"-Wno-pedantic",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-direct-ivar-access",
+					"-Wno-unknown-warning-option",
 				);
 			};
 			name = Debug;
@@ -490,6 +491,7 @@
 					"-Wno-pedantic",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-direct-ivar-access",
+					"-Wno-unknown-warning-option",
 				);
 			};
 			name = Release;

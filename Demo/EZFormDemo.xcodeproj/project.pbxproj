@@ -378,6 +378,7 @@
 					"-Wno-gnu",
 					"-Wno-pedantic",
 					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
 				);
 			};
 			name = Debug;
@@ -436,6 +437,7 @@
 					"-Wno-gnu",
 					"-Wno-pedantic",
 					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
 				);
 			};
 			name = Release;

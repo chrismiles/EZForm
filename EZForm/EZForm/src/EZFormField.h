@@ -37,9 +37,7 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  *  the subclasses: EZFormBooleanField, EZFormGenericField, EZFormRadioField,
  *  or EZFormTextField.
  */
-@interface EZFormField : NSObject {
-    VALIDATOR		validatorFn;
-}
+@interface EZFormField : NSObject
 
 @property (nonatomic, assign) BOOL validationDisabled;
 @property (nonatomic, weak, readonly) EZForm *form;

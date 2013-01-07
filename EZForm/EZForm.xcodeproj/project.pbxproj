@@ -431,6 +431,7 @@
 					"-Wno-gnu",
 					"-Wno-pedantic",
 					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
 				);
 			};
 			name = Debug;
@@ -488,6 +489,7 @@
 					"-Wno-gnu",
 					"-Wno-pedantic",
 					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
 				);
 			};
 			name = Release;
@@ -565,6 +567,7 @@
 				839EE8EE169529DE00B9DCA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		839EE8EF169529DE00B9DCA8 /* Build configuration list for PBXNativeTarget "EZFormTests" */ = {
 			isa = XCConfigurationList;
@@ -573,6 +576,7 @@
 				839EE8F1169529DE00B9DCA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -304,7 +304,7 @@
     if (! CGRectIsNull(_autoScrolledViewOriginalFrame)) {
 	if (self.viewToAutoScroll) {
 	    [UIView animateWithDuration:animationDuration animations:^{
-		self.viewToAutoScroll.frame = _autoScrolledViewOriginalFrame;
+		self.viewToAutoScroll.frame = self->_autoScrolledViewOriginalFrame;
 	    }];
 	}
 	

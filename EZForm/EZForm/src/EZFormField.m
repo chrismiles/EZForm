@@ -28,6 +28,7 @@
 #import "EZForm+Private.h"
 
 @interface EZFormField () {
+    VALIDATOR validatorFn;
     NSMutableArray *validationBlocks;
 }
 

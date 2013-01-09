@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="97A-wi-3X2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="97A-wi-3X2">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="vFY-Fv-S7l">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pak-Fw-94i" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="97A-wi-3X2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Chr-dW-ynp">
@@ -21,13 +19,13 @@
                         <segue destination="zPZ-mX-dH4" kind="relationship" relationship="rootViewController" id="99l-4f-Fw9"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pak-Fw-94i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="182"/>
         </scene>
         <!--Main Menu View Controller - EZForm Demos-->
         <scene sceneID="LV5-yT-4hN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0O8-8K-YB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="zPZ-mX-dH4" customClass="EZFDMainMenuViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="WqF-1O-jQc">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -41,6 +39,21 @@
                                     <rect key="frame" x="20" y="20" width="280" height="41"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="HYt-f9-nhl">
+                            <rect key="frame" x="0.0" y="235" width="320" height="54"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="https://github.com/chrismiles/EZForm" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="vcz-9E-5bk">
+                                    <rect key="frame" x="20" y="6" width="280" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,7 +93,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EZFDMainMenuCell" textLabel="rs7-tH-UAa" detailTextLabel="Tcu-Ra-4V0" style="IBUITableViewCellStyleSubtitle" id="X6B-Y0-1KV">
-                                        <rect key="frame" x="0.0" y="136" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="136" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -107,6 +120,34 @@
                                             <segue destination="ocQ-ZQ-XRc" kind="push" id="N9c-ua-bgd"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EZFDMainMenuCell" textLabel="3FW-ow-KfO" detailTextLabel="Dbt-AO-32p" style="IBUITableViewCellStyleSubtitle" id="eAk-3l-fSJ">
+                                        <rect key="frame" x="0.0" y="180" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="ScrollView Form" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3FW-ow-KfO">
+                                                    <rect key="frame" x="10" y="2" width="142" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Example of a form in a scroll view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dbt-AO-32p">
+                                                    <rect key="frame" x="10" y="24" width="209" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="Jhd-IX-HIl" kind="push" id="S9p-gz-xgA"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -117,13 +158,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="EZForm Demos" id="i0Q-gz-KIZ"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0O8-8K-YB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="588" y="182"/>
         </scene>
         <!--Simple Login Form View Controller - Simple Login Form-->
         <scene sceneID="bPQ-qH-PKB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2sp-wA-f0d" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ey7-Tx-5GU" customClass="EZFDSimpleLoginFormViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EJZ-9b-wwc">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -189,13 +230,13 @@
                         <outlet property="usernameTextField" destination="m46-Tl-Hzn" id="YKP-Gi-nbq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2sp-wA-f0d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="23"/>
+            <point key="canvasLocation" x="1137" y="-368"/>
         </scene>
         <!--Registration Form View Controller - Registration Form-->
         <scene sceneID="J3I-y8-6l0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6EI-Dg-J9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="ocQ-ZQ-XRc" customClass="EZFDRegistrationFormViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="DTs-Bj-1wy">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -458,13 +499,90 @@
                         <outlet property="subscribeFieldTableViewCell" destination="FfY-Ba-kqE" id="tHM-2l-rvE"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6EI-Dg-J9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="596"/>
+            <point key="canvasLocation" x="1143" y="222"/>
+        </scene>
+        <!--Scroll View Form View Controller-->
+        <scene sceneID="DIA-Vv-9Nd">
+            <objects>
+                <viewController id="Jhd-IX-HIl" customClass="EZFDScrollViewFormViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OeL-Z7-QGK">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="cYm-ac-Xu2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="eSu-Fj-VtC">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="570"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A form embedded in a scroll view." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QFg-UE-nhe">
+                                                <rect key="frame" x="20" y="20" width="280" height="38"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address Line 1" minimumFontSize="17" id="IzF-f4-iKA">
+                                                <rect key="frame" x="20" y="92" width="280" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address Line 2" minimumFontSize="17" id="BwM-aD-fII">
+                                                <rect key="frame" x="20" y="187" width="280" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" id="wG0-QG-sSN">
+                                                <rect key="frame" x="20" y="282" width="280" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" minimumFontSize="17" id="Mei-ps-our">
+                                                <rect key="frame" x="20" y="377" width="280" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Postcode" minimumFontSize="17" id="jLu-fx-BGk">
+                                                <rect key="frame" x="20" y="472" width="280" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2NO-Ah-7sM"/>
+                    <connections>
+                        <outlet property="address1TextField" destination="IzF-f4-iKA" id="lYy-1P-r5j"/>
+                        <outlet property="address2TextField" destination="BwM-aD-fII" id="46P-sO-DnC"/>
+                        <outlet property="cityTextField" destination="wG0-QG-sSN" id="m4u-2b-BjJ"/>
+                        <outlet property="formView" destination="eSu-Fj-VtC" id="jHo-27-AN3"/>
+                        <outlet property="postcodeTextField" destination="jLu-fx-BGk" id="gCe-W2-84S"/>
+                        <outlet property="scrollView" destination="cYm-ac-Xu2" id="NUA-sv-A2O"/>
+                        <outlet property="stateTextField" destination="Mei-ps-our" id="Tlc-HC-Hsl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MvN-o9-Zty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1143" y="813"/>
         </scene>
         <!--Form Radio Choice View Controller-->
         <scene sceneID="bWg-w9-YNO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F7c-Lz-LjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="RIR-Nr-hn4" customClass="EZFormRadioChoiceViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="jSk-QJ-ZgC">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -497,8 +615,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="8ZB-Tb-kzQ"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F7c-Lz-LjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592" y="596"/>
+            <point key="canvasLocation" x="1598" y="222"/>
         </scene>
     </scenes>
     <classes>
@@ -508,6 +627,7 @@
         <class className="EZFDRegistrationFormViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EZFDRegistrationFormViewController.h"/>
             <relationships>
+                <relationship kind="action" name="registerAction:"/>
                 <relationship kind="outlet" name="acceptTermsFieldTableViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="ageTableViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="ageTextField" candidateClass="UITextField"/>
@@ -525,9 +645,22 @@
                 <relationship kind="outlet" name="subscribeFieldTableViewCell" candidateClass="UITableViewCell"/>
             </relationships>
         </class>
+        <class className="EZFDScrollViewFormViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EZFDScrollViewFormViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address1TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="address2TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="cityTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="formView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="postcodeTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="stateTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
         <class className="EZFDSimpleLoginFormViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EZFDSimpleLoginFormViewController.h"/>
             <relationships>
+                <relationship kind="action" name="loginAction:"/>
                 <relationship kind="outlet" name="invalidIndicatorKeyView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loginFormView" candidateClass="UIView"/>

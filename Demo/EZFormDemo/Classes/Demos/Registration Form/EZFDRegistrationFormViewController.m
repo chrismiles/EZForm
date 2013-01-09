@@ -161,7 +161,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [lastnameField useTextField:self.lastnameTextField];
     EZFormTextField *ageField = [self.registrationForm formFieldForKey:EZFDRegistrationFormAgeKey];
     [ageField useTextField:self.ageTextField];
-    EZFormTextField *genderField = [self.registrationForm formFieldForKey:EZFDRegistrationFormGenderKey];
+    EZFormRadioField *genderField = [self.registrationForm formFieldForKey:EZFDRegistrationFormGenderKey];
     [genderField useLabel:self.genderFieldLabel];
     EZFormTextField *emailField = [self.registrationForm formFieldForKey:EZFDRegistrationFormEmailKey];
     [emailField useTextField:self.emailTextField];

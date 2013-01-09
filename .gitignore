@@ -5,6 +5,10 @@
 xcuserdata
 project.xcworkspace
 
+# AppCode #
+###########
+.idea/
+
 # OS generated files #
 ######################
 .DS_Store

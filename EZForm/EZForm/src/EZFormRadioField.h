@@ -23,8 +23,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EZFormField.h"
-#import "EZFormFieldConcreteProtocol.h"
+#import "EZFormTextField.h"
 
 
 /** A form field to handle selection from multiple choices.
@@ -34,7 +33,7 @@
  *  The choices are typically presented to the user in a table
  *  view.
  */
-@interface EZFormRadioField : EZFormField <EZFormFieldConcrete>
+@interface EZFormRadioField : EZFormTextField
 
 /** Set choices as key->value pairs.
  *
@@ -59,17 +58,6 @@
  *  defined choices to pass validation.
  */
 @property (nonatomic, assign) BOOL validationRestrictedToChoiceValues;
-
-/** Wire up a UILabel to the form field.
- *
- *  The UILabel is used to display the value of the form field. The
- *  view is automatically updated when the value changes.
- *
- *  Only one view/control can be wired up at any one time.
- *
- *  @param label A UILabel.
- */
-- (void)useLabel:(UILabel *)label;
 
 /** Set choices from an array of values.
  *

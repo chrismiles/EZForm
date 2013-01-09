@@ -29,11 +29,7 @@
 #pragma mark - EZFormRadioField class extension
 
 @interface EZFormRadioField ()
-@property (nonatomic, strong) id currentSelection;
 @property (nonatomic, strong) NSArray *orderedKeys;
-@property (nonatomic, strong) UILabel *userLabel;
-
-- (void)updateUI;
 @end
 
 
@@ -43,12 +39,6 @@
 
 
 #pragma mark - Public methods
-
-- (void)useLabel:(UILabel *)label
-{
-    self.userLabel = label;
-    [self updateUI];
-}
 
 - (void)setChoicesFromArray:(NSArray *)choices
 {
@@ -69,44 +59,6 @@
 }
 
 
-#pragma mark - Private methods
-
-- (void)updateUI
-{
-    if (self.userLabel) {
-	if (self.currentSelection) {
-	    self.userLabel.text = [self.choices valueForKey:self.currentSelection];
-	}
-	else {
-	    self.userLabel.text = self.unselected;
-	}
-    }
-}
-
-
-#pragma mark - EZFormField methods
-
-- (id)actualFieldValue
-{
-    return self.currentSelection;
-}
-
-- (void)setActualFieldValue:(id)value
-{
-    self.currentSelection = value;
-}
-
-- (UIView *)userView
-{
-    return self.userLabel;
-}
-
-- (void)unwireUserViews
-{
-    self.userLabel = nil;
-}
-
-
 #pragma mark - EZFormFieldConcrete methods
 
 - (BOOL)typeSpecificValidation
@@ -115,23 +67,18 @@
     
     id value = [self fieldValue];
     
-    if (self.validationRequiresSelection && nil == self.currentSelection) {
+    if (self.validationRequiresSelection && nil == self.fieldValue) {
 	result = NO;
     }
     else if (self.validationRestrictedToChoiceValues && ![[self.choices allKeys] containsObject:value]) {
 	result = NO;
     }
     
+    if (result) {
+	result = [super typeSpecificValidation];
+    }
+    
     return result;
 }
-
-- (void)updateView
-{
-    [self updateUI];
-}
-
-
-#pragma mark - Memory management
-
 
 @end

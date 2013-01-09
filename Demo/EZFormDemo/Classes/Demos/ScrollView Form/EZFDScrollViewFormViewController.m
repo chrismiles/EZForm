@@ -1,16 +1,32 @@
 //
-//  EZFDScrollViewFormViewController.m
-//  EZFormDemo
+//  EZForm
 //
-//  Created by Chris Miles on 9/01/13.
-//  Copyright (c) 2013 Chris Miles. All rights reserved.
+//  Copyright 2013 Chris Miles. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 //
 
 #import "EZFDScrollViewFormViewController.h"
 #import <EZForm/EZForm.h>
 
 
-@interface EZFDScrollViewFormViewController ()
+@interface EZFDScrollViewFormViewController () <EZFormDelegate>
 
 @property (strong, nonatomic) EZForm *form;
 
@@ -32,13 +48,18 @@
 {
     _form = [[EZForm alloc] init];
     _form.inputAccessoryType = EZFormInputAccessoryTypeStandard;
+    _form.delegate = self;
     
     EZFormTextField *address1Field = [[EZFormTextField alloc] initWithKey:@"address1"];
     EZFormTextField *address2Field = [[EZFormTextField alloc] initWithKey:@"address2"];
     EZFormTextField *cityField = [[EZFormTextField alloc] initWithKey:@"city"];
-    EZFormTextField *stateField = [[EZFormTextField alloc] initWithKey:@"state"];
+    EZFormRadioField *stateField = [[EZFormRadioField alloc] initWithKey:@"state"];
     EZFormTextField *postcodeField = [[EZFormTextField alloc] initWithKey:@"postcode"];
     
+    [stateField setChoicesFromArray:@[@"ACT", @"NSW", @"NT", @"QLD", @"SA", @"Vic", @"WA"]];
+    stateField.validationRequiresSelection = YES;
+    stateField.validationRestrictedToChoiceValues = YES;
+
     [_form addFormField:address1Field];
     [_form addFormField:address2Field];
     [_form addFormField:cityField];
@@ -65,6 +86,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - EZFormDelegate
+
+- (void)form:(EZForm *)form didUpdateValueForField:(EZFormField *)formField modelIsValid:(BOOL)isValid
+{
+    #pragma unused(form)
+    DLog(@"formField: %@ isValid: %@", formField, (isValid?@"YES":@"NO"));
 }
 
 @end

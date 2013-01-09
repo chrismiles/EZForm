@@ -394,6 +394,7 @@
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-direct-ivar-access",
 					"-Wno-unknown-warning-option",
+					"-Wno-unused-macros",
 				);
 			};
 			name = Debug;
@@ -454,6 +455,7 @@
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-direct-ivar-access",
 					"-Wno-unknown-warning-option",
+					"-Wno-unused-macros",
 				);
 			};
 			name = Release;

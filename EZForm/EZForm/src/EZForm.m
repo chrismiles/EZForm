@@ -282,12 +282,22 @@
     UIScrollView *scrollView = (UIScrollView *)self.viewToAutoScroll;
     CGRect intersectsRect = CGRectIntersection([scrollView.window convertRect:scrollView.frame fromView:scrollView.superview], _visibleKeyboardFrame);
     if (intersectsRect.size.height > 0.0f) {
-	UIEdgeInsets contentInset = scrollView.contentInset;
-	UIEdgeInsets scrollIndicatorInsets = scrollView.scrollIndicatorInsets;
+	UIEdgeInsets contentInset;
+	UIEdgeInsets scrollIndicatorInsets;
 	
-	_autoScrolledViewOriginalContentInset = contentInset;
-	_autoScrolledViewOriginalScrollIndicatorInsets = scrollIndicatorInsets;
-	_scrollViewInsetsWereSaved = YES;
+	if (_scrollViewInsetsWereSaved) {
+	    // Calculate insets from originally saved values
+	    contentInset = _autoScrolledViewOriginalContentInset;
+	    scrollIndicatorInsets = _autoScrolledViewOriginalScrollIndicatorInsets;
+	}
+	else {
+	    contentInset = scrollView.contentInset;
+	    scrollIndicatorInsets = scrollView.scrollIndicatorInsets;
+	    
+	    _autoScrolledViewOriginalContentInset = contentInset;
+	    _autoScrolledViewOriginalScrollIndicatorInsets = scrollIndicatorInsets;
+	    _scrollViewInsetsWereSaved = YES;
+	}
 	
 	contentInset.bottom += intersectsRect.size.height;
 	scrollIndicatorInsets.bottom += intersectsRect.size.height;
@@ -297,6 +307,34 @@
 	    scrollView.scrollIndicatorInsets = scrollIndicatorInsets;
 	}];
     }
+}
+
+- (void)revertScrollViewInsetsAnimated:(BOOL)animated animationDuration:(NSTimeInterval)animationDuration
+{
+    if (_scrollViewInsetsWereSaved && [self.viewToAutoScroll isKindOfClass:[UIScrollView class]]) {
+	UIScrollView *scrollView = (UIScrollView *)self.viewToAutoScroll;
+	UIEdgeInsets autoScrolledViewOriginalContentInset = _autoScrolledViewOriginalContentInset;
+	UIEdgeInsets autoScrolledViewOriginalScrollIndicatorInsets = _autoScrolledViewOriginalScrollIndicatorInsets;
+	
+	void (^changeInsets)(void) = ^{
+	    if (! UIEdgeInsetsEqualToEdgeInsets(autoScrolledViewOriginalContentInset, scrollView.contentInset)) {
+		[scrollView setContentInset:autoScrolledViewOriginalContentInset];
+	    }
+	    if (! UIEdgeInsetsEqualToEdgeInsets(autoScrolledViewOriginalScrollIndicatorInsets, scrollView.scrollIndicatorInsets)) {
+		[scrollView setScrollIndicatorInsets:autoScrolledViewOriginalScrollIndicatorInsets];
+	    }
+	};
+	
+	if (animated) {
+	    [UIView animateWithDuration:animationDuration animations:changeInsets];
+	}
+	else {
+	    changeInsets();
+	}
+    }
+    _autoScrolledViewOriginalContentInset = UIEdgeInsetsZero;
+    _autoScrolledViewOriginalScrollIndicatorInsets = UIEdgeInsetsZero;
+    _scrollViewInsetsWereSaved = NO;
 }
 
 - (void)revertAutoScrolledViewAnimationDuration:(NSTimeInterval)animationDuration
@@ -311,22 +349,7 @@
 	_autoScrolledViewOriginalFrame = CGRectNull;
     }
     
-    if (_scrollViewInsetsWereSaved && [self.viewToAutoScroll isKindOfClass:[UIScrollView class]]) {
-	UIScrollView *scrollView = (UIScrollView *)self.viewToAutoScroll;
-	UIEdgeInsets autoScrolledViewOriginalContentInset = _autoScrolledViewOriginalContentInset;
-	UIEdgeInsets autoScrolledViewOriginalScrollIndicatorInsets = _autoScrolledViewOriginalScrollIndicatorInsets;
-	[UIView animateWithDuration:animationDuration animations:^{
-	    if (! UIEdgeInsetsEqualToEdgeInsets(autoScrolledViewOriginalContentInset, scrollView.contentInset)) {
-		[scrollView setContentInset:autoScrolledViewOriginalContentInset];
-	    }
-	    if (! UIEdgeInsetsEqualToEdgeInsets(autoScrolledViewOriginalScrollIndicatorInsets, scrollView.scrollIndicatorInsets)) {
-		[scrollView setScrollIndicatorInsets:autoScrolledViewOriginalScrollIndicatorInsets];
-	    }
-	}];
-    }
-    _autoScrolledViewOriginalContentInset = UIEdgeInsetsZero;
-    _autoScrolledViewOriginalScrollIndicatorInsets = UIEdgeInsetsZero;
-    _scrollViewInsetsWereSaved = NO;
+    [self revertScrollViewInsetsAnimated:(animationDuration > 0.0) animationDuration:animationDuration];
 }
 
 - (EZFormField *)firstResponderCapableFormFieldAfterField:(EZFormField *)formField searchForwards:(BOOL)searchForwards

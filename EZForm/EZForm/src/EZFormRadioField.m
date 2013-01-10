@@ -74,6 +74,18 @@
 }
 
 
+#pragma mark - EZFormField methods
+
+- (id)actualFieldValue
+{
+    id value = [super actualFieldValue];
+    if (value == nil) {
+	value = self.unselected;
+    }
+    return value;
+}
+
+
 #pragma mark - EZFormFieldConcrete methods
 
 - (BOOL)typeSpecificValidation
@@ -165,8 +177,11 @@
 	UIPickerView *pickerView = (UIPickerView *)self.userView.inputView;
 	if (self.fieldValue) {
 	    NSUInteger index = [self.orderedKeys indexOfObject:self.fieldValue];
-	    if (index != NSNotFound && index != (NSUInteger)[pickerView selectedRowInComponent:0]) {
-		[pickerView selectRow:(NSInteger)index inComponent:0 animated:animated];
+	    if (index != NSNotFound) {
+		if (self.unselected) index++;
+		if (index != (NSUInteger)[pickerView selectedRowInComponent:0]) {
+		    [pickerView selectRow:(NSInteger)index inComponent:0 animated:animated];
+		}
 	    }
 	}
     }
@@ -182,23 +197,41 @@
 
 - (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
 {
-    return (NSInteger)[self.choices count];
+    NSInteger rows = (NSInteger)[self.choices count];
+    if (self.unselected) rows += 1;
+    return rows;
 }
 
 
 #pragma mark - UIPickerViewDelegate
 
+- (NSString *)valueOrUnselectedAtIndex:(NSUInteger)index
+{
+    NSString *value = nil;
+    if (self.unselected) {
+	if (index == 0) {
+	    value = self.unselected;
+	}
+	else {
+	    NSString *key = [self.orderedKeys objectAtIndex:index - 1];
+	    value = [self.choices valueForKey:key];
+	}
+    }
+    else {
+	NSString *key = [self.orderedKeys objectAtIndex:index];
+	value = [self.choices valueForKey:key];
+    }
+    return value;
+}
+
 - (NSString *)pickerView:(__unused UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(__unused NSInteger)component
 {
-    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)row];
-    return [self.choices valueForKey:key];
+    return [self valueOrUnselectedAtIndex:(NSUInteger)row];
 }
 
 - (void)pickerView:(__unused UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
 {
-    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)row];
-    NSString *value = [self.choices valueForKey:key];
-
+    NSString *value = [self valueOrUnselectedAtIndex:(NSUInteger)row];
     [self setFieldValue:value canUpdateView:YES];
     [self updateValidityIndicators];
 }

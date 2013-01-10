@@ -34,6 +34,11 @@ typedef enum : NSInteger {
 } EZFormTextFieldUserControlType;
 
 
+@interface UIView (EZFormTextFieldExtension)
+@property (readwrite, strong, nonatomic) UIView *inputAccessoryView;
+@end
+
+
 #pragma mark - EZFormTextField class extension
 
 @interface EZFormTextField () {
@@ -45,11 +50,6 @@ typedef enum : NSInteger {
 @property (nonatomic, strong) UIView *userControl;
 @property (nonatomic, assign) EZFormTextFieldUserControlType userControlType;
 
-- (void)updateUI;
-- (void)updateValidityIndicators;
-- (void)unwireUserControl;
-- (void)wireUpTextField;
-- (void)wireUpTextView;
 @end
 
 
@@ -58,36 +58,7 @@ typedef enum : NSInteger {
 @implementation EZFormTextField
 
 
-#pragma mark - Public methods
-
-- (void)useTextField:(UITextField *)textField
-{
-    [self unwireUserControl];
-    
-    self.userControl = textField;
-    self.userControlType = EZFormTextFieldUserControlTypeTextField;
-    [self updateUI];
-    [self wireUpTextField];
-}
-
-- (void)useTextView:(UITextView *)textView
-{
-    [self unwireUserControl];
-    
-    self.userControl = textView;
-    self.userControlType = EZFormTextFieldUserControlTypeTextView;
-    [self updateUI];
-    [self wireUpTextView];
-}
-
-- (void)useLabel:(UIView *)label
-{
-    [self unwireUserControl];
-    
-    self.userControl = label;
-    self.userControlType = EZFormTextFieldUserControlTypeLabel;
-    [self updateUI];
-}
+#pragma mark - Input Filters
 
 - (void)addInputFilter:(BOOL(^)(id input))inputFilter
 {
@@ -105,30 +76,84 @@ typedef enum : NSInteger {
 }
 
 
-#pragma mark - Private methods
+#pragma mark - Wire up user controls
+
+- (void)useTextField:(UITextField *)textField
+{
+    [self unwireUserControl];
+    
+    self.userControl = textField;
+    self.userControlType = EZFormTextFieldUserControlTypeTextField;
+    [self updateUI];
+    [self wireUpUserControl];
+}
+
+- (void)useTextView:(UITextView *)textView
+{
+    [self unwireUserControl];
+    
+    self.userControl = textView;
+    self.userControlType = EZFormTextFieldUserControlTypeTextView;
+    [self updateUI];
+    [self wireUpUserControl];
+}
+
+- (void)useLabel:(UIView *)label
+{
+    [self unwireUserControl];
+    
+    self.userControl = label;
+    self.userControlType = EZFormTextFieldUserControlTypeLabel;
+    [self wireUpUserControl];
+    [self updateUI];
+}
+
+- (void)wireUpTextField
+{
+    UITextField *textField = (UITextField *)self.userControl;
+    textField.delegate = self;
+    [textField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
+    [textField addTarget:self action:@selector(textFieldEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+}
+
+- (void)wireUpTextView
+{
+    UITextView *textView = (UITextView *)self.userControl;
+    textView.delegate = self;
+}
+
+- (void)wireUpUserControl
+{
+    if ([self.userControl isKindOfClass:[UITextField class]]) {
+	[self wireUpTextField];
+    }
+    else if ([self.userControl isKindOfClass:[UITextView class]]) {
+	[self wireUpTextView];
+    }
+    
+
+    if (nil == self.userControl.inputAccessoryView && [self.userControl respondsToSelector:@selector(setInputAccessoryView:)]) {
+	// set standard input accessory view, only if one not already assigned
+	__strong EZForm *form = self.form;
+	self.userControl.inputAccessoryView = [form inputAccessoryView];
+    }
+}
+
+
+#pragma mark - Unwire user controls
 
 - (void)unwireTextField
 {
     UITextField *textField = (UITextField *)self.userControl;
     [textField removeTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
     [textField removeTarget:self action:@selector(textFieldEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [textField setDelegate:nil];
-    
-    __strong EZForm *form = self.form;
-    
-    if (textField.inputAccessoryView == [form inputAccessoryView]) {
-	textField.inputAccessoryView = nil;
-    }
+    if (textField.delegate == self) textField.delegate = nil;
 }
 
 - (void)unwireTextView
 {
     UITextView *textView = (UITextView *)self.userControl;
-    __strong EZForm *form = self.form;
-    
-    if (textView.inputAccessoryView == [form inputAccessoryView]) {
-	textView.inputAccessoryView = nil;
-    }
+    if (textView.delegate == self) textView.delegate = nil;
 }
 
 - (void)unwireUserControl
@@ -140,37 +165,17 @@ typedef enum : NSInteger {
 	[self unwireTextView];
     }
     
+    __strong EZForm *form = self.form;
+    if (self.userControl.inputAccessoryView == [form inputAccessoryView] && [self.userControl respondsToSelector:@selector(setInputAccessoryView:)]) {
+	// set standard input accessory view, only if one not already assigned
+	self.userControl.inputAccessoryView = nil;
+    }
+
     self.userControlType = EZFormTextFieldUserControlTypeNone;
 }
 
-- (void)wireUpTextField
-{
-    UITextField *textField = (UITextField *)self.userControl;
-    textField.delegate = self;
-    
-    __strong EZForm *form = self.form;
 
-    if (nil == textField.inputAccessoryView) {
-	// set standard input accessory view, only if one not already assigned
-	textField.inputAccessoryView = [form inputAccessoryView];
-    }
-    
-    [textField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
-    [textField addTarget:self action:@selector(textFieldEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
-}
-
-- (void)wireUpTextView
-{
-    UITextView *textView = (UITextView *)self.userControl;
-    textView.delegate = self;
-
-    __strong EZForm *form = self.form;
-
-    if (nil == textView.inputAccessoryView) {
-	// set standard input accessory view, only if one not already assigned
-	textView.inputAccessoryView = [form inputAccessoryView];
-    }
-}
+#pragma mark - Text field control events
 
 - (void)textFieldEditingChanged:(id)sender
 {
@@ -186,6 +191,9 @@ typedef enum : NSInteger {
     __strong EZForm *form = self.form;
     [form formFieldInputFinished:self];
 }
+
+
+#pragma mark - Is input valid
 
 - (BOOL)isInputValid:(NSString *)inputStr
 {
@@ -207,6 +215,9 @@ typedef enum : NSInteger {
     
     return YES;
 }
+
+
+#pragma mark - Invalid indicator view
 
 - (void)setTextFieldInvalidIndicatorView:(UIView *)view viewMode:(UITextFieldViewMode)viewMode
 {

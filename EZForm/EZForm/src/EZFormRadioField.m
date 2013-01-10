@@ -26,16 +26,31 @@
 #import "EZForm+Private.h"
 
 
+#pragma mark - External Class Categories
+
+@interface UIView (EZFormRadioFieldExtension)
+@property (readwrite, retain) UIView *inputView;
+@end
+
+@interface EZFormTextField (EZFormRadioFieldPrivateAccess)
+- (void)updateValidityIndicators;
+@end
+
+
 #pragma mark - EZFormRadioField class extension
 
-@interface EZFormRadioField ()
+@interface EZFormRadioField () <UIPickerViewDataSource, UIPickerViewDelegate>
+
 @property (nonatomic, strong) NSArray *orderedKeys;
+
 @end
 
 
 #pragma mark - EZFormRadioField implementation
 
 @implementation EZFormRadioField
+
+@dynamic inputView;
 
 
 #pragma mark - Public methods
@@ -79,6 +94,113 @@
     }
     
     return result;
+}
+
+- (void)updateView
+{
+    [super updateView];
+    [self updateInputViewAnimated:YES];
+}
+
+
+#pragma mark - Unwire views
+
+- (void)unwireUserViews
+{
+    [self unwireInputView];
+    [super unwireUserViews];
+}
+
+- (void)unwireInputView
+{
+    if ([self.userView.inputView isKindOfClass:[UIPickerView class]]) {
+	UIPickerView *pickerView = (UIPickerView *)self.userView.inputView;
+	if (pickerView.dataSource == self) pickerView.dataSource = nil;
+	if (pickerView.delegate == self) pickerView.delegate = nil;
+    }
+    
+    self.userView.inputView = nil;
+}
+
+
+#pragma mark - inputView
+
+- (void)setInputView:(UIView *)inputView
+{
+    if (self.userView == nil) {
+	NSException *exception = [NSException exceptionWithName:@"Attempt to set inputView with no userView" reason:@"A user view must be set before calling setInputView" userInfo:nil];
+	@throw exception;
+    }
+    if (! [self.userView respondsToSelector:@selector(setInputView:)]) {
+	NSException *exception = [NSException exceptionWithName:@"setInputView invalid" reason:@"EZFormRadioField user view does not accept an input view" userInfo:nil];
+	@throw exception;
+    }
+    
+    if ([inputView isKindOfClass:[UIPickerView class]]) {
+	UIPickerView *pickerView = (UIPickerView *)inputView;
+	
+	pickerView.showsSelectionIndicator = YES;
+	
+	// User can elect to handle dataSource or delegate for picker, otherwise we do it automatically
+	if (pickerView.dataSource == nil) pickerView.dataSource = self;
+	if (pickerView.delegate == nil) pickerView.delegate = self;
+    }
+    else {
+	NSException *exception = [NSException exceptionWithName:@"Unsupported inputView" reason:@"EZFormRadioField only supports wiring up inputViews of type UIPickerView" userInfo:nil];
+	@throw exception;
+    }
+    
+    self.userView.inputView = inputView;
+    [self updateInputViewAnimated:NO];
+}
+
+- (UIView *)inputView
+{
+    return self.userView.inputView;
+}
+
+- (void)updateInputViewAnimated:(BOOL)animated
+{
+    if ([self.userView.inputView isKindOfClass:[UIPickerView class]]) {
+	UIPickerView *pickerView = (UIPickerView *)self.userView.inputView;
+	if (self.fieldValue) {
+	    NSUInteger index = [self.orderedKeys indexOfObject:self.fieldValue];
+	    if (index != NSNotFound && index != (NSUInteger)[pickerView selectedRowInComponent:0]) {
+		[pickerView selectRow:(NSInteger)index inComponent:0 animated:animated];
+	    }
+	}
+    }
+}
+
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(__unused UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
+{
+    return (NSInteger)[self.choices count];
+}
+
+
+#pragma mark - UIPickerViewDelegate
+
+- (NSString *)pickerView:(__unused UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(__unused NSInteger)component
+{
+    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)row];
+    return [self.choices valueForKey:key];
+}
+
+- (void)pickerView:(__unused UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
+{
+    NSString *key = [self.orderedKeys objectAtIndex:(NSUInteger)row];
+    NSString *value = [self.choices valueForKey:key];
+
+    [self setFieldValue:value canUpdateView:YES];
+    [self updateValidityIndicators];
 }
 
 @end

@@ -65,6 +65,8 @@
     [_form addFormField:cityField];
     [_form addFormField:stateField];
     [_form addFormField:postcodeField];
+    
+    //[self.form setModelValue:@"Vic" forKey:@"state"]; // TEST
 }
 
 - (void)viewDidLoad
@@ -78,6 +80,9 @@
     [[self.form formFieldForKey:@"city"] useTextField:self.cityTextField];
     [[self.form formFieldForKey:@"state"] useTextField:self.stateTextField];
     [[self.form formFieldForKey:@"postcode"] useTextField:self.postcodeTextField];
+    
+    EZFormRadioField *stateField = [self.form formFieldForKey:@"state"];
+    stateField.inputView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     
     [self.form autoScrollViewForKeyboardInput:self.scrollView];
 }

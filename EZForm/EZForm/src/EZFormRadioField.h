@@ -28,10 +28,24 @@
 
 /** A form field to handle selection from multiple choices.
  *
- *  The value of the selection can be displayed with a label.
+ *  EZFormRadioField is a subclass of EZFormTextField and so can
+ *  accept input and display choices using any of the user views
+ *  supported by EZFormTextField.
  *
- *  The choices are typically presented to the user in a table
- *  view.
+ *  EZFormRadioField supports wiring up a UIPickerView to present
+ *  the choices to the user, replacing a keyboard for input.
+ *  Set the inputView property to a UIPickerView object, after
+ *  wiring up a user view that supports becoming first responder
+ *  (like a UITextField).
+ *
+ *  Alternatively, choices are commonly presented to the user in a table
+ *  view.  EZForm provides EZFormRadioChoiceViewController as a
+ *  convenience for presenting choices in a table view.
+ *  The EZForm object and field key specifying the EZFormRadioField
+ *  can be set on the EZFormRadioChoiceViewController object.
+ *  It is up to the user to present the EZFormRadioChoiceViewController
+ *  using whichever mechanism best fits the application (e.g.
+ *  navigation push).
  */
 @interface EZFormRadioField : EZFormTextField
 
@@ -58,6 +72,18 @@
  *  defined choices to pass validation.
  */
 @property (nonatomic, assign) BOOL validationRestrictedToChoiceValues;
+
+/** Wires up a view to use for input, replacing the keyboard.
+ *
+ *  Currently only the UIPickerView is supported as an EZFormRadioField
+ *  inputView.  When set, a UIPickerView is used for selecting a choice,
+ *  replacing the keyboard.
+ *
+ *  Setting an inputView is only valid after wiring up a user view that
+ *  supports becoming first responder. It works well with a UITextField,
+ *  for example.
+ */
+@property (nonatomic, strong) UIView *inputView;
 
 /** Set choices from an array of values.
  *

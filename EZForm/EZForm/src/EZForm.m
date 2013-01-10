@@ -280,7 +280,8 @@
 - (void)adjustScrollViewForVisibleKeyboard
 {
     UIScrollView *scrollView = (UIScrollView *)self.viewToAutoScroll;
-    CGRect intersectsRect = CGRectIntersection([scrollView.window convertRect:scrollView.frame fromView:scrollView.superview], _visibleKeyboardFrame);
+    CGRect convertedKeyboardFrame = [[scrollView superview] convertRect:_visibleKeyboardFrame fromView:nil];
+    CGRect intersectsRect = CGRectIntersection(scrollView.frame, convertedKeyboardFrame);
     if (intersectsRect.size.height > 0.0f) {
 	UIEdgeInsets contentInset;
 	UIEdgeInsets scrollIndicatorInsets;

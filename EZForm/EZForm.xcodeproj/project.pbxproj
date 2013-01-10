@@ -35,6 +35,8 @@
 		839EE93316952D0500B9DCA8 /* EZFormTextField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90916952A3D00B9DCA8 /* EZFormTextField.h */; };
 		839EE93416952D2200B9DCA8 /* EZFormInputAccessoryViewProtocols.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90016952A3D00B9DCA8 /* EZFormInputAccessoryViewProtocols.h */; };
 		839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.h */; };
+		83E75FED169F73A0004B13E9 /* EZFormInputControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75FEC169F73A0004B13E9 /* EZFormInputControl.m */; };
+		83E75FEF169F7931004B13E9 /* EZFormInputControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E75FEB169F73A0004B13E9 /* EZFormInputControl.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				83E75FEF169F7931004B13E9 /* EZFormInputControl.h in CopyFiles */,
 				839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */,
 				839EE93416952D2200B9DCA8 /* EZFormInputAccessoryViewProtocols.h in CopyFiles */,
 				839EE93216952D0500B9DCA8 /* EZFormRadioField.h in CopyFiles */,
@@ -106,6 +109,8 @@
 		839EE90B16952A3D00B9DCA8 /* UIView+EZFormUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UIView+EZFormUtility.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		839EE90C16952A3D00B9DCA8 /* UIView+EZFormUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+EZFormUtility.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		839EE91816952AB900B9DCA8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		83E75FEB169F73A0004B13E9 /* EZFormInputControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormInputControl.h; sourceTree = "<group>"; };
+		83E75FEC169F73A0004B13E9 /* EZFormInputControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormInputControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +218,8 @@
 				839EE8FE16952A3D00B9DCA8 /* EZFormGenericField.h */,
 				839EE8FF16952A3D00B9DCA8 /* EZFormGenericField.m */,
 				839EE90016952A3D00B9DCA8 /* EZFormInputAccessoryViewProtocols.h */,
+				83E75FEB169F73A0004B13E9 /* EZFormInputControl.h */,
+				83E75FEC169F73A0004B13E9 /* EZFormInputControl.m */,
 				839EE90116952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.h */,
 				839EE90216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m */,
 				839EE90316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.h */,
@@ -339,6 +346,7 @@
 				839EE91516952A3D00B9DCA8 /* EZFormStandardInputAccessoryView.m in Sources */,
 				839EE91616952A3D00B9DCA8 /* EZFormTextField.m in Sources */,
 				839EE91716952A3D00B9DCA8 /* UIView+EZFormUtility.m in Sources */,
+				83E75FED169F73A0004B13E9 /* EZFormInputControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

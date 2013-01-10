@@ -84,8 +84,8 @@ typedef enum : NSInteger {
     
     self.userControl = textField;
     self.userControlType = EZFormTextFieldUserControlTypeTextField;
-    [self updateUI];
     [self wireUpUserControl];
+    [self updateUI];
 }
 
 - (void)useTextView:(UITextView *)textView
@@ -94,8 +94,8 @@ typedef enum : NSInteger {
     
     self.userControl = textView;
     self.userControlType = EZFormTextFieldUserControlTypeTextView;
-    [self updateUI];
     [self wireUpUserControl];
+    [self updateUI];
 }
 
 - (void)useLabel:(UIView *)label
@@ -122,6 +122,13 @@ typedef enum : NSInteger {
     textView.delegate = self;
 }
 
+- (void)wireUpInputControl
+{
+    EZFormInputControl *inputControl = (EZFormInputControl *)self.userControl;
+    [inputControl addTarget:self action:@selector(inputControlEditingDidBegin:) forControlEvents:UIControlEventEditingDidBegin];
+    [inputControl addTarget:self action:@selector(inputControlEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+}
+
 - (void)wireUpUserControl
 {
     if ([self.userControl isKindOfClass:[UITextField class]]) {
@@ -129,6 +136,9 @@ typedef enum : NSInteger {
     }
     else if ([self.userControl isKindOfClass:[UITextView class]]) {
 	[self wireUpTextView];
+    }
+    else if ([self.userControl isKindOfClass:[EZFormInputControl class]]) {
+	[self wireUpInputControl];
     }
     
 
@@ -193,6 +203,23 @@ typedef enum : NSInteger {
 }
 
 
+#pragma mark - Input control events
+
+- (void)inputControlEditingDidBegin:(id)sender
+{
+    #pragma unused(sender)
+    __strong EZForm *form = self.form;
+    [form formFieldDidBeginEditing:self];
+}
+
+- (void)inputControlEditingDidEndOnExit:(id)sender
+{
+    #pragma unused(sender)
+    __strong EZForm *form = self.form;
+    [form formFieldInputFinished:self];
+}
+
+
 #pragma mark - Is input valid
 
 - (BOOL)isInputValid:(NSString *)inputStr
@@ -249,14 +276,8 @@ typedef enum : NSInteger {
 
 - (void)updateUIWithValue:(NSString *)value
 {
-    if (EZFormTextFieldUserControlTypeTextField == self.userControlType) {
-	[(UITextField *)self.userControl setText:value];
-    }
-    else if (EZFormTextFieldUserControlTypeTextView == self.userControlType) {
-	[(UITextView *)self.userControl setText:value];
-    }
-    else if (EZFormTextFieldUserControlTypeLabel == self.userControlType) {
-	[(UILabel *)self.userControl setText:value];
+    if ([(id)self.userControl respondsToSelector:NSSelectorFromString(@"setText:")]) {
+	[(id)self.userControl setText:value];
     }
     
     [self updateValidityIndicators];

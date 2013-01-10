@@ -24,7 +24,6 @@
 
 #import "EZFDScrollViewFormViewController.h"
 #import <EZForm/EZForm.h>
-#import "EZFDInputLabel.h"
 
 @interface EZFDScrollViewFormViewController () <EZFormDelegate>
 
@@ -34,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *address2TextField;
 @property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 @property (weak, nonatomic) IBOutlet UITextField *stateTextField;
-@property (weak, nonatomic) IBOutlet EZFDInputLabel *stateLabel;
+@property (weak, nonatomic) IBOutlet EZFormInputControl *stateInputControl;
 @property (weak, nonatomic) IBOutlet UITextField *postcodeTextField;
 
 @property (weak, nonatomic) IBOutlet UIView *formView;
@@ -80,11 +79,13 @@
     [[self.form formFieldForKey:@"address1"] useTextField:self.address1TextField];
     [[self.form formFieldForKey:@"address2"] useTextField:self.address2TextField];
     [[self.form formFieldForKey:@"city"] useTextField:self.cityTextField];
-    [[self.form formFieldForKey:@"state"] useLabel:self.stateLabel];
+    [[self.form formFieldForKey:@"state"] useLabel:self.stateInputControl];
     [[self.form formFieldForKey:@"postcode"] useTextField:self.postcodeTextField];
     
     EZFormRadioField *stateField = [self.form formFieldForKey:@"state"];
     stateField.inputView = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    
+    self.stateInputControl.tapToBecomeFirstResponder = YES;
     
     [self.form autoScrollViewForKeyboardInput:self.scrollView];
 }

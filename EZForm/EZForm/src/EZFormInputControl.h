@@ -24,13 +24,13 @@
 
 #import <UIKit/UIKit.h>
 
-/* A UILabel that can become first responder. Used in the scroll-based form demo
-   (EZFDScrollViewFormViewController) to show the value of a radio field.
- */
+@interface EZFormInputControl : UIControl
 
-@interface EZFDInputLabel : UILabel
+@property (strong, nonatomic) NSString *text;
 
 @property (readwrite, strong, nonatomic) UIView *inputView;
 @property (readwrite, strong, nonatomic) UIView *inputAccessoryView;
+
+@property (assign, nonatomic) BOOL tapToBecomeFirstResponder;
 
 @end

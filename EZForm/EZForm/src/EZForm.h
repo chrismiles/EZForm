@@ -43,6 +43,7 @@
 #import "EZFormInputAccessoryViewProtocols.h"
 #import "EZFormCommonValidators.h"
 #import "EZFormRadioChoiceViewController.h"
+#import "EZFormInputControl.h"
 
 
 typedef enum : NSInteger {

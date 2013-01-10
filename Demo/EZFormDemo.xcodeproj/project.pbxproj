@@ -18,7 +18,6 @@
 		839EE937169534C100B9DCA8 /* libEZForm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE936169534C100B9DCA8 /* libEZForm.a */; };
 		839EE93916953BE300B9DCA8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 839EE93816953BE300B9DCA8 /* Default-568h@2x.png */; };
 		83E75E64169D1358004B13E9 /* EZFDScrollViewFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75E63169D1358004B13E9 /* EZFDScrollViewFormViewController.m */; };
-		83E75EC1169E40D0004B13E9 /* EZFDInputLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75EC0169E40D0004B13E9 /* EZFDInputLabel.m */; };
 		83F323A415522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F323A315522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m */; };
 		83F323AB15526988006FC7B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F323AA15526988006FC7B2 /* QuartzCore.framework */; };
 		83F323AF15527268006FC7B2 /* EZFDMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F323AE15527268006FC7B2 /* EZFDMainMenuViewController.m */; };
@@ -46,8 +45,6 @@
 		839EE93816953BE300B9DCA8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		83E75E62169D1358004B13E9 /* EZFDScrollViewFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDScrollViewFormViewController.h; sourceTree = "<group>"; };
 		83E75E63169D1358004B13E9 /* EZFDScrollViewFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDScrollViewFormViewController.m; sourceTree = "<group>"; };
-		83E75EBF169E40D0004B13E9 /* EZFDInputLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFDInputLabel.h; sourceTree = "<group>"; };
-		83E75EC0169E40D0004B13E9 /* EZFDInputLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFDInputLabel.m; sourceTree = "<group>"; };
 		83F323A215522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZFDSimpleLoginFormViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		83F323A315522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFDSimpleLoginFormViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		83F323AA15526988006FC7B2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -200,8 +197,6 @@
 			children = (
 				83E75E62169D1358004B13E9 /* EZFDScrollViewFormViewController.h */,
 				83E75E63169D1358004B13E9 /* EZFDScrollViewFormViewController.m */,
-				83E75EBF169E40D0004B13E9 /* EZFDInputLabel.h */,
-				83E75EC0169E40D0004B13E9 /* EZFDInputLabel.m */,
 			);
 			path = "ScrollView Form";
 			sourceTree = "<group>";
@@ -305,7 +300,6 @@
 				83F323AF15527268006FC7B2 /* EZFDMainMenuViewController.m in Sources */,
 				8329EAF2155339E900ED3F5E /* EZFDRegistrationFormViewController.m in Sources */,
 				83E75E64169D1358004B13E9 /* EZFDScrollViewFormViewController.m in Sources */,
-				83E75EC1169E40D0004B13E9 /* EZFDInputLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

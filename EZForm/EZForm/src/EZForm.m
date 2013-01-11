@@ -306,10 +306,19 @@
 	contentInset.bottom += intersectsRect.size.height;
 	scrollIndicatorInsets.bottom += intersectsRect.size.height;
 	
-	[UIView animateWithDuration:_keyboardAnimationDuration animations:^{
-	    scrollView.contentInset = contentInset;
-	    scrollView.scrollIndicatorInsets = scrollIndicatorInsets;
-	}];
+	if (! UIEdgeInsetsEqualToEdgeInsets(scrollView.contentInset, contentInset) || ! UIEdgeInsetsEqualToEdgeInsets(scrollView.scrollIndicatorInsets, scrollIndicatorInsets)) {
+	    void (^insetChanges)(void) = ^{
+		scrollView.contentInset = contentInset;
+		scrollView.scrollIndicatorInsets = scrollIndicatorInsets;
+	    };
+	    
+	    if (_keyboardAnimationDuration > 0.0) {
+		[UIView animateWithDuration:_keyboardAnimationDuration animations:insetChanges];
+	    }
+	    else {
+		insetChanges();
+	    }
+	}
     }
 }
 

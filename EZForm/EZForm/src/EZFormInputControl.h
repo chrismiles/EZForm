@@ -33,4 +33,6 @@
 
 @property (assign, nonatomic) BOOL tapToBecomeFirstResponder;
 
+- (id)initWithFrame:(CGRect)frame label:(UILabel *)label;
+
 @end

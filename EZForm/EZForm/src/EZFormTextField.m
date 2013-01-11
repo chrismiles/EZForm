@@ -26,14 +26,6 @@
 #import "EZForm+Private.h"
 
 
-typedef enum : NSInteger {
-    EZFormTextFieldUserControlTypeNone = 0,
-    EZFormTextFieldUserControlTypeTextField = 1,
-    EZFormTextFieldUserControlTypeTextView = 2,
-    EZFormTextFieldUserControlTypeLabel = 3,
-} EZFormTextFieldUserControlType;
-
-
 @interface UIView (EZFormTextFieldExtension)
 @property (readwrite, strong, nonatomic) UIView *inputAccessoryView;
 @end
@@ -48,7 +40,6 @@ typedef enum : NSInteger {
 @property (nonatomic, copy) NSString *internalValue;
 @property (nonatomic, strong) NSMutableArray *inputFilterBlocks;
 @property (nonatomic, strong) UIView *userControl;
-@property (nonatomic, assign) EZFormTextFieldUserControlType userControlType;
 
 @end
 
@@ -83,7 +74,6 @@ typedef enum : NSInteger {
     [self unwireUserControl];
     
     self.userControl = textField;
-    self.userControlType = EZFormTextFieldUserControlTypeTextField;
     [self wireUpUserControl];
     [self updateUI];
 }
@@ -93,7 +83,6 @@ typedef enum : NSInteger {
     [self unwireUserControl];
     
     self.userControl = textView;
-    self.userControlType = EZFormTextFieldUserControlTypeTextView;
     [self wireUpUserControl];
     [self updateUI];
 }
@@ -103,7 +92,6 @@ typedef enum : NSInteger {
     [self unwireUserControl];
     
     self.userControl = label;
-    self.userControlType = EZFormTextFieldUserControlTypeLabel;
     [self wireUpUserControl];
     [self updateUI];
 }
@@ -168,10 +156,10 @@ typedef enum : NSInteger {
 
 - (void)unwireUserControl
 {
-    if (EZFormTextFieldUserControlTypeTextField == self.userControlType) {
+    if ([self.userControl isKindOfClass:[UITextField class]]) {
 	[self unwireTextField];
     }
-    else if (EZFormTextFieldUserControlTypeTextView == self.userControlType) {
+    else if ([self.userControl isKindOfClass:[UITextView class]]) {
 	[self unwireTextView];
     }
     
@@ -181,7 +169,7 @@ typedef enum : NSInteger {
 	self.userControl.inputAccessoryView = nil;
     }
 
-    self.userControlType = EZFormTextFieldUserControlTypeNone;
+    self.userControl = nil;
 }
 
 
@@ -263,7 +251,7 @@ typedef enum : NSInteger {
     if (self.invalidIndicatorView) {
 	// ** Currently only supported by UITextField views
 	
-	if (EZFormTextFieldUserControlTypeTextField == self.userControlType) {
+	if ([self.userControl isKindOfClass:[UITextField class]]) {
 	    if ([self isValid]) {
 		[self setTextFieldInvalidIndicatorView:nil viewMode:UITextFieldViewModeNever];
 	    }

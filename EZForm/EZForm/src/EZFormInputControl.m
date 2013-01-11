@@ -74,14 +74,14 @@
 - (BOOL)becomeFirstResponder
 {
     BOOL result = [super becomeFirstResponder];
-    [self sendActionsForControlEvents:UIControlEventEditingDidBegin];
+    if (result) [self sendActionsForControlEvents:UIControlEventEditingDidBegin];
     return result;
 }
 
 - (BOOL)resignFirstResponder
 {
     BOOL result = [super resignFirstResponder];
-    [self sendActionsForControlEvents:UIControlEventEditingDidEndOnExit];
+    if (result) [self sendActionsForControlEvents:UIControlEventEditingDidEndOnExit];
     return result;
 }
 

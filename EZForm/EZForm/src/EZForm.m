@@ -36,6 +36,7 @@
     CGRect _autoScrolledViewOriginalFrame;
     UIEdgeInsets _autoScrolledViewOriginalScrollIndicatorInsets;
     NSTimeInterval _keyboardAnimationDuration;
+    BOOL _resigningFirstResponder;
     BOOL _scrollViewInsetsWereSaved;
     CGRect _visibleKeyboardFrame;
 }
@@ -154,9 +155,11 @@
 
 - (void)resignFirstResponder
 {
+    _resigningFirstResponder = YES;
     for (EZFormField *formField in self.formFields) {
 	[formField resignFirstResponder];
     }
+    _resigningFirstResponder = NO;
 }
 
 - (EZFormField *)formFieldForFirstResponder
@@ -389,8 +392,12 @@
 
 - (void)formFieldInputFinished:(EZFormField *)formField
 {
-    // Find next form field that can become first responder
-    EZFormField *nextFormField = [self firstResponderCapableFormFieldAfterField:formField searchForwards:YES];
+    EZFormField *nextFormField = nil;
+    
+    if (! _resigningFirstResponder) {
+	// Find next form field that can become first responder
+	nextFormField = [self firstResponderCapableFormFieldAfterField:formField searchForwards:YES];
+    }
     
     if (nextFormField) {
 	[self selectFormFieldForInput:nextFormField];

@@ -228,6 +228,12 @@ typedef enum : NSInteger {
  */
 + (UIView *)formInvalidIndicatorViewForType:(EZFormInvalidIndicatorViewType)invalidIndicatorViewType size:(CGSize)size;
 
+/** Attempts to scroll the view so that the specified form field is visible.
+ *
+ *  Only valid if an auto scroll view is assigned with -autoScrollViewForKeyboardInput:.
+ */
+- (void)scrollFormFieldToVisible:(EZFormField *)formField;
+
 @end
 
 

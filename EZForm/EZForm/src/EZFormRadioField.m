@@ -33,6 +33,7 @@
 @end
 
 @interface EZFormTextField (EZFormRadioFieldPrivateAccess)
+- (void)updateUIWithValue:(NSString *)value;
 - (void)updateValidityIndicators;
 @end
 
@@ -42,6 +43,7 @@
 @interface EZFormRadioField () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) NSArray *orderedKeys;
+@property (nonatomic, strong) NSString *selectedChoiceKey;
 
 @end
 
@@ -74,18 +76,6 @@
 }
 
 
-#pragma mark - EZFormField methods
-
-- (id)actualFieldValue
-{
-    id value = [super actualFieldValue];
-    if (value == nil) {
-	value = self.unselected;
-    }
-    return value;
-}
-
-
 #pragma mark - EZFormFieldConcrete methods
 
 - (BOOL)typeSpecificValidation
@@ -110,7 +100,8 @@
 
 - (void)updateView
 {
-    [super updateView];
+    NSString *value = [self choiceValueForKey:[self actualFieldValue]];
+    [self updateUIWithValue:value];
     [self updateInputViewAnimated:YES];
 }
 
@@ -188,22 +179,7 @@
 }
 
 
-#pragma mark - UIPickerViewDataSource
-
-- (NSInteger)numberOfComponentsInPickerView:(__unused UIPickerView *)pickerView
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
-{
-    NSInteger rows = (NSInteger)[self.choices count];
-    if (self.unselected) rows += 1;
-    return rows;
-}
-
-
-#pragma mark - UIPickerViewDelegate
+#pragma mark - Choice Values
 
 - (NSString *)valueOrUnselectedAtIndex:(NSUInteger)index
 {
@@ -224,6 +200,53 @@
     return value;
 }
 
+- (NSString *)choiceKeyAtIndex:(NSUInteger)index
+{
+    NSString *key = nil;
+    if (self.unselected) {
+	if (index == 0) {
+	    key = nil;
+	}
+	else {
+	    key = [self.orderedKeys objectAtIndex:index - 1];
+	}
+    }
+    else {
+	key = [self.orderedKeys objectAtIndex:index];
+    }
+    return key;
+}
+
+- (id)choiceValueForKey:(NSString *)key
+{
+    id value;
+    if (key) {
+	value = self.choices[key];
+    }
+    else {
+	value = self.unselected;
+    }
+    return value;
+}
+
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(__unused UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component
+{
+    NSInteger rows = (NSInteger)[self.choices count];
+    if (self.unselected) rows += 1;
+    return rows;
+}
+
+
+#pragma mark - UIPickerViewDelegate
+
 - (NSString *)pickerView:(__unused UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(__unused NSInteger)component
 {
     return [self valueOrUnselectedAtIndex:(NSUInteger)row];
@@ -231,8 +254,8 @@
 
 - (void)pickerView:(__unused UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
 {
-    NSString *value = [self valueOrUnselectedAtIndex:(NSUInteger)row];
-    [self setFieldValue:value canUpdateView:YES];
+    NSString *key = [self choiceKeyAtIndex:(NSUInteger)row];
+    [self setFieldValue:key canUpdateView:YES];
     [self updateValidityIndicators];
 }
 

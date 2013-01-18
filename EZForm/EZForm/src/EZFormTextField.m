@@ -75,7 +75,7 @@
     
     self.userControl = textField;
     [self wireUpUserControl];
-    [self updateUI];
+    [self updateView];
 }
 
 - (void)useTextView:(UITextView *)textView
@@ -84,7 +84,7 @@
     
     self.userControl = textView;
     [self wireUpUserControl];
-    [self updateUI];
+    [self updateView];
 }
 
 - (void)useLabel:(UIView *)label
@@ -93,7 +93,7 @@
     
     self.userControl = label;
     [self wireUpUserControl];
-    [self updateUI];
+    [self updateView];
 }
 
 - (void)wireUpTextField

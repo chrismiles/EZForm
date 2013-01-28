@@ -411,7 +411,7 @@
     [self unwireUserControl];
 }
 
-- (BOOL)acceptsKeyboardAccessory
+- (BOOL)acceptsInputAccessory
 {
     return [self.userControl respondsToSelector:@selector(setInputAccessoryView:)];
 }

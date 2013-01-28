@@ -147,7 +147,7 @@ typedef enum {
     [self unwireUserControl];
 }
 
-- (BOOL)acceptsKeyboardAccessory
+- (BOOL)acceptsInputAccessory
 {
     return NO;
 }

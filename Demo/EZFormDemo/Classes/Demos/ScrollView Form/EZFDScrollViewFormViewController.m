@@ -74,7 +74,9 @@
 {
     [super viewDidLoad];
     
-    self.scrollView.contentSize = self.formView.bounds.size;
+    __strong UIScrollView *scrollView = self.scrollView;
+    __strong UIView *formView = self.formView;
+    scrollView.contentSize = formView.bounds.size;
     
     [[self.form formFieldForKey:@"address1"] useTextField:self.address1TextField];
     [[self.form formFieldForKey:@"address2"] useTextField:self.address2TextField];
@@ -85,9 +87,10 @@
     EZFormRadioField *stateField = [self.form formFieldForKey:@"state"];
     stateField.inputView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     
-    self.stateInputControl.tapToBecomeFirstResponder = YES;
+    __strong EZFormInputControl *stateInputControl = self.stateInputControl;
+    stateInputControl.tapToBecomeFirstResponder = YES;
     
-    [self.form autoScrollViewForKeyboardInput:self.scrollView];
+    [self.form autoScrollViewForKeyboardInput:scrollView];
 }
 
 

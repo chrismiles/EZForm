@@ -39,6 +39,7 @@
 #import "EZFormBooleanField.h"
 #import "EZFormGenericField.h"
 #import "EZFormRadioField.h"
+#import "EZFormMultiRadioFormField.h"
 #import "EZFormTextField.h"
 #import "EZFormInputAccessoryViewProtocols.h"
 #import "EZFormCommonValidators.h"

@@ -1,0 +1,69 @@
+//
+//  EZForm
+//
+//  Copyright 2011-2013 Chris Miles. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+//  EZFormMultiRadioFormField by Jesse Collis <jesse@jcmultimedia.com.au>
+
+#import "EZFormRadioField.h"
+
+
+/** A form field to handle multiple selection from multiple choices.
+ *
+ * TODO: Documentation for EZFormMultiRadioFormField
+ */
+
+@interface EZFormMultiRadioFormField : EZFormRadioField
+
+
+/** The array of selected keys
+ *
+ */
+- (id)fieldValue;
+
+/** A convinience method to return the selected field values 
+ *  joined by a string. Uses NSString componentsJoinedByString:
+ *
+ */
+- (NSString *)fieldValuesJoinedByString:(NSString *)separator;
+
+/** Unets a set field value
+ *
+ *  This is the equivalent to passing YES to unsetFieldValue:canUpdateView:
+ */
+- (void)unsetFieldValue:(id)value;
+
+/** Unsets all previously set field values
+ *  
+ *  Note: passing nil setFieldValue: calls this method
+ */
+- (void)unsetAllFieldValues;
+
+/** Unsets a set field value
+ *
+ *  see setFieldValue:canUpdateView
+ */
+- (void)unsetFieldValue:(id)value canUpdateView:(BOOL)canUpdateView;
+
+
+
+@end

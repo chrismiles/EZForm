@@ -37,6 +37,8 @@
 		839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 839EE90316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.h */; };
 		83E75FED169F73A0004B13E9 /* EZFormInputControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E75FEC169F73A0004B13E9 /* EZFormInputControl.m */; };
 		83E75FEF169F7931004B13E9 /* EZFormInputControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E75FEB169F73A0004B13E9 /* EZFormInputControl.h */; };
+		8874817816B90A380063C5F6 /* EZFormMultiRadioFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */; };
+		8874817916B90BB40063C5F6 /* EZFormMultiRadioFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 				839EE93316952D0500B9DCA8 /* EZFormTextField.h in CopyFiles */,
 				839EE93116952CF800B9DCA8 /* EZFormGenericField.h in CopyFiles */,
 				839EE93016952C5C00B9DCA8 /* EZFormFieldConcreteProtocol.h in CopyFiles */,
+				8874817916B90BB40063C5F6 /* EZFormMultiRadioFormField.h in CopyFiles */,
 				839EE92916952BA800B9DCA8 /* EZForm.h in CopyFiles */,
 				839EE92A16952BA800B9DCA8 /* EZFormBooleanField.h in CopyFiles */,
 				839EE92B16952BA800B9DCA8 /* EZFormCommonValidators.h in CopyFiles */,
@@ -111,6 +114,8 @@
 		839EE91816952AB900B9DCA8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83E75FEB169F73A0004B13E9 /* EZFormInputControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormInputControl.h; sourceTree = "<group>"; };
 		83E75FEC169F73A0004B13E9 /* EZFormInputControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormInputControl.m; sourceTree = "<group>"; };
+		8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormMultiRadioFormField.h; sourceTree = "<group>"; };
+		8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormMultiRadioFormField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +227,8 @@
 				83E75FEC169F73A0004B13E9 /* EZFormInputControl.m */,
 				839EE90116952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.h */,
 				839EE90216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m */,
+				8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */,
+				8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */,
 				839EE90316952A3D00B9DCA8 /* EZFormRadioChoiceViewController.h */,
 				839EE90416952A3D00B9DCA8 /* EZFormRadioChoiceViewController.m */,
 				839EE90516952A3D00B9DCA8 /* EZFormRadioField.h */,
@@ -347,6 +354,7 @@
 				839EE91616952A3D00B9DCA8 /* EZFormTextField.m in Sources */,
 				839EE91716952A3D00B9DCA8 /* UIView+EZFormUtility.m in Sources */,
 				83E75FED169F73A0004B13E9 /* EZFormInputControl.m in Sources */,
+				8874817816B90A380063C5F6 /* EZFormMultiRadioFormField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

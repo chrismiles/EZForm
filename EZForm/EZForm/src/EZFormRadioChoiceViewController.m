@@ -26,6 +26,11 @@
 
 @implementation EZFormRadioChoiceViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.tableView.allowsMultipleSelection = self.allowsMultipleSelection;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -79,8 +84,13 @@
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     NSString *choiceKey = [field choiceKeys][(NSUInteger)indexPath.row];
     cell.textLabel.text = [field.choices valueForKey:choiceKey];
-    
-    if ([[self.form modelValueForKey:self.radioFieldKey] isEqualToString:choiceKey]) {
+
+    id modelValueArray = [self.form modelValueForKey:self.radioFieldKey];
+    if (modelValueArray != nil && ![modelValueArray isKindOfClass:[NSArray class]]) {
+        modelValueArray = @[modelValueArray];
+    }
+
+    if ([(NSArray *)modelValueArray containsObject:choiceKey]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -97,8 +107,19 @@
 {
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     NSString *choiceKey = [field choiceKeys][(NSUInteger)indexPath.row];
-    [self.form setModelValue:choiceKey forKey:self.radioFieldKey];
-    
+
+    id modelValueArray = [self.form modelValueForKey:self.radioFieldKey];
+    if (modelValueArray != nil && ![modelValueArray isKindOfClass:[NSArray class]]) {
+        modelValueArray = @[modelValueArray];
+    }
+
+    if (self.allowsMultipleSelection && [modelValueArray containsObject:choiceKey]) {
+        [(EZFormMultiRadioFormField *)field unsetFieldValue:choiceKey];
+    }
+    else {
+        [self.form setModelValue:choiceKey forKey:self.radioFieldKey];
+    }
+
     [self updateCellCheckmarks];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -109,18 +130,29 @@
 
 - (void)updateCellCheckmarks
 {
-    NSString *selection = [self.form modelValueForKey:self.radioFieldKey];
+    id modelValueArray = [self.form modelValueForKey:self.radioFieldKey];
+    if (modelValueArray != nil && ![modelValueArray isKindOfClass:[NSArray class]]) {
+        modelValueArray = @[modelValueArray];
+    }
+
     EZFormRadioField *field = [self.form formFieldForKey:self.radioFieldKey];
     NSArray *choiceKeys = [field choiceKeys];
     
     for (UITableViewCell *cell in [self.tableView visibleCells]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSString *choiceKey = choiceKeys[(NSUInteger)indexPath.row];
-	
-        if ([selection isEqualToString:choiceKey]) {
+        __block BOOL selected = NO;
+
+        [(NSArray *)modelValueArray enumerateObjectsUsingBlock:^(id selection, __unused NSUInteger idx, BOOL *stop) {
+            if ([selection isEqualToString:choiceKey]) {
+                selected = YES;
+                *stop = YES;
+            }
+        }];
+        if (selected) {
 	    cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-	else {
+        else {
 	    cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }

@@ -52,4 +52,16 @@
  */
 @property (nonatomic, copy) NSString *radioFieldKey;
 
+
+/** Similar to UITableView's allowsMultipleSelection method
+ *
+ *  This method tells the controller to attempt multiple selection on it's
+ *  table view and it's form field.
+ *
+ *  Setting this to YES with a form field that doesn't support multiple selection
+ *  has undefined behaviour.
+ */
+
+@property (nonatomic, assign) BOOL allowsMultipleSelection;
+
 @end

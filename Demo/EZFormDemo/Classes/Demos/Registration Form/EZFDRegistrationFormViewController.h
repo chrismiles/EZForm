@@ -36,12 +36,15 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *genderTableViewCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *lastnameTableViewCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *subscribeFieldTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *likesFieldTableViewCell;
 
 @property (strong, nonatomic) IBOutlet UITextField *ageTextField;
 @property (strong, nonatomic) IBOutlet UITextView *bioTextView;
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 @property (strong, nonatomic) IBOutlet UITextField *firstnameTextField;
 @property (strong, nonatomic) IBOutlet UILabel *genderFieldLabel;
+@property (strong, nonatomic) IBOutlet UILabel *likesFieldLabel;
+
 @property (strong, nonatomic) IBOutlet UITextField *lastnameTextField;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 

@@ -35,6 +35,7 @@ static NSString * const EZFDRegistrationFormAgeKey = @"age";
 static NSString * const EZFDRegistrationFormGenderKey = @"gender";
 static NSString * const EZFDRegistrationFormEmailKey = @"email";
 static NSString * const EZFDRegistrationFormSubscribeKey = @"subscribe";
+static NSString * const EZFDRegistrationFormLikesKey = @"likes";
 static NSString * const EZFDRegistrationFormBioKey = @"bio";
 static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
@@ -130,7 +131,19 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     EZFormBooleanField *subscribeField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormSubscribeKey];
     [subscribeField setFieldValue:@YES];
     [_registrationForm addFormField:subscribeField];
-    
+
+    EZFormMultiRadioFormField *likesField = [[EZFormMultiRadioFormField alloc] initWithKey:EZFDRegistrationFormLikesKey];
+    likesField.choices = @{
+                           @"pizza" : @"Pizza",
+                           @"pasta" : @"Pasta",
+                           @"bacon" : @"Bacon",
+                           @"salad" : @"Salad",
+                           @"cheese" : @"Cheese",
+                           @"tacos" : @"Tacos"
+                           };
+
+    [_registrationForm addFormField:likesField];
+
     /*
      *
      */
@@ -171,7 +184,9 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [bioField useTextView:self.bioTextView];
     EZFormBooleanField *acceptTermsField = [self.registrationForm formFieldForKey:EZFDRegistrationFormAcceptTermsKey];
     [acceptTermsField useTableViewCell:self.acceptTermsFieldTableViewCell];
-    
+    EZFormMultiRadioFormField *likesField = [self.registrationForm formFieldForKey:EZFDRegistrationFormLikesKey];
+    [likesField useLabel:self.likesFieldLabel];
+
     /* Automatically scroll (or move) the given view if needed to
      * keep the active form field control visible.
      */
@@ -187,7 +202,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 		      EZFDRegistrationFormGenderKey: self.genderTableViewCell,
 		      EZFDRegistrationFormEmailKey: self.emailTableViewCell,
 		      EZFDRegistrationFormBioKey: self.bioTableViewCell,
-		      EZFDRegistrationFormAcceptTermsKey: self.acceptTermsFieldTableViewCell};
+		      EZFDRegistrationFormAcceptTermsKey: self.acceptTermsFieldTableViewCell,
+                      EZFDRegistrationFormLikesKey: self.likesFieldTableViewCell};
     
     /*
      * Update validity indication for each field.
@@ -219,6 +235,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [self setGenderTableViewCell:nil];
     [self setEmailTableViewCell:nil];
     [self setBioTableViewCell:nil];
+    [self setLikesFieldLabel:nil];
+    [self setLikesFieldLabel:nil];
     [super viewDidUnload];
     
     [self.registrationForm unwireUserViews];
@@ -275,6 +293,12 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
         EZFormRadioChoiceViewController *viewController = [segue destinationViewController];
         viewController.form = self.registrationForm;
 	viewController.radioFieldKey = EZFDRegistrationFormGenderKey;
+    } else if ([[segue identifier] isEqualToString:@"RegistrationFormLikesChoices"])
+    {
+        EZFormRadioChoiceViewController *viewController = [segue destinationViewController];
+        viewController.form = self.registrationForm;
+	viewController.radioFieldKey = EZFDRegistrationFormLikesKey;
+        viewController.allowsMultipleSelection = YES;
     }
 }
 

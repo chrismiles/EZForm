@@ -96,7 +96,16 @@
 
 - (void)setActualFieldValue:(id)value {
     if (value) {
-	[self.selectedChoiceKeys addObject:value];
+        if (self.mutuallyExclusiveChoice != nil && [value isEqual:self.mutuallyExclusiveChoice]) {
+            [self unsetAllFieldValues];
+        }
+        else if ([self.selectedChoiceKeys containsObject:self.mutuallyExclusiveChoice]) {
+            [self unsetFieldValue:self.mutuallyExclusiveChoice canUpdateView:NO];
+        }
+        if (![self.selectedChoiceKeys containsObject:value])
+        {
+            [self.selectedChoiceKeys addObject:value];
+        }
     }
     else {
         [self unsetAllFieldValues];

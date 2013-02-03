@@ -34,6 +34,13 @@
 
 @interface EZFormMultiRadioFormField : EZFormRadioField
 
+/** Designates one option to be mutually exclusive 
+ * 
+ *  Setting this property will cause the value to be toggled off
+ *  if additional values are selected, and it will toggle all
+ *  other selected values off when it is reselected.
+ */
+@property (nonatomic, strong) NSString *mutuallyExclusiveChoice;
 
 /** Currently selected keys. 
  *

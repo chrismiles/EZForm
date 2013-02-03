@@ -50,13 +50,13 @@
 
 /** Joins all the field values with a given string
  *
- *  A convinience method to return the selected field values
+ *  A convenience method to return the selected field values
  *  joined by an NSString. Uses NSString componentsJoinedByString:
  *  underneath.
  */
 - (NSString *)fieldValuesJoinedByString:(NSString *)separator;
 
-/** Unets a set field value
+/** Unsets a set field value
  *
  *  The equivalent to passing YES to unsetFieldValue:canUpdateView:
  */

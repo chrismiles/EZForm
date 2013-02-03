@@ -134,6 +134,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
     EZFormMultiRadioFormField *likesField = [[EZFormMultiRadioFormField alloc] initWithKey:EZFDRegistrationFormLikesKey];
     likesField.choices = @{
+                           @"everything" : @"Everything",
                            @"pizza" : @"Pizza",
                            @"pasta" : @"Pasta",
                            @"bacon" : @"Bacon",
@@ -141,9 +142,11 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
                            @"cheese" : @"Cheese",
                            @"tacos" : @"Tacos"
                            };
-
+    
+    likesField.mutuallyExclusiveChoice = @"everything";
+    [likesField setFieldValue:@"everything"];
     [_registrationForm addFormField:likesField];
-
+    
     /*
      *
      */

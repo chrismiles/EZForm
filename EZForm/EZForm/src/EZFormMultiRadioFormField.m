@@ -69,24 +69,22 @@
 
 - (void)unsetFieldValue:(id)value canUpdateView:(BOOL)canUpdateView
 {
-    BOOL valueChanged = [self unsetActualFieldValue:value];
-    if (valueChanged) {
-        if (canUpdateView && [(id<EZFormFieldConcrete>)self respondsToSelector:@selector(updateView)]) {
-            [(id<EZFormFieldConcrete>)self updateView];
-        }
+    [self unsetActualFieldValue:value];
 
-        __strong EZForm *form = self.form;
-        [form formFieldDidChangeValue:self];
+    if (canUpdateView && [(id<EZFormFieldConcrete>)self respondsToSelector:@selector(updateView)]) {
+        [(id<EZFormFieldConcrete>)self updateView];
     }
+
+    __strong EZForm *form = self.form;
+    [form formFieldDidChangeValue:self];
 }
 
-- (BOOL)unsetActualFieldValue:(id)value
+- (void)unsetActualFieldValue:(id)value
 {
     BOOL containedValue = [self.selectedChoiceKeys containsObject:value];
     if (containedValue) {
         [self.selectedChoiceKeys removeObject:value];
     }
-    return containedValue;
 }
 
 #pragma mark - EZFormField

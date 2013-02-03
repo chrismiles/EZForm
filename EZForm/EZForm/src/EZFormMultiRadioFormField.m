@@ -113,6 +113,12 @@
     [self updateUIWithValue:fieldValue];
 }
 
+//TODO: jessedc implement this method correctly
+//- (BOOL)typeSpecificValidation
+//{
+//}
+
+
 #pragma mark - InputView
 
 - (void)setInputView:(UIView *)inputView

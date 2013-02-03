@@ -35,32 +35,35 @@
 @interface EZFormMultiRadioFormField : EZFormRadioField
 
 
-/** The array of selected keys
+/** Currently selected keys. 
  *
+ *  Returns an NSArray of selected keys and nil if no keys are selected.
  */
 - (id)fieldValue;
 
-/** A convinience method to return the selected field values 
- *  joined by a string. Uses NSString componentsJoinedByString:
+/** Joins all the field values with a given string
  *
+ *  A convinience method to return the selected field values
+ *  joined by an NSString. Uses NSString componentsJoinedByString:
+ *  underneath.
  */
 - (NSString *)fieldValuesJoinedByString:(NSString *)separator;
 
 /** Unets a set field value
  *
- *  This is the equivalent to passing YES to unsetFieldValue:canUpdateView:
+ *  The equivalent to passing YES to unsetFieldValue:canUpdateView:
  */
 - (void)unsetFieldValue:(id)value;
 
 /** Unsets all previously set field values
  *  
- *  Note: passing nil setFieldValue: calls this method
+ *  Note: passing nil to setFieldValue: causes this method to be invoked.
  */
 - (void)unsetAllFieldValues;
 
-/** Unsets a set field value
+/** Unsets a specific field value if it's set
  *
- *  see setFieldValue:canUpdateView
+ *  This method acts the same as EZFormField setFieldValue: canUpdateView:
  */
 - (void)unsetFieldValue:(id)value canUpdateView:(BOOL)canUpdateView;
 

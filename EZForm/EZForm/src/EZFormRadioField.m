@@ -105,11 +105,15 @@
 
 - (void)updateView
 {
-    NSString *value = [self choiceValueForKey:[self actualFieldValue]];
+    NSString *value = [self fieldDisplayValue];
     [self updateUIWithValue:value];
     [self updateInputViewAnimated:YES];
 }
 
+- (NSString *)fieldDisplayValue
+{
+    return [self choiceValueForKey:[self actualFieldValue]];
+}
 
 #pragma mark - Unwire views
 

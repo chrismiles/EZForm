@@ -59,8 +59,13 @@
 
 - (void)setChoicesFromArray:(NSArray *)choices
 {
-    self.choices = [NSDictionary dictionaryWithObjects:choices forKeys:choices];
-    self.orderedKeys = choices;	    // preserve order specified by user
+    [self setChoicesFromKeys:choices values:choices];
+}
+
+- (void)setChoicesFromKeys:(NSArray *)keys values:(NSArray *)values
+{
+    _choices = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    self.orderedKeys = keys; // preserve order specified by user
 }
 
 - (void)setChoices:(NSDictionary *)newChoices

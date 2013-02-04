@@ -95,6 +95,15 @@
  */
 - (void)setChoicesFromArray:(NSArray *)choices;
 
+/** set choices from an array of keys and values.
+ *
+ *  The order of choices is maintained
+ * 
+ *  An alternative to setChoicesFromArray: when you have a sorted list of 
+ *  keys and values.
+ */
+- (void)setChoicesFromKeys:(NSArray *)keys values:(NSArray *)values;
+
 /** Returns the keys of all choices.
  */
 - (NSArray *)choiceKeys;

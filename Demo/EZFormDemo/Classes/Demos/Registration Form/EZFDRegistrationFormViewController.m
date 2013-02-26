@@ -36,6 +36,7 @@ static NSString * const EZFDRegistrationFormGenderKey = @"gender";
 static NSString * const EZFDRegistrationFormEmailKey = @"email";
 static NSString * const EZFDRegistrationFormSubscribeKey = @"subscribe";
 static NSString * const EZFDRegistrationFormLikesKey = @"likes";
+static NSString * const EZFDRegistrationFormDateKey = @"date";
 static NSString * const EZFDRegistrationFormBioKey = @"bio";
 static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 
@@ -148,6 +149,16 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [_registrationForm addFormField:likesField];
     
     /*
+     * Add an EZFormDateField instance to handle the date field.
+     * Enables a validation that requires date.  Correct date format set in inDateFormatter
+     */
+    EZFormDateField *dateField = [[EZFormDateField alloc] initWithKey:EZFDRegistrationFormDateKey];
+    [dateField addValidator:^BOOL(id value) {
+        return value != nil;
+    }];
+    [_registrationForm addFormField:dateField];
+    
+    /*
      *
      */
     EZFormTextField *bioField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormBioKey];
@@ -179,6 +190,9 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [ageField useTextField:self.ageTextField];
     EZFormRadioField *genderField = [self.registrationForm formFieldForKey:EZFDRegistrationFormGenderKey];
     [genderField useLabel:self.genderFieldLabel];
+    EZFormDateField *dateField = [self.registrationForm formFieldForKey: EZFDRegistrationFormDateKey];
+    [dateField useTextField:self.dateTextField];
+    dateField.inputView = [UIDatePicker new];
     EZFormTextField *emailField = [self.registrationForm formFieldForKey:EZFDRegistrationFormEmailKey];
     [emailField useTextField:self.emailTextField];
     EZFormBooleanField *subscribeField = [self.registrationForm formFieldForKey:EZFDRegistrationFormSubscribeKey];
@@ -203,6 +217,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 		      EZFDRegistrationFormLastNameKey: self.lastnameTableViewCell,
 		      EZFDRegistrationFormAgeKey: self.ageTableViewCell,
 		      EZFDRegistrationFormGenderKey: self.genderTableViewCell,
+              EZFDRegistrationFormDateKey: self.dateTableViewCell,
 		      EZFDRegistrationFormEmailKey: self.emailTableViewCell,
 		      EZFDRegistrationFormBioKey: self.bioTableViewCell,
 		      EZFDRegistrationFormAcceptTermsKey: self.acceptTermsFieldTableViewCell,
@@ -240,6 +255,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [self setBioTableViewCell:nil];
     [self setLikesFieldLabel:nil];
     [self setLikesFieldLabel:nil];
+    [self setDateTableViewCell:nil];
+    [self setDateTextField:nil];
     [super viewDidUnload];
     
     [self.registrationForm unwireUserViews];

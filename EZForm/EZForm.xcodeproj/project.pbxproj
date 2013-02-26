@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5273AD5116DD0FEB0007C079 /* EZFormDateField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5273AD5016DD0FEB0007C079 /* EZFormDateField.m */; };
+		5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5273AD4F16DD0FEB0007C079 /* EZFormDateField.h */; };
 		839EE8CB169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
 		839EE8DA169529DE00B9DCA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8D9169529DE00B9DCA8 /* SenTestingKit.framework */; };
 		839EE8DD169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
@@ -58,6 +60,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */,
 				83E75FEF169F7931004B13E9 /* EZFormInputControl.h in CopyFiles */,
 				839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */,
 				839EE93416952D2200B9DCA8 /* EZFormInputAccessoryViewProtocols.h in CopyFiles */,
@@ -76,6 +79,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5273AD4F16DD0FEB0007C079 /* EZFormDateField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormDateField.h; sourceTree = "<group>"; };
+		5273AD5016DD0FEB0007C079 /* EZFormDateField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormDateField.m; sourceTree = "<group>"; };
 		839EE8C7169529DE00B9DCA8 /* libEZForm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZForm.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		839EE8CA169529DE00B9DCA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		839EE8CE169529DE00B9DCA8 /* EZForm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZForm-Prefix.pch"; sourceTree = "<group>"; };
@@ -209,6 +214,8 @@
 		839EE8F216952A3D00B9DCA8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5273AD4F16DD0FEB0007C079 /* EZFormDateField.h */,
+				5273AD5016DD0FEB0007C079 /* EZFormDateField.m */,
 				839EE8F316952A3D00B9DCA8 /* EZForm+Private.h */,
 				839EE8F416952A3D00B9DCA8 /* EZForm.h */,
 				839EE8F516952A3D00B9DCA8 /* EZForm.m */,
@@ -355,6 +362,7 @@
 				839EE91716952A3D00B9DCA8 /* UIView+EZFormUtility.m in Sources */,
 				83E75FED169F73A0004B13E9 /* EZFormInputControl.m in Sources */,
 				8874817816B90A380063C5F6 /* EZFormMultiRadioFormField.m in Sources */,
+				5273AD5116DD0FEB0007C079 /* EZFormDateField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

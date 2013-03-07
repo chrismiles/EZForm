@@ -107,7 +107,7 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [_registrationForm addFormField:ageField];
     
     /*
-     *
+     * Single-selection (radio) field
      */
     EZFormRadioField *genderField = [[EZFormRadioField alloc] initWithKey:EZFDRegistrationFormGenderKey];
     [genderField setChoicesFromArray:@[@"Female", @"Male", @"Not specified"]];
@@ -116,23 +116,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [_registrationForm addFormField:genderField];
     
     /*
-     * Add an EZFormTextField instance to handle the email address field.
-     * Enables a validation rule that requires an email address format "x@y.z"
-     * Limits the input text field to 128 characters maximum (when hooked up to a control).
+     * Multi-selection field
      */
-    EZFormTextField *emailField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormEmailKey];
-    emailField.inputMaxCharacters = 128;
-    [emailField addValidator:EZFormEmailAddressValidator];
-    [emailField addInputFilter:EZFormEmailAddressInputFilter];
-    [_registrationForm addFormField:emailField];
-    
-    /*
-     *
-     */
-    EZFormBooleanField *subscribeField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormSubscribeKey];
-    [subscribeField setFieldValue:@YES];
-    [_registrationForm addFormField:subscribeField];
-
     EZFormMultiRadioFormField *likesField = [[EZFormMultiRadioFormField alloc] initWithKey:EZFDRegistrationFormLikesKey];
     likesField.choices = @{
                            @"everything" : @"Everything",
@@ -143,7 +128,6 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
                            @"cheese" : @"Cheese",
                            @"tacos" : @"Tacos"
                            };
-    
     likesField.mutuallyExclusiveChoice = @"everything";
     [likesField setFieldValue:@"everything"];
     [_registrationForm addFormField:likesField];
@@ -159,14 +143,32 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [_registrationForm addFormField:dateField];
     
     /*
-     *
+     * Add an EZFormTextField instance to handle the email address field.
+     * Enables a validation rule that requires an email address format "x@y.z"
+     * Limits the input text field to 128 characters maximum (when hooked up to a control).
+     */
+    EZFormTextField *emailField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormEmailKey];
+    emailField.inputMaxCharacters = 128;
+    [emailField addValidator:EZFormEmailAddressValidator];
+    [emailField addInputFilter:EZFormEmailAddressInputFilter];
+    [_registrationForm addFormField:emailField];
+    
+    /*
+     * Boolean field
+     */
+    EZFormBooleanField *subscribeField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormSubscribeKey];
+    [subscribeField setFieldValue:@YES];
+    [_registrationForm addFormField:subscribeField];
+
+    /*
+     * Multi-line text field
      */
     EZFormTextField *bioField = [[EZFormTextField alloc] initWithKey:EZFDRegistrationFormBioKey];
     bioField.inputMaxCharacters = 200;
     [_registrationForm addFormField:bioField];
     
     /*
-     *
+     * Boolean field
      */
     EZFormBooleanField *acceptTermsField = [[EZFormBooleanField alloc] initWithKey:EZFDRegistrationFormAcceptTermsKey];
     acceptTermsField.validationStates = EZFormBooleanFieldStateOn;

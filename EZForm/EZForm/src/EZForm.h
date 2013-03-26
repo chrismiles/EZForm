@@ -277,6 +277,17 @@ typedef enum : NSInteger {
  */
 - (void)form:(EZForm *)form fieldDidBeginEditing:(EZFormField *)formField;
 
+/** Tells the delegate that editing ended for the specified field.
+ *
+ *  This method tells the delegate that the specified field resigned the first
+ *  responder.
+ *
+ *  @param form The form containing the field for which editing ended.
+ *
+ *  @param formField The form field for which editing end.
+ */
+- (void)form:(EZForm *)form fieldDidEndEditing:(EZFormField *)formField;
+
 /** Asks the delegate for the index path to the row containing the user view
  *  for the specified field.
  *

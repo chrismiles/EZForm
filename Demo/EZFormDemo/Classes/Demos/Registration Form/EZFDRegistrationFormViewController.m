@@ -375,6 +375,14 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     }
 }
 
+- (void)form:(EZForm *)form fieldDidEndEditing:(EZFormField *)formField
+{
+    #pragma unused(form)
+
+    NSLog(@"formField:%@ didEndEditing",formField);
+}
+
+
 
 #pragma mark - Control actions
 

@@ -27,6 +27,7 @@
 @interface EZForm (Private)
 
 - (void)formFieldInputFinished:(EZFormField *)formField;
+- (void)formFieldInputDidEnd:(EZFormField *)formField;
 - (void)formFieldDidBeginEditing:(EZFormField *)formField;
 - (void)formFieldDidChangeValue:(EZFormField *)formField;
 - (UIView *)inputAccessoryView;

@@ -81,7 +81,7 @@
 - (BOOL)resignFirstResponder
 {
     BOOL result = [super resignFirstResponder];
-    if (result) [self sendActionsForControlEvents:UIControlEventEditingDidEndOnExit];
+    if (result) [self sendActionsForControlEvents:UIControlEventEditingDidEnd];
     return result;
 }
 

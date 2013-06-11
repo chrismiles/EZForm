@@ -64,7 +64,7 @@ EZFormValidateNumericInputWithLimits(id input, NSInteger min, NSInteger max);
 
 /** An email address validation function.
  *
- *  Checks for minimum of "x@y.z"
+ *  Checks for minimum of "x[at]y.z"
  *  Does not allow more than one "@" character.
  *  Does not allow consecutive "." characters.
  */

@@ -35,13 +35,13 @@
  *
  *  A block wrapper around EZFormValidateEmailFormat().
  */
-EZFormFieldValidator EZFormEmailAddressValidator;
+extern EZFormFieldValidator EZFormEmailAddressValidator;
 
 /** A block-based email address input filter.
  *
  *  A block wrapper around EZFormFilterInputForEmailAddressFormat().
  */
-BOOL (^EZFormEmailAddressInputFilter)(id);
+extern BOOL (^EZFormEmailAddressInputFilter)(id);
 
 
 

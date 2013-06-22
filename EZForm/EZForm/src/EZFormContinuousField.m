@@ -39,6 +39,15 @@
 
 @implementation EZFormContinuousField
 
+- (id)initWithKey:(NSString *)aKey
+{
+    if ((self = [super initWithKey:aKey]))
+    {
+        self.continuous = YES;
+    }
+    return self;
+}
+
 #pragma mark - EZFormGenericField
 
 - (void)unwireUserViews
@@ -83,7 +92,7 @@
     self.slider.maximumValue = self.maximumValue;
     self.slider.minimumValue = self.minimumValue;
     self.slider.value = [[self actualFieldValue] floatValue];
-    self.slider.continuous = NO; //not required
+    self.slider.continuous = self.continuous;
 }
 
 - (void)unwireSlider

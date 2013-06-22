@@ -33,8 +33,18 @@
 
 /** The field will update it's label with integer values
  *  rather than the raw slider values if this is set.
+ *
+ *  This value must be set prior to setting the slider with userSlider:
  */
 @property (nonatomic, assign) BOOL displayRoundedFieldValues;
+
+/** Sets the continuous value of the UISider when
+ *  the slider is set.
+ *
+ *  This value must be set prior to setting the slider with userSlider:
+ */
+
+@property (nonatomic, assign) BOOL continuous;
 
 /** Wire up a UISlider to the form field.
  *
@@ -43,7 +53,6 @@
  *
  *  @param slider A UISlider.
  */
-
 - (void)useSlider:(UISlider *)slider;
 
 @end

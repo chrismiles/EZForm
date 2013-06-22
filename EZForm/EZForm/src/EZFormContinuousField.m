@@ -82,7 +82,7 @@
 
 - (void)sliderChanged:(UISlider *)slider
 {
-    [self setActualFieldValue:@(slider.value)];
+    [self setFieldValue:@(slider.value)];
     [self updateView];
 }
 

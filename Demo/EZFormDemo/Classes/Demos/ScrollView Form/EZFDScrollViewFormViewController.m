@@ -102,4 +102,10 @@
     DLog(@"formField: %@ isValid: %@", formField, (isValid?@"YES":@"NO"));
 }
 
+- (void)formInputFinishedOnLastField:(EZForm *)form
+{
+    BOOL isValid = [form isFormValid];
+    DLog(@"Form isValid: %@", (isValid ? @"YES":@"NO"));
+}
+
 @end

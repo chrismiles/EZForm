@@ -217,7 +217,6 @@ static NSString * const EZFDRegistrationFormRatingKey = @"rating";
     EZFormMultiRadioFormField *likesField = [self.registrationForm formFieldForKey:EZFDRegistrationFormLikesKey];
     [likesField useLabel:self.likesFieldLabel];
     EZFormContinuousField *ratingField = [self.registrationForm formFieldForKey:EZFDRegistrationFormRatingKey];
-    ratingField.displayRoundedFieldValues = YES;
     [ratingField useSlider:self.ratingSlider];
     [ratingField useLabel:self.ratingSliderValue];
     /* Automatically scroll (or move) the given view if needed to

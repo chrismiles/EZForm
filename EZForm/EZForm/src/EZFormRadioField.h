@@ -105,7 +105,14 @@
 - (void)setChoicesFromKeys:(NSArray *)keys values:(NSArray *)values;
 
 /** Returns the keys of all choices.
+ *
  */
 - (NSArray *)choiceKeys;
+
+/** Returns the current display value of the field
+ *
+ *  returns the value stored agains the field's selected fieldValue key
+ */
+- (NSString *)fieldDisplayValue;
 
 @end

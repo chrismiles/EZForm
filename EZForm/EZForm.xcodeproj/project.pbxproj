@@ -41,6 +41,8 @@
 		83E75FEF169F7931004B13E9 /* EZFormInputControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 83E75FEB169F73A0004B13E9 /* EZFormInputControl.h */; };
 		8874817816B90A380063C5F6 /* EZFormMultiRadioFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */; };
 		8874817916B90BB40063C5F6 /* EZFormMultiRadioFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */; };
+		88FFDCBD17754A3F00348C15 /* EZFormContinuousField.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */; };
+		88FFDCBE1775536B00348C15 /* EZFormContinuousField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,7 @@
 				839EE92A16952BA800B9DCA8 /* EZFormBooleanField.h in CopyFiles */,
 				839EE92B16952BA800B9DCA8 /* EZFormCommonValidators.h in CopyFiles */,
 				839EE92C16952BA800B9DCA8 /* EZFormField.h in CopyFiles */,
+				88FFDCBE1775536B00348C15 /* EZFormContinuousField.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +124,8 @@
 		83E75FEC169F73A0004B13E9 /* EZFormInputControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormInputControl.m; sourceTree = "<group>"; };
 		8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormMultiRadioFormField.h; sourceTree = "<group>"; };
 		8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormMultiRadioFormField.m; sourceTree = "<group>"; };
+		88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormContinuousField.h; sourceTree = "<group>"; };
+		88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormContinuousField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +226,8 @@
 				839EE8F516952A3D00B9DCA8 /* EZForm.m */,
 				839EE8F616952A3D00B9DCA8 /* EZFormBooleanField.h */,
 				839EE8F716952A3D00B9DCA8 /* EZFormBooleanField.m */,
+				88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */,
+				88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */,
 				839EE8F816952A3D00B9DCA8 /* EZFormCommonValidators.h */,
 				839EE8F916952A3D00B9DCA8 /* EZFormCommonValidators.m */,
 				839EE8FA16952A3D00B9DCA8 /* EZFormField+Private.h */,
@@ -363,6 +370,7 @@
 				83E75FED169F73A0004B13E9 /* EZFormInputControl.m in Sources */,
 				8874817816B90A380063C5F6 /* EZFormMultiRadioFormField.m in Sources */,
 				5273AD5116DD0FEB0007C079 /* EZFormDateField.m in Sources */,
+				88FFDCBD17754A3F00348C15 /* EZFormContinuousField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,6 +39,7 @@ static NSString * const EZFDRegistrationFormLikesKey = @"likes";
 static NSString * const EZFDRegistrationFormDateKey = @"date";
 static NSString * const EZFDRegistrationFormBioKey = @"bio";
 static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
+static NSString * const EZFDRegistrationFormRatingKey = @"rating";
 
 
 #pragma mark - UIView utility category interface -
@@ -174,6 +175,16 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     acceptTermsField.validationStates = EZFormBooleanFieldStateOn;
     [acceptTermsField setFieldValue:@NO];
     [_registrationForm addFormField:acceptTermsField];
+
+
+    /*
+     * Slider Field
+     */
+    EZFormContinuousField *ratingSliderField = [[EZFormContinuousField alloc] initWithKey:EZFDRegistrationFormRatingKey];
+    ratingSliderField.maximumValue = 100;
+    ratingSliderField.minimumValue = 0.0;
+    [ratingSliderField setFieldValue:@50];
+    [_registrationForm addFormField:ratingSliderField];
 }
 
 
@@ -205,7 +216,10 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [acceptTermsField useTableViewCell:self.acceptTermsFieldTableViewCell];
     EZFormMultiRadioFormField *likesField = [self.registrationForm formFieldForKey:EZFDRegistrationFormLikesKey];
     [likesField useLabel:self.likesFieldLabel];
-
+    EZFormContinuousField *ratingField = [self.registrationForm formFieldForKey:EZFDRegistrationFormRatingKey];
+    ratingField.displayRoundedFieldValues = YES;
+    [ratingField useSlider:self.ratingSlider];
+    [ratingField useLabel:self.ratingSliderValue];
     /* Automatically scroll (or move) the given view if needed to
      * keep the active form field control visible.
      */
@@ -223,7 +237,8 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
 		      EZFDRegistrationFormEmailKey: self.emailTableViewCell,
 		      EZFDRegistrationFormBioKey: self.bioTableViewCell,
 		      EZFDRegistrationFormAcceptTermsKey: self.acceptTermsFieldTableViewCell,
-                      EZFDRegistrationFormLikesKey: self.likesFieldTableViewCell};
+                      EZFDRegistrationFormLikesKey: self.likesFieldTableViewCell,
+                       EZFDRegistrationFormRatingKey : self.ratingTableViewCell};
     
     /*
      * Update validity indication for each field.
@@ -259,6 +274,9 @@ static NSString * const EZFDRegistrationFormAcceptTermsKey = @"acceptterms";
     [self setLikesFieldLabel:nil];
     [self setDateTableViewCell:nil];
     [self setDateTextField:nil];
+    [self setRatingSlider:nil];
+    [self setRatingTableViewCell:nil];
+
     [super viewDidUnload];
     
     [self.registrationForm unwireUserViews];

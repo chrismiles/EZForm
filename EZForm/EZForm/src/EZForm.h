@@ -37,6 +37,7 @@
 #import <Foundation/Foundation.h>
 #import "EZFormField.h"
 #import "EZFormBooleanField.h"
+#import "EZFormContinuousField.h"
 #import "EZFormGenericField.h"
 #import "EZFormRadioField.h"
 #import "EZFormMultiRadioFormField.h"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="97A-wi-3X2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="97A-wi-3X2">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -243,7 +243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="BDK-gG-ASl">
-                            <rect key="frame" x="0.0" y="627" width="320" height="100"/>
+                            <rect key="frame" x="0.0" y="671" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SQN-kh-7jf">
@@ -506,8 +506,37 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="K2a-TS-Brl">
+                                        <rect key="frame" x="0.0" y="572" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="PiI-x3-K85">
+                                                    <rect key="frame" x="84" y="11" width="133" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </slider>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="6ya-0B-6sW">
+                                                    <rect key="frame" x="20" y="11" width="48" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ljd-q3-Mwl">
+                                                    <rect key="frame" x="223" y="12" width="63" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="R5F-lL-YPN">
-                                        <rect key="frame" x="0.0" y="572" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="616" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -551,6 +580,9 @@
                         <outlet property="lastnameTextField" destination="nRA-IL-qjF" id="Vx9-pI-e1b"/>
                         <outlet property="likesFieldLabel" destination="wte-bX-H1p" id="J8i-V7-0xN"/>
                         <outlet property="likesFieldTableViewCell" destination="o3R-g0-vd8" id="oYk-gk-OBh"/>
+                        <outlet property="ratingSlider" destination="PiI-x3-K85" id="Lbl-Dw-DWX"/>
+                        <outlet property="ratingSliderValue" destination="ljd-q3-Mwl" id="H0g-Mk-ZAh"/>
+                        <outlet property="ratingTableViewCell" destination="K2a-TS-Brl" id="Nij-NU-Gcw"/>
                         <outlet property="registerButton" destination="SQN-kh-7jf" id="jnm-be-5V3"/>
                         <outlet property="subscribeFieldTableViewCell" destination="FfY-Ba-kqE" id="tHM-2l-rvE"/>
                     </connections>
@@ -723,6 +755,9 @@
                 <relationship kind="outlet" name="lastnameTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="likesFieldLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="likesFieldTableViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="ratingSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="ratingSliderValue" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ratingTableViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="registerButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="subscribeFieldTableViewCell" candidateClass="UITableViewCell"/>
             </relationships>

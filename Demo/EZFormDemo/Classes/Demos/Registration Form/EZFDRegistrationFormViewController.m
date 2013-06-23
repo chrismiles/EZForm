@@ -216,9 +216,16 @@ static NSString * const EZFDRegistrationFormRatingKey = @"rating";
     [acceptTermsField useTableViewCell:self.acceptTermsFieldTableViewCell];
     EZFormMultiRadioFormField *likesField = [self.registrationForm formFieldForKey:EZFDRegistrationFormLikesKey];
     [likesField useLabel:self.likesFieldLabel];
+
     EZFormContinuousField *ratingField = [self.registrationForm formFieldForKey:EZFDRegistrationFormRatingKey];
+    NSNumberFormatter *continouousFormatter = [[NSNumberFormatter alloc] init];
+    continouousFormatter.minimumFractionDigits = 0;
+    continouousFormatter.maximumFractionDigits = 1;
+    ratingField.valueFormatter = continouousFormatter;
+
     [ratingField useSlider:self.ratingSlider];
     [ratingField useLabel:self.ratingSliderValue];
+
     /* Automatically scroll (or move) the given view if needed to
      * keep the active form field control visible.
      */

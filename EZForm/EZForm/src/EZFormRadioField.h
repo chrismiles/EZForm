@@ -111,7 +111,7 @@
 
 /** Returns the current display value of the field
  *
- *  returns the value stored agains the field's selected fieldValue key
+ *  @return the value stored against the field's selected fieldValue key.
  */
 - (NSString *)fieldDisplayValue;
 

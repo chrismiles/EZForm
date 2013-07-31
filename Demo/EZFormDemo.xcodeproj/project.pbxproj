@@ -21,6 +21,7 @@
 		83F323AB15526988006FC7B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F323AA15526988006FC7B2 /* QuartzCore.framework */; };
 		83F323AF15527268006FC7B2 /* EZFDMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F323AE15527268006FC7B2 /* EZFDMainMenuViewController.m */; };
 		88FFDCBA1775495200348C15 /* libEZForm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8878CF5A17754938008D0B0B /* libEZForm.a */; };
+		A5BCDD6017A956580009201A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5BCDD6217A956580009201A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		83F323AD15527268006FC7B2 /* EZFDMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZFDMainMenuViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		83F323AE15527268006FC7B2 /* EZFDMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFDMainMenuViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8878CF5417754937008D0B0B /* EZForm.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EZForm.xcodeproj; path = ../EZForm/EZForm.xcodeproj; sourceTree = "<group>"; };
+		A5BCDD6117A956580009201A /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5BCDD6317A956630009201A /* pt */ = {isa = PBXFileReference; lastKnownFileType = file; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				839EE93816953BE300B9DCA8 /* Default-568h@2x.png */,
+				A5BCDD6217A956580009201A /* Localizable.strings */,
 			);
 			name = Resources;
 			path = ..;
@@ -291,6 +295,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				pt,
 			);
 			mainGroup = 8369762715494EA00070EDEC;
 			productRefGroup = 8369763315494EA00070EDEC /* Products */;
@@ -333,6 +338,7 @@
 				8369764115494EA00070EDEC /* InfoPlist.strings in Resources */,
 				8369764A15494EA00070EDEC /* MainStoryboard.storyboard in Resources */,
 				839EE93916953BE300B9DCA8 /* Default-568h@2x.png in Resources */,
+				A5BCDD6017A956580009201A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +391,15 @@
 				8369766115494EA10070EDEC /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A5BCDD6217A956580009201A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5BCDD6117A956580009201A /* en */,
+				A5BCDD6317A956630009201A /* pt */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

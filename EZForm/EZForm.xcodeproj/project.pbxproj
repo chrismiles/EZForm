@@ -159,7 +159,10 @@
 				839EE8C9169529DE00B9DCA8 /* Frameworks */,
 				839EE8C8169529DE00B9DCA8 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 8;
+			usesTabs = 0;
 		};
 		839EE8C8169529DE00B9DCA8 /* Products */ = {
 			isa = PBXGroup;

@@ -82,6 +82,10 @@
 
 - (void)sliderChanged:(UISlider *)slider
 {
+    if (self.snapsToInteger)
+    {
+      slider.value = roundf(slider.value);
+    }
     [self setFieldValue:@(slider.value)];
     [self updateView];
 }

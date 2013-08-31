@@ -30,6 +30,7 @@
 
 @property (nonatomic, assign) NSInteger minimumValue;
 @property (nonatomic, assign) NSInteger maximumValue;
+@property (nonatomic, assign) BOOL snapsToInteger;
 
 //TODO: Condier adding more general support for value display transformers
 ///     https://github.com/jessedc/EZForm/issues/2

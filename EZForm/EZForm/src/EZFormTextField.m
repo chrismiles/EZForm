@@ -71,7 +71,7 @@
 
 - (void)useTextField:(UITextField *)textField
 {
-    [self unwireUserControl];
+    [self unwireUserViews];
     
     self.userControl = textField;
     [self wireUpUserControl];
@@ -80,7 +80,7 @@
 
 - (void)useTextView:(UITextView *)textView
 {
-    [self unwireUserControl];
+    [self unwireUserViews];
     
     self.userControl = textView;
     [self wireUpUserControl];
@@ -89,7 +89,7 @@
 
 - (void)useLabel:(UIView *)label
 {
-    [self unwireUserControl];
+    [self unwireUserViews];
     
     self.userControl = label;
     [self wireUpUserControl];

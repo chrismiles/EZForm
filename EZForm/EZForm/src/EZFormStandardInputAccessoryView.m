@@ -24,6 +24,8 @@
 
 #import "EZFormStandardInputAccessoryView.h"
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 @interface EZFormStandardInputAccessoryView ()
 @property (nonatomic, strong) UISegmentedControl *previousNextControl;
 @end
@@ -84,6 +86,11 @@
 	UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem* doneItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"EZForm Standard Input Accessory view - Done") style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
 	[self setItems:@[previousNextItem, flexibleItem, doneItem]];
+
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            [_previousNextControl setTintColor:[UIColor whiteColor]];
+            [doneItem setTintColor:[UIColor whiteColor]];
+        }
     }
     return self;
 }

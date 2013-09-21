@@ -71,6 +71,10 @@
 {
     [self unsetActualFieldValue:value];
 
+    if (self.mutuallyExclusiveChoice && [self.selectedChoiceKeys count] == 0 && ![value isEqual:self.mutuallyExclusiveChoice]) {
+        [self setFieldValue:self.mutuallyExclusiveChoice];
+    }
+
     if (canUpdateView && [(id<EZFormFieldConcrete>)self respondsToSelector:@selector(updateView)]) {
         [(id<EZFormFieldConcrete>)self updateView];
     }

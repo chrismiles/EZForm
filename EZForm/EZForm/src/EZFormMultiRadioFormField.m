@@ -102,8 +102,7 @@
         else if ([self.selectedChoiceKeys containsObject:self.mutuallyExclusiveChoice]) {
             [self unsetFieldValue:self.mutuallyExclusiveChoice canUpdateView:NO];
         }
-        if (![self.selectedChoiceKeys containsObject:value])
-        {
+        if (![self.selectedChoiceKeys containsObject:value]) {
             [self.selectedChoiceKeys addObject:value];
         }
     }

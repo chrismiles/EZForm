@@ -71,6 +71,10 @@
 {
     [self unsetActualFieldValue:value];
 
+    if (self.mutuallyExclusiveChoice && [self.selectedChoiceKeys count] == 0 && ![value isEqual:self.mutuallyExclusiveChoice]) {
+        [self setFieldValue:self.mutuallyExclusiveChoice];
+    }
+
     if (canUpdateView && [(id<EZFormFieldConcrete>)self respondsToSelector:@selector(updateView)]) {
         [(id<EZFormFieldConcrete>)self updateView];
     }
@@ -102,8 +106,7 @@
         else if ([self.selectedChoiceKeys containsObject:self.mutuallyExclusiveChoice]) {
             [self unsetFieldValue:self.mutuallyExclusiveChoice canUpdateView:NO];
         }
-        if (![self.selectedChoiceKeys containsObject:value])
-        {
+        if (![self.selectedChoiceKeys containsObject:value]) {
             [self.selectedChoiceKeys addObject:value];
         }
     }

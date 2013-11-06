@@ -289,7 +289,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = EZFD;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Chris Miles";
 			};
 			buildConfigurationList = 8369762C15494EA00070EDEC /* Build configuration list for PBXProject "EZFormDemo" */;
@@ -459,6 +459,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (

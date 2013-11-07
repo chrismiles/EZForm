@@ -25,8 +25,15 @@
 #import <UIKit/UIKit.h>
 #import "EZFormInputAccessoryViewProtocols.h"
 
+typedef NS_ENUM(NSInteger, EZFormStandardInputAccessoryViewDoneButtonPosition)
+{
+    EZFormStandardInputAccessoryViewDoneButtonPositionRight = 0,
+    EZFormStandardInputAccessoryViewDoneButtonPositionLeft
+};
+
 @interface EZFormStandardInputAccessoryView : UIToolbar <EZFormInputAccessoryViewProtocol>
 
 @property (nonatomic, weak) id<EZFormInputAccessoryViewDelegate> inputAccessoryViewDelegate;
+@property (nonatomic, assign) EZFormStandardInputAccessoryViewDoneButtonPosition doneButtonPosition; //defaults to right
 
 @end

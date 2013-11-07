@@ -28,6 +28,9 @@
 
 @interface EZFormStandardInputAccessoryView ()
 @property (nonatomic, strong) UISegmentedControl *previousNextControl;
+@property (nonatomic, strong) id prevNextItem;
+@property (nonatomic, strong) id doneItem;
+@property (nonatomic, strong) id flexibleSpaceItem;
 @end
 
 
@@ -75,25 +78,44 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-	self.barStyle = UIBarStyleBlackTranslucent;
-	_previousNextControl = [[UISegmentedControl alloc] initWithItems:@[
-                            NSLocalizedString(@"Previous", @"EZForm Standard Input Accessory view - Previous"),
-                            NSLocalizedString(@"Next", @"EZForm Standard Input Accessory view - Next")]];
-	_previousNextControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	_previousNextControl.momentary = YES;
-	[_previousNextControl addTarget:self action:@selector(previousNextAction:) forControlEvents:UIControlEventValueChanged];
-	UIBarButtonItem *previousNextItem = [[UIBarButtonItem alloc] initWithCustomView:self.previousNextControl];
-	UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem* doneItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"EZForm Standard Input Accessory view - Done") style:UIBarButtonItemStyleDone target:self action:@selector(doneAction:)];
-	[self setItems:@[previousNextItem, flexibleItem, doneItem]];
+        self.barStyle = UIBarStyleBlackTranslucent;
 
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-            [_previousNextControl setTintColor:[UIColor whiteColor]];
-            [doneItem setTintColor:[UIColor whiteColor]];
+        NSString *nextString = NSLocalizedString(@"Next", @"EZForm Standard Input Accessory view - Next");
+        NSString *prevString = NSLocalizedString(@"Previous", @"EZForm Standard Input Accessory view - Previous");
+
+        NSArray *segmentTitles = @[prevString, nextString];
+
+        _previousNextControl = [[UISegmentedControl alloc] initWithItems:segmentTitles];
+        _previousNextControl.momentary = YES;
+        [_previousNextControl addTarget:self action:@selector(previousNextAction:) forControlEvents:UIControlEventValueChanged];
+
+        if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            //this is deprecated in iOS 7
+            _previousNextControl.segmentedControlStyle = UISegmentedControlStyleBar;
         }
+
+        self.doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];
+        self.flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        self.prevNextItem = [[UIBarButtonItem alloc] initWithCustomView:self.previousNextControl];
+        self.doneButtonPosition = EZFormStandardInputAccessoryViewDoneButtonPositionRight;
     }
     return self;
 }
 
+- (void)setDoneButtonPosition:(EZFormStandardInputAccessoryViewDoneButtonPosition)doneButtonPosition
+{
+    _doneButtonPosition = doneButtonPosition;
+
+    switch (doneButtonPosition) {
+        case EZFormStandardInputAccessoryViewDoneButtonPositionLeft: {
+            [self setItems:@[self.doneItem, self.flexibleSpaceItem, self.prevNextItem]];
+            break;
+        }
+        case EZFormStandardInputAccessoryViewDoneButtonPositionRight: {
+            [self setItems:@[self.prevNextItem, self.flexibleSpaceItem, self.doneItem]];
+            break;
+        }
+    }
+}
 
 @end

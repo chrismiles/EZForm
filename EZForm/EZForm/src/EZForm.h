@@ -51,7 +51,8 @@
 
 typedef enum : NSInteger {
     EZFormInputAccessoryTypeNone = 0,
-    EZFormInputAccessoryTypeStandard,
+    EZFormInputAccessoryTypeStandard, //done button on the right
+    EZFormInputAccessoryTypeStandardLeftAligned, //dont button on the left
 } EZFormInputAccessoryType;
 
 typedef enum : NSInteger {

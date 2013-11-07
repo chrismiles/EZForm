@@ -50,7 +50,7 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
     /* Create EZForm instance to manage the form.
      */
     _loginForm = [[EZForm alloc] init];
-    _loginForm.inputAccessoryType = EZFormInputAccessoryTypeStandard;
+    _loginForm.inputAccessoryType = EZFormInputAccessoryTypeStandardLeftAligned;
     _loginForm.delegate = self;
     
     /* Add an EZFormTextField instance to handle the username field.

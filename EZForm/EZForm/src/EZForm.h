@@ -97,6 +97,10 @@ typedef enum : NSInteger {
  */
 @property (nonatomic, assign) EZFormInputAccessoryType inputAccessoryType;
 
+@property (nonatomic, strong) UIColor *inputAccessoryViewTintColor;
+@property (nonatomic, strong) UIColor *inputAccessoryViewBarTintColor NS_AVAILABLE_IOS(7_0);
+@property (nonatomic, assign) BOOL inputAccessoryViewTranslucent;   //defaults to YES
+
 /** Padding around field user views when auto scrolling is enabled.
  *
  *  Ignored when auto scrolling a UITableView unless

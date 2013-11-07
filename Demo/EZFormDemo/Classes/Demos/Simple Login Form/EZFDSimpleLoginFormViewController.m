@@ -52,7 +52,11 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
     _loginForm = [[EZForm alloc] init];
     _loginForm.inputAccessoryType = EZFormInputAccessoryTypeStandardLeftAligned;
     _loginForm.delegate = self;
-    
+
+    [_loginForm setInputAccessoryViewBarTintColor:[UIColor purpleColor]];
+    [_loginForm setInputAccessoryViewTintColor:[UIColor yellowColor]];
+    [_loginForm setInputAccessoryViewTranslucent:YES];
+
     /* Add an EZFormTextField instance to handle the username field.
      * Enables a validation rule of 1 character minimum.
      * Limits the input text field to 32 characters maximum (when hooked up to a control).

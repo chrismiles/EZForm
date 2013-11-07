@@ -23,6 +23,7 @@
 //
 
 #import "EZFormInvalidIndicatorTriangleExclamationView.h"
+#import <tgmath.h>
 
 @implementation EZFormInvalidIndicatorTriangleExclamationView
 
@@ -45,11 +46,11 @@
     
     /* Draw triangle
      */
-    CGFloat padding = floorf(CGRectGetWidth(bounds) * 0.05f);
-    CGFloat lineWidth = floorf(CGRectGetWidth(bounds) * 0.075f);
+    CGFloat padding = floor(CGRectGetWidth(bounds) * (CGFLOAT_TYPE)0.05);
+    CGFloat lineWidth = floor(CGRectGetWidth(bounds) * (CGFLOAT_TYPE)0.075);
     
     CGContextMoveToPoint(c, CGRectGetMinX(bounds) + padding, CGRectGetMaxY(bounds) - padding);
-    CGContextAddLineToPoint(c, floorf(CGRectGetMidX(bounds)), CGRectGetMinY(bounds) + padding);
+    CGContextAddLineToPoint(c, floor(CGRectGetMidX(bounds)), CGRectGetMinY(bounds) + padding);
     CGContextAddLineToPoint(c, CGRectGetMaxX(bounds) - padding, CGRectGetMaxY(bounds) - padding);
     CGContextClosePath(c);
     

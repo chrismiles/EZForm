@@ -32,7 +32,12 @@
     self.tableView.allowsMultipleSelection = self.allowsMultipleSelection;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
 {
     if (self.navigationController) {
 	/* If managed by a nav controller then return rotation choice of previous view
@@ -41,19 +46,18 @@
 	NSUInteger thisIndex = [self.navigationController.viewControllers indexOfObject:self];
 	if (thisIndex != NSNotFound && thisIndex > 0) {
 	    UIViewController *previousViewController = (self.navigationController.viewControllers)[thisIndex-1];
-	    return [previousViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+	    return [previousViewController supportedInterfaceOrientations];
 	}
     }
 
     // Default behaviour; subclass to customize
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-	return YES;
+	return UIInterfaceOrientationMaskAll;
     }
     else {
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+	return UIInterfaceOrientationMaskPortrait;
     }
 }
-
 
 #pragma mark - Table view data source
 

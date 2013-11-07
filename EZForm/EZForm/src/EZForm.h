@@ -51,7 +51,8 @@
 
 typedef enum : NSInteger {
     EZFormInputAccessoryTypeNone = 0,
-    EZFormInputAccessoryTypeStandard,
+    EZFormInputAccessoryTypeStandard, //done button on the right
+    EZFormInputAccessoryTypeStandardLeftAligned, //dont button on the left
 } EZFormInputAccessoryType;
 
 typedef enum : NSInteger {
@@ -95,6 +96,10 @@ typedef enum : NSInteger {
  *  By default, no input accessory is used.
  */
 @property (nonatomic, assign) EZFormInputAccessoryType inputAccessoryType;
+
+@property (nonatomic, strong) UIColor *inputAccessoryViewTintColor;
+@property (nonatomic, strong) UIColor *inputAccessoryViewBarTintColor NS_AVAILABLE_IOS(7_0);
+@property (nonatomic, assign) BOOL inputAccessoryViewTranslucent;   //defaults to YES
 
 /** Padding around field user views when auto scrolling is enabled.
  *

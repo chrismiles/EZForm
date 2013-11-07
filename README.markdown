@@ -162,9 +162,9 @@ To generate the document set using appledoc from the command-line, cd to the roo
 Requirements
 ------------
 
-EZForm is compatible with iOS 5 and upwards.  EZForm uses automatic reference counting (ARC).
+EZForm is compatible with iOS 6 and upwards.  EZForm uses automatic reference counting (ARC).
 
-The demo app included with the source requires iOS 5.
+The demo app included with the source requires iOS 6.
 
 
 ARC

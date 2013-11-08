@@ -129,6 +129,7 @@ static NSString * const EZFDRegistrationFormRatingKey = @"rating";
                            @"cheese" : @"Cheese",
                            @"tacos" : @"Tacos"
                            };
+    // Note: use -setChoicesFromKeys:values: to preserve order
     likesField.mutuallyExclusiveChoice = @"everything";
     [likesField setFieldValue:@"everything"];
     [_registrationForm addFormField:likesField];

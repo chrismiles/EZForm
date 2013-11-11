@@ -253,6 +253,15 @@ typedef enum : NSInteger {
 
 @optional
 
+/** Tells the delegate that the Done button was touched and the keyboard is closing.
+ *
+ *  This method tells the delegate that the Done button was touched and
+ *  the keyboard is closing.
+ *
+ *  @param form The form containing the field for which editing began.
+ */
+- (void)formInputAccessoryViewDone:(EZForm *)form;
+
 /** Tells the delegate that a form field value was updated.
  *
  *  @param form The form for which a field value was updated.

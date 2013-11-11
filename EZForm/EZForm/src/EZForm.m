@@ -510,6 +510,11 @@
 - (void)inputAccessoryViewDone
 {
     [self resignFirstResponder];
+
+    __strong id<EZFormDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(formInputAccessoryViewDone:)]) {
+	[delegate formInputAccessoryViewDone:self];
+    }
 }
 
 - (void)inputAccessoryViewSelectedNextField

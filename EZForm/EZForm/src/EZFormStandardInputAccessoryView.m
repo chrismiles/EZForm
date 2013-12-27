@@ -91,7 +91,10 @@
 
         if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
             //this is deprecated in iOS 7
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             _previousNextControl.segmentedControlStyle = UISegmentedControlStyleBar;
+#pragma clang diagnostic pop
         }
 
         self.doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)];

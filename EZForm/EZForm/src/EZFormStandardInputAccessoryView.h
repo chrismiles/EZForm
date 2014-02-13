@@ -35,5 +35,6 @@ typedef NS_ENUM(NSInteger, EZFormStandardInputAccessoryViewDoneButtonPosition)
 
 @property (nonatomic, weak) id<EZFormInputAccessoryViewDelegate> inputAccessoryViewDelegate;
 @property (nonatomic, assign) EZFormStandardInputAccessoryViewDoneButtonPosition doneButtonPosition; //defaults to right
+@property (nonatomic, assign) BOOL hidesPrevNextItem; // defaults to NO
 
 @end

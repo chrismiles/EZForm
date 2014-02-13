@@ -477,7 +477,7 @@
 - (UIView *)inputAccessoryViewForType:(EZFormInputAccessoryType)type
 {
     UIView *inputAccessoryView = nil;
-    if (EZFormInputAccessoryTypeStandard == type || EZFormInputAccessoryTypeStandardLeftAligned == type) {
+    if (EZFormInputAccessoryTypeNone != type) {
 	if (nil == self.inputAccessoryStandardView) {
 	    // Create and cache it
 	    // It will be resized automatically to match keyboard
@@ -493,7 +493,10 @@
 
             accessoryView.translucent = self.inputAccessoryViewTranslucent;
 
-            if (type == EZFormInputAccessoryTypeStandardLeftAligned) {
+            if (type == EZFormInputAccessoryTypeDone || type == EZFormInputAccessoryTypeDoneLeftAligned) {
+                accessoryView.hidesPrevNextItem = YES;
+            }
+            if (type == EZFormInputAccessoryTypeStandardLeftAligned || type == EZFormInputAccessoryTypeDoneLeftAligned) {
                 accessoryView.doneButtonPosition = EZFormStandardInputAccessoryViewDoneButtonPositionLeft;
             }
 	    accessoryView.inputAccessoryViewDelegate = self;

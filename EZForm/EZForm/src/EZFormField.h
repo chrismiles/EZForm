@@ -91,6 +91,20 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  */
 - (void)setValidationFunction:(VALIDATOR)validatorFunction;
 
+/**
+ *  Sets the user-defined validator.
+ *
+ *  If there are other validators present, this function deletes
+ *  all of them and sets this validator.
+ *
+ *  For adding multiple validators look
+ *  addValidator:(BOOL (^)(id value))validator
+ *  method.
+ *
+ *  @param validator A block object containing the validation logic.
+ **/
+- (void) setValidator:(BOOL (^)(id value))validator;
+
 /** Adds a user-defined validator.
  *
  *  User-defined validators will be called, in order, to validate

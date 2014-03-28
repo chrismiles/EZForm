@@ -43,6 +43,7 @@
 		8874817916B90BB40063C5F6 /* EZFormMultiRadioFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */; };
 		88FFDCBD17754A3F00348C15 /* EZFormContinuousField.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */; };
 		88FFDCBE1775536B00348C15 /* EZFormContinuousField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */; };
+		A3F8144218E5069300767D9F /* EZFormChildFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F8144118E5069300767D9F /* EZFormChildFormField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,9 @@
 		8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormMultiRadioFormField.m; sourceTree = "<group>"; };
 		88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormContinuousField.h; sourceTree = "<group>"; };
 		88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormContinuousField.m; sourceTree = "<group>"; };
+		A3F8144018E5069300767D9F /* EZFormChildFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormChildFormField.h; sourceTree = "<group>"; };
+		A3F8144118E5069300767D9F /* EZFormChildFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormChildFormField.m; sourceTree = "<group>"; };
+		A3F8144318E511A000767D9F /* EZFormDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EZFormDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +228,7 @@
 			children = (
 				839EE8F416952A3D00B9DCA8 /* EZForm.h */,
 				839EE8F516952A3D00B9DCA8 /* EZForm.m */,
+				A3F8144318E511A000767D9F /* EZFormDelegate.h */,
 				839EE8F316952A3D00B9DCA8 /* EZForm+Private.h */,
 				839EE8F816952A3D00B9DCA8 /* EZFormCommonValidators.h */,
 				839EE8F916952A3D00B9DCA8 /* EZFormCommonValidators.m */,
@@ -259,6 +264,8 @@
 				8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */,
 				839EE90516952A3D00B9DCA8 /* EZFormRadioField.h */,
 				839EE90616952A3D00B9DCA8 /* EZFormRadioField.m */,
+				A3F8144018E5069300767D9F /* EZFormChildFormField.h */,
+				A3F8144118E5069300767D9F /* EZFormChildFormField.m */,
 			);
 			name = "Form Fields";
 			sourceTree = "<group>";
@@ -399,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F8144218E5069300767D9F /* EZFormChildFormField.m in Sources */,
 				839EE90D16952A3D00B9DCA8 /* EZForm.m in Sources */,
 				839EE90E16952A3D00B9DCA8 /* EZFormBooleanField.m in Sources */,
 				839EE90F16952A3D00B9DCA8 /* EZFormCommonValidators.m in Sources */,

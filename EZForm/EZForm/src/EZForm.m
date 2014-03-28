@@ -47,6 +47,7 @@
 
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField;
 - (void)updateInputAccessoryForEditingFormField:(EZFormField *)formField;
+
 @end
 
 
@@ -211,7 +212,10 @@
 	 */
 	NSIndexPath *indexPath = nil;
 	__strong id<EZFormDelegate> delegate = self.delegate;
-	if ([delegate respondsToSelector:@selector(form:indexPathToAutoScrollTableForFieldKey:)]) {
+    if ([delegate respondsToSelector:@selector(form:indexPathToAutoScrollCellForFieldKey:)]) {
+        indexPath = [delegate form:self indexPathToAutoScrollCellForFieldKey:formField.key];
+    }
+    else if ([delegate respondsToSelector:@selector(form:indexPathToAutoScrollTableForFieldKey:)]) {
 	    indexPath = [delegate form:self indexPathToAutoScrollTableForFieldKey:formField.key];
 	}
 	else {
@@ -230,6 +234,30 @@
 	if (indexPath) {
 	    [(UITableView *)self.viewToAutoScroll scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
 	}
+    }
+    else if ([self.viewToAutoScroll isKindOfClass:[UICollectionView class]]) {
+        /* Unless the collection view cells are static, the delegate should tell us the index
+         * path for the field, as the field view may be off screen and so not in any
+         * table view cell.
+         */
+        NSIndexPath *indexPath = nil;
+        __strong id<EZFormDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(form:indexPathToAutoScrollCellForFieldKey:)]) {
+            indexPath = [delegate form:self indexPathToAutoScrollCellForFieldKey:formField.key];
+        }
+        else {
+            /* Attempt to find the collection view cell for the field user view, which will
+             * only work if the field view is visible.
+             */
+            UICollectionViewCell *cell = (UICollectionViewCell *)[[formField userView] superviewOfKind:[UICollectionViewCell class]];
+            if (cell) {
+                indexPath = [(UICollectionView *)self.viewToAutoScroll indexPathForCell:cell];
+            }
+        }
+        
+        if (indexPath) {
+            [(UICollectionView *)self.viewToAutoScroll scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        }
     }
     else if ([self.viewToAutoScroll isKindOfClass:[UIScrollView class]]) {
 	if (! CGRectIsEmpty(self.autoScrollForKeyboardInputVisibleRect)) {

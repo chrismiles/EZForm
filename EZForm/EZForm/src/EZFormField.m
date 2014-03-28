@@ -51,6 +51,7 @@
 
 - (void)setFieldValue:(id)value canUpdateView:(BOOL)canUpdateView
 {
+    id existingValue = [(id<EZFormFieldConcrete>)self actualFieldValue];
     [(id<EZFormFieldConcrete>)self setActualFieldValue:value];
     
     if (canUpdateView && [(id<EZFormFieldConcrete>)self respondsToSelector:@selector(updateView)]) {
@@ -58,7 +59,8 @@
     }
     
     __strong EZForm *form = self.form;
-    [form formFieldDidChangeValue:self];
+    if (![existingValue isEqual:value])
+        [form formFieldDidChangeValue:self];
 }
 
 - (void)becomeFirstResponder

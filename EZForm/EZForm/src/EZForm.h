@@ -321,6 +321,11 @@ typedef enum : NSInteger {
  *
  *  @returns The indexPath of the cell containing the user view for the field.
  */
+- (NSIndexPath *)form:(EZForm *)form indexPathToAutoScrollCellForFieldKey:(NSString *)key;
+
+/**
+ * Maintained for backwards compatibility. Use -form:indexPathToAutoScrollCellForFieldKey: instead.
+**/
 - (NSIndexPath *)form:(EZForm *)form indexPathToAutoScrollTableForFieldKey:(NSString *)key;
 
 @end

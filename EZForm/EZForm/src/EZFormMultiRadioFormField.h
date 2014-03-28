@@ -34,6 +34,11 @@
 
 @interface EZFormMultiRadioFormField : EZFormRadioField
 
+/**
+ * Whether to display a count of the selected items instead of them joined by string.
+**/
+@property (nonatomic, getter=shouldDisplayItemCountIfMoreThanOne) BOOL displayItemCountIfMoreThanOne;
+
 /** Designates one option to be mutually exclusive 
  * 
  *  Setting this property will cause the value to be toggled off

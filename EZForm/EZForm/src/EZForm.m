@@ -271,7 +271,7 @@
           CGRect convertedFrame = [formFieldView.superview convertRect:formFieldView.frame toView:self.viewToAutoScroll];
           convertedFrame = CGRectInset(convertedFrame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
           if ([scrollViewToAutoScroll isPagingEnabled]) {
-            convertedFrame.origin.x = floorl(convertedFrame.origin.x / scrollViewToAutoScroll.bounds.size.width) * scrollViewToAutoScroll.bounds.size.width;
+            convertedFrame.origin.x = floorf(convertedFrame.origin.x / scrollViewToAutoScroll.bounds.size.width) * scrollViewToAutoScroll.bounds.size.width;
             convertedFrame.size.width = scrollViewToAutoScroll.bounds.size.width;
           }
           [scrollViewToAutoScroll scrollRectToVisible:convertedFrame animated:YES];

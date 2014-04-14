@@ -183,7 +183,7 @@ static NSString * const EZFDRegistrationFormRatingKey = @"rating";
      */
     EZFormContinuousField *ratingSliderField = [[EZFormContinuousField alloc] initWithKey:EZFDRegistrationFormRatingKey];
     ratingSliderField.maximumValue = 100;
-    ratingSliderField.minimumValue = 0.0;
+    ratingSliderField.minimumValue = 0;
     [ratingSliderField setFieldValue:@50];
     [_registrationForm addFormField:ratingSliderField];
 }

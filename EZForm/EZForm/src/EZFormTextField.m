@@ -377,6 +377,11 @@
     [self updateValidityIndicators];
 }
 
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    __strong EZForm *form = self.form;
+    [form formFieldInputDidEnd:self];
+}
+
 
 #pragma mark - EZFormField methods
 

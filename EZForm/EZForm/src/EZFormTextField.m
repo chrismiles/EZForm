@@ -377,7 +377,10 @@
     [self updateValidityIndicators];
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView {
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    #pragma unused(textView)
+
     __strong EZForm *form = self.form;
     [form formFieldInputDidEnd:self];
 }

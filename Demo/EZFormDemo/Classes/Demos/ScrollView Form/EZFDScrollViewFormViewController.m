@@ -47,7 +47,7 @@
 - (void)awakeFromNib
 {
     _form = [[EZForm alloc] init];
-    _form.inputAccessoryType = EZFormInputAccessoryTypeStandard;
+    _form.inputAccessoryType = EZFormInputAccessoryTypeStandardLeftAligned;
     _form.delegate = self;
     
     EZFormTextField *address1Field = [[EZFormTextField alloc] initWithKey:@"address1"];

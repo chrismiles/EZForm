@@ -50,7 +50,7 @@ static NSString * const EZFDLoginFormUsernameKey = @"username";
     /* Create EZForm instance to manage the form.
      */
     _loginForm = [[EZForm alloc] init];
-    _loginForm.inputAccessoryType = EZFormInputAccessoryTypeStandardLeftAligned;
+    _loginForm.inputAccessoryType = EZFormInputAccessoryTypeDone;
     _loginForm.delegate = self;
 
     [_loginForm setInputAccessoryViewBarTintColor:[UIColor purpleColor]];

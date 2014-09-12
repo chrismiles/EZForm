@@ -4,6 +4,7 @@
 *.mode*
 xcuserdata
 project.xcworkspace
+*.xccheckout
 
 # AppCode #
 ###########

@@ -331,8 +331,8 @@
 	    _scrollViewInsetsWereSaved = YES;
 	}
 	
-	contentInset.bottom += intersectsRect.size.height;
-	scrollIndicatorInsets.bottom += intersectsRect.size.height;
+	contentInset.bottom += (intersectsRect.size.height - contentInset.bottom);
+	scrollIndicatorInsets.bottom += (intersectsRect.size.height - scrollIndicatorInsets.bottom);
 	
 	if (! UIEdgeInsetsEqualToEdgeInsets(scrollView.contentInset, contentInset) || ! UIEdgeInsetsEqualToEdgeInsets(scrollView.scrollIndicatorInsets, scrollIndicatorInsets)) {
 	    void (^insetChanges)(void) = ^{

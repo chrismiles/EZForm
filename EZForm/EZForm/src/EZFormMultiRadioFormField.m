@@ -140,7 +140,7 @@
 
 #pragma mark - Object lifecycle
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey])) {
         self.selectedChoiceKeys = [NSMutableArray array];

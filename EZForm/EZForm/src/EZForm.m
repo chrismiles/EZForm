@@ -613,7 +613,7 @@
 
 #pragma mark - Memory Management
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init])) {
 	self.formFields = [NSMutableArray array];

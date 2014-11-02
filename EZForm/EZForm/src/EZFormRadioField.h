@@ -107,12 +107,12 @@
 /** Returns the keys of all choices.
  *
  */
-- (NSArray *)choiceKeys;
+@property (nonatomic, readonly, copy) NSArray *choiceKeys;
 
 /** Returns the current display value of the field
  *
  *  @return the value stored against the field's selected fieldValue key.
  */
-- (NSString *)fieldDisplayValue;
+@property (nonatomic, readonly, copy) NSString *fieldDisplayValue;
 
 @end

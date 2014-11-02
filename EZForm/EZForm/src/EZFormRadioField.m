@@ -42,8 +42,8 @@
 
 @interface EZFormRadioField () <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (nonatomic, strong) NSArray *orderedKeys;
-@property (nonatomic, strong) NSString *selectedChoiceKey;
+@property (nonatomic, copy) NSArray *orderedKeys;
+@property (nonatomic, copy) NSString *selectedChoiceKey;
 
 @end
 
@@ -198,12 +198,12 @@
 	    value = self.unselected;
 	}
 	else {
-	    NSString *key = [self.orderedKeys objectAtIndex:index - 1];
+	    NSString *key = self.orderedKeys[index - 1];
 	    value = [self.choices valueForKey:key];
 	}
     }
     else {
-	NSString *key = [self.orderedKeys objectAtIndex:index];
+	NSString *key = self.orderedKeys[index];
 	value = [self.choices valueForKey:key];
     }
     return value;
@@ -217,11 +217,11 @@
 	    key = nil;
 	}
 	else {
-	    key = [self.orderedKeys objectAtIndex:index - 1];
+	    key = self.orderedKeys[index - 1];
 	}
     }
     else {
-	key = [self.orderedKeys objectAtIndex:index];
+	key = self.orderedKeys[index];
     }
     return key;
 }

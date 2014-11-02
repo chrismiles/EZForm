@@ -39,7 +39,7 @@
 
 @implementation EZFormContinuousField
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey]))
     {

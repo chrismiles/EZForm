@@ -456,7 +456,7 @@
 
 #pragma mark - Memory Management
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey])) {
 	_trimWhitespace = YES;

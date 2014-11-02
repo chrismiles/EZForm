@@ -58,7 +58,7 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  *
  *  @returns Initialised EZFormField object.
  */
-- (id)initWithKey:(NSString *)aKey;
+- (instancetype)initWithKey:(NSString *)aKey NS_DESIGNATED_INITIALIZER;
 
 /** The current value of the field as seen in the corresponding UI
  *  @see setFieldValue:canUpdateView:
@@ -110,7 +110,7 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 
 /** Returns a boolean indicating whether the field value is valid.
  */
-- (BOOL)isValid;
+@property (nonatomic, getter=isValid, readonly) BOOL valid;
 
 /** Requests the wired user control to become first responder.
  */
@@ -122,21 +122,21 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 
 /** Returns whether the wired user control can become first responder.
  */
-- (BOOL)canBecomeFirstResponder;
+@property (nonatomic, readonly) BOOL canBecomeFirstResponder;
 
 /** Returns whether the wired user control is currently holding
  *  first responder status.
  */
-- (BOOL)isFirstResponder;
+@property (nonatomic, getter=isFirstResponder, readonly) BOOL firstResponder;
 
 /** Returns the wired user view or control.
  */
-- (UIView *)userView;
+@property (nonatomic, readonly, strong) UIView *userView;
 
 /** Returns a boolean indicating whether the wired user control
  *  accepts an input accessory.
  */
-- (BOOL)acceptsInputAccessory;
+@property (nonatomic, readonly) BOOL acceptsInputAccessory;
 
 /** Unwire and release any user-specified views that were attached to the form field.
  *

@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, EZFormBooleanFieldUserControlType) {
 
 - (void)toggleValue
 {
-    [self setFieldValue:@(!_internalValue)];
+    self.fieldValue = @(!_internalValue);
 }
 
 - (void)useButton:(UIButton *)button
@@ -122,12 +122,12 @@ typedef NS_ENUM(NSInteger, EZFormBooleanFieldUserControlType) {
 - (void)buttonTouchUpAction:(UIButton *)button
 {
     button.selected = !button.selected;
-    [self setFieldValue:@(button.selected)];
+    self.fieldValue = @(button.selected);
 }
 
 - (void)switchValueChangedAction:(UISwitch *)switchControl
 {
-    [self setFieldValue:@(switchControl.on)];
+    self.fieldValue = @(switchControl.on);
 }
 
 - (void)updateUI

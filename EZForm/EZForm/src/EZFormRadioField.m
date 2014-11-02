@@ -86,13 +86,11 @@
 - (BOOL)typeSpecificValidation
 {
     BOOL result = YES;
-    
-    id value = [self fieldValue];
-    
+
     if (self.validationRequiresSelection && nil == self.fieldValue) {
 	result = NO;
     }
-    else if (self.validationRestrictedToChoiceValues && ![[self.choices allKeys] containsObject:value]) {
+    else if (self.validationRestrictedToChoiceValues && ![[self.choices allKeys] containsObject:self.fieldValue]) {
 	result = NO;
     }
     

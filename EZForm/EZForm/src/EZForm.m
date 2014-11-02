@@ -132,14 +132,14 @@
 - (id)modelValueForKey:(NSString *)key
 {
     EZFormField *formField = [self formFieldForKey:key];
-    return [formField fieldValue];
+    return formField.modelValue;
 }
 
 - (void)setModelValue:(id)value forKey:(NSString *)key
 {
     for (EZFormField *formField in self.formFields) {
 	if ([formField.key isEqualToString:key]) {
-	    [formField setFieldValue:value];
+		formField.modelValue = value;
 	    break;
 	}
     }
@@ -149,7 +149,7 @@
 {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for (EZFormField *formField in self.formFields) {
-	[result setValue:[formField fieldValue] forKey:[formField key]];
+	[result setValue:formField.modelValue forKey:[formField key]];
     }
     return result;
 }

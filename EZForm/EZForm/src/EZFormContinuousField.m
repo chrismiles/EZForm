@@ -86,7 +86,7 @@
     {
       slider.value = roundf(slider.value);
     }
-    [self setFieldValue:@(slider.value)];
+    self.fieldValue = @(slider.value);
     [self updateView];
 }
 

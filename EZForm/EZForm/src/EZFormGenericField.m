@@ -80,7 +80,7 @@ typedef NS_ENUM(NSInteger, EZFormGenericFieldUserControlType) {
 
 - (void)updateUI
 {
-    [self updateUIWithValue:[self fieldValue]];
+    [self updateUIWithValue:self.fieldValue];
 }
 
 
@@ -90,9 +90,7 @@ typedef NS_ENUM(NSInteger, EZFormGenericFieldUserControlType) {
 {
     BOOL result = YES;
     
-    id value = [self fieldValue];
-    
-    if (self.validationNotNil && nil == value) {
+    if (self.validationNotNil && nil == self.modelValue) {
 	result = NO;
     }
     

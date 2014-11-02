@@ -137,7 +137,7 @@
     BOOL result = YES;
     
     if (!_validationDisabled) {
-	id value = [self fieldValue];
+	id value = self.modelValue;
 	
 	for (unsigned i=0; result && i < [validationBlocks count]; i++) {
 	    BOOL (^validator)(id value) = validationBlocks[i];

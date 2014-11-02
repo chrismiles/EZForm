@@ -47,6 +47,7 @@
 #import "EZFormCommonValidators.h"
 #import "EZFormRadioChoiceViewController.h"
 #import "EZFormInputControl.h"
+#import "EZReversableValueTransformer.h"
 
 
 typedef NS_ENUM(NSInteger, EZFormInputAccessoryType) {

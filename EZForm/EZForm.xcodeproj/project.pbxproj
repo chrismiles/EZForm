@@ -10,6 +10,7 @@
 		5273AD5116DD0FEB0007C079 /* EZFormDateField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5273AD5016DD0FEB0007C079 /* EZFormDateField.m */; };
 		5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5273AD4F16DD0FEB0007C079 /* EZFormDateField.h */; };
 		5C1056481A0652A900A66940 /* EZReversableValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1056471A0652A900A66940 /* EZReversableValueTransformer.m */; };
+		5C10564B1A066BDD00A66940 /* EZReversableValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C1056461A0652A900A66940 /* EZReversableValueTransformer.h */; };
 		839EE8CB169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
 		839EE90D16952A3D00B9DCA8 /* EZForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F516952A3D00B9DCA8 /* EZForm.m */; };
 		839EE90E16952A3D00B9DCA8 /* EZFormBooleanField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F716952A3D00B9DCA8 /* EZFormBooleanField.m */; };
@@ -48,6 +49,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				5C10564B1A066BDD00A66940 /* EZReversableValueTransformer.h in CopyFiles */,
 				5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */,
 				83E75FEF169F7931004B13E9 /* EZFormInputControl.h in CopyFiles */,
 				839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */,

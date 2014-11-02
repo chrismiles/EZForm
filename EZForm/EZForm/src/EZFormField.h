@@ -29,7 +29,7 @@ typedef BOOL (*VALIDATOR)(id);			    // function validator
 typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 
 @class EZForm;
-
+@class EZReversableValueTransformer;
 
 /** Abstract base class for form fields.
  *
@@ -44,6 +44,13 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 @property (nonatomic, strong) UIView *inputAccessoryView;
 @property (nonatomic, copy) NSString *key;
 
+/**
+ Allows to specify transformer applied to the field value before it'll be handed
+ over to validation subsystem.
+ This allows to convert map values from the way they are presented in the UI to 
+ model layer.
+ */
+@property (nonatomic, strong) EZReversableValueTransformer *valueTransformer;
 
 /** Initialises an allocated EZFormField object with the specified key.
  *
@@ -53,19 +60,10 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  */
 - (id)initWithKey:(NSString *)aKey;
 
-/** Returns the current value of the field.
+/** The current value of the field as seen in the corresponding UI
+ *  @see setFieldValue:canUpdateView:
  */
-- (id)fieldValue;
-
-/** Updates the value of the field.
- *
- *  Any wired user view is updated with the new value.
- *
- *  Also see setFieldValue:canUpdateView:.
- *
- *  @param value The new value to set.
- */
-- (void)setFieldValue:(id)value;
+@property (nonatomic, strong) id fieldValue;
 
 /** Updates the value of the field and optionally updates a wired user view.
  *
@@ -76,6 +74,13 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  *  @param canUpdateView Whether to update a wired user view.
  */
 - (void)setFieldValue:(id)value canUpdateView:(BOOL)canUpdateView;
+
+/** Model value. If valueTransformer specified, it's used to map value the
+ *  @c fieldValue
+ */
+@property (nonatomic, strong) id modelValue;
+
+- (void)setModelValue:(id)modelValue canUpdateView:(BOOL)canUpdateView;
 
 /** Set a user-defined validator function.
  *

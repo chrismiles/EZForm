@@ -26,6 +26,7 @@
 #import "EZFormField+Private.h"
 #import "EZFormFieldConcreteProtocol.h"
 #import "EZForm+Private.h"
+#import "EZReversableValueTransformer.h"
 
 @interface EZFormField () {
     VALIDATOR validatorFn;
@@ -38,6 +39,7 @@
 
 @implementation EZFormField
 
+#pragma mark - Values
 
 - (id)fieldValue
 {
@@ -60,6 +62,23 @@
     __strong EZForm *form = self.form;
     [form formFieldDidChangeValue:self];
 }
+
+- (id)modelValue
+{
+    return self.valueTransformer.forwardBlock ? self.valueTransformer.forwardBlock(self.fieldValue) : self.fieldValue;
+}
+
+- (void)setModelValue:(id)modelValue
+{
+    [self setModelValue:modelValue canUpdateView:YES];
+}
+
+- (void)setModelValue:(id)modelValue canUpdateView:(BOOL)canUpdateView {
+    id fieldValue = self.valueTransformer.reverseBlock ? self.valueTransformer.reverseBlock(modelValue) : modelValue;
+    [self setFieldValue:fieldValue canUpdateView:canUpdateView];
+}
+
+#pragma mark - UIResponder
 
 - (void)becomeFirstResponder
 {
@@ -100,6 +119,8 @@
     // Override in concrete subclasses, if relevant
     return;
 }
+
+#pragma mark - Validation
 
 - (void)setValidationFunction:(VALIDATOR)validatorFunction
 {

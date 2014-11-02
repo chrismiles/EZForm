@@ -11,11 +11,6 @@
 		5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5273AD4F16DD0FEB0007C079 /* EZFormDateField.h */; };
 		5C1056481A0652A900A66940 /* EZReversableValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1056471A0652A900A66940 /* EZReversableValueTransformer.m */; };
 		839EE8CB169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
-		839EE8DA169529DE00B9DCA8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8D9169529DE00B9DCA8 /* SenTestingKit.framework */; };
-		839EE8DD169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
-		839EE8E0169529DE00B9DCA8 /* libEZForm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8C7169529DE00B9DCA8 /* libEZForm.a */; };
-		839EE8E6169529DE00B9DCA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 839EE8E4169529DE00B9DCA8 /* InfoPlist.strings */; };
-		839EE8E9169529DE00B9DCA8 /* EZFormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8E8169529DE00B9DCA8 /* EZFormTests.m */; };
 		839EE90D16952A3D00B9DCA8 /* EZForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F516952A3D00B9DCA8 /* EZForm.m */; };
 		839EE90E16952A3D00B9DCA8 /* EZFormBooleanField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F716952A3D00B9DCA8 /* EZFormBooleanField.m */; };
 		839EE90F16952A3D00B9DCA8 /* EZFormCommonValidators.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F916952A3D00B9DCA8 /* EZFormCommonValidators.m */; };
@@ -45,16 +40,6 @@
 		88FFDCBD17754A3F00348C15 /* EZFormContinuousField.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */; };
 		88FFDCBE1775536B00348C15 /* EZFormContinuousField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		839EE8DE169529DE00B9DCA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 839EE8BE169529DE00B9DCA8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 839EE8C6169529DE00B9DCA8;
-			remoteInfo = EZForm;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		839EE8C5169529DE00B9DCA8 /* CopyFiles */ = {
@@ -90,12 +75,7 @@
 		839EE8C7169529DE00B9DCA8 /* libEZForm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZForm.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		839EE8CA169529DE00B9DCA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		839EE8CE169529DE00B9DCA8 /* EZForm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZForm-Prefix.pch"; sourceTree = "<group>"; };
-		839EE8D8169529DE00B9DCA8 /* EZFormTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZFormTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		839EE8D9169529DE00B9DCA8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		839EE8E3169529DE00B9DCA8 /* EZFormTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EZFormTests-Info.plist"; sourceTree = "<group>"; };
-		839EE8E5169529DE00B9DCA8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		839EE8E7169529DE00B9DCA8 /* EZFormTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EZFormTests.h; sourceTree = "<group>"; };
-		839EE8E8169529DE00B9DCA8 /* EZFormTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZFormTests.m; sourceTree = "<group>"; };
 		839EE8F316952A3D00B9DCA8 /* EZForm+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "EZForm+Private.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		839EE8F416952A3D00B9DCA8 /* EZForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZForm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		839EE8F516952A3D00B9DCA8 /* EZForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZForm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -141,16 +121,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		839EE8D4169529DE00B9DCA8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				839EE8DA169529DE00B9DCA8 /* SenTestingKit.framework in Frameworks */,
-				839EE8DD169529DE00B9DCA8 /* Foundation.framework in Frameworks */,
-				839EE8E0169529DE00B9DCA8 /* libEZForm.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -167,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				839EE8CC169529DE00B9DCA8 /* EZForm */,
-				839EE8E1169529DE00B9DCA8 /* EZFormTests */,
 				839EE8C9169529DE00B9DCA8 /* Frameworks */,
 				839EE8C8169529DE00B9DCA8 /* Products */,
 			);
@@ -180,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				839EE8C7169529DE00B9DCA8 /* libEZForm.a */,
-				839EE8D8169529DE00B9DCA8 /* EZFormTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,25 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				839EE8CE169529DE00B9DCA8 /* EZForm-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		839EE8E1169529DE00B9DCA8 /* EZFormTests */ = {
-			isa = PBXGroup;
-			children = (
-				839EE8E7169529DE00B9DCA8 /* EZFormTests.h */,
-				839EE8E8169529DE00B9DCA8 /* EZFormTests.m */,
-				839EE8E2169529DE00B9DCA8 /* Supporting Files */,
-			);
-			path = EZFormTests;
-			sourceTree = "<group>";
-		};
-		839EE8E2169529DE00B9DCA8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				839EE8E3169529DE00B9DCA8 /* EZFormTests-Info.plist */,
-				839EE8E4169529DE00B9DCA8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -333,25 +282,6 @@
 			productReference = 839EE8C7169529DE00B9DCA8 /* libEZForm.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		839EE8D7169529DE00B9DCA8 /* EZFormTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 839EE8EF169529DE00B9DCA8 /* Build configuration list for PBXNativeTarget "EZFormTests" */;
-			buildPhases = (
-				839EE8D3169529DE00B9DCA8 /* Sources */,
-				839EE8D4169529DE00B9DCA8 /* Frameworks */,
-				839EE8D5169529DE00B9DCA8 /* Resources */,
-				839EE8D6169529DE00B9DCA8 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				839EE8DF169529DE00B9DCA8 /* PBXTargetDependency */,
-			);
-			name = EZFormTests;
-			productName = EZFormTests;
-			productReference = 839EE8D8169529DE00B9DCA8 /* EZFormTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -375,37 +305,9 @@
 			projectRoot = "";
 			targets = (
 				839EE8C6169529DE00B9DCA8 /* EZForm */,
-				839EE8D7169529DE00B9DCA8 /* EZFormTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		839EE8D5169529DE00B9DCA8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				839EE8E6169529DE00B9DCA8 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		839EE8D6169529DE00B9DCA8 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		839EE8C3169529DE00B9DCA8 /* Sources */ = {
@@ -431,34 +333,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		839EE8D3169529DE00B9DCA8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				839EE8E9169529DE00B9DCA8 /* EZFormTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		839EE8DF169529DE00B9DCA8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 839EE8C6169529DE00B9DCA8 /* EZForm */;
-			targetProxy = 839EE8DE169529DE00B9DCA8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		839EE8E4169529DE00B9DCA8 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				839EE8E5169529DE00B9DCA8 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		839EE8EA169529DE00B9DCA8 /* Debug */ = {
@@ -610,36 +485,6 @@
 			};
 			name = Release;
 		};
-		839EE8F0169529DE00B9DCA8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EZForm/EZForm-Prefix.pch";
-				INFOPLIST_FILE = "EZFormTests/EZFormTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		839EE8F1169529DE00B9DCA8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EZForm/EZForm-Prefix.pch";
-				INFOPLIST_FILE = "EZFormTests/EZFormTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -657,15 +502,6 @@
 			buildConfigurations = (
 				839EE8ED169529DE00B9DCA8 /* Debug */,
 				839EE8EE169529DE00B9DCA8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		839EE8EF169529DE00B9DCA8 /* Build configuration list for PBXNativeTarget "EZFormTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				839EE8F0169529DE00B9DCA8 /* Debug */,
-				839EE8F1169529DE00B9DCA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -127,6 +127,12 @@
     validatorFn = validatorFunction;
 }
 
+- (void) setValidator:(BOOL (^)(id value))validator
+{
+    validationBlocks = [[NSMutableArray alloc] init];
+    [self addValidator:validator];
+}
+
 - (void)addValidator:(BOOL (^)(id value))validator
 {
     [validationBlocks addObject:[validator copy]];

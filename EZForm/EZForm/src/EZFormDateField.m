@@ -128,7 +128,7 @@
 
 #pragma mark - Object lifecycle
 
-- (id)initWithKey:(NSString *)aKey {
+- (instancetype)initWithKey:(NSString *)aKey {
     self = [super initWithKey: aKey];
     if (self) {
         // Default date formatters        

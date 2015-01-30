@@ -26,10 +26,10 @@
 #import "EZFormField.h"
 #import "EZFormFieldConcreteProtocol.h"
 
-typedef enum : NSInteger {
+typedef NS_ENUM(NSInteger, EZFormTextFieldInvalidIndicatorPosition) {
     EZFormTextFieldInvalidIndicatorPositionRight = 0,
     EZFormTextFieldInvalidIndicatorPositionLeft,
-} EZFormTextFieldInvalidIndicatorPosition;
+} ;
 
 
 typedef BOOL (*TEXTFIELDFILTER)(id);

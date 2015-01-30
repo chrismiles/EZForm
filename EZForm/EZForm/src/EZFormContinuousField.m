@@ -39,7 +39,7 @@
 
 @implementation EZFormContinuousField
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey]))
     {
@@ -86,7 +86,7 @@
     {
       slider.value = roundf(slider.value);
     }
-    [self setFieldValue:@(slider.value)];
+    self.fieldValue = @(slider.value);
     [self updateView];
 }
 

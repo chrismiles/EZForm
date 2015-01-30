@@ -47,19 +47,20 @@
 #import "EZFormCommonValidators.h"
 #import "EZFormRadioChoiceViewController.h"
 #import "EZFormInputControl.h"
+#import "EZReversableValueTransformer.h"
 
 
-typedef enum : NSInteger {
+typedef NS_ENUM(NSInteger, EZFormInputAccessoryType) {
     EZFormInputAccessoryTypeNone = 0,
     EZFormInputAccessoryTypeStandard, //done button on the right
     EZFormInputAccessoryTypeStandardLeftAligned, //done button on the left
     EZFormInputAccessoryTypeDone, //done button on the right, no prev/next item
     EZFormInputAccessoryTypeDoneLeftAligned //done button on the left, no prev/next item
-} EZFormInputAccessoryType;
+} ;
 
-typedef enum : NSInteger {
+typedef NS_ENUM(NSInteger, EZFormInvalidIndicatorViewType) {
     EZFormInvalidIndicatorViewTypeTriangleExclamation = 1,
-} EZFormInvalidIndicatorViewType;
+} ;
 
 
 @protocol EZFormDelegate;
@@ -140,7 +141,7 @@ typedef enum : NSInteger {
  *
  *  @returns A boolean indicating whether all field values of the form are valid.
  */
-- (BOOL)isFormValid;
+@property (nonatomic, getter=isFormValid, readonly) BOOL formValid;
 
 /** Returns a boolean value indicating whether the specified field holds a valid value.
  *
@@ -157,7 +158,7 @@ typedef enum : NSInteger {
  *
  *  @returns An array of keys as strings.
  */
-- (NSArray *)invalidFieldKeys;
+@property (nonatomic, readonly, copy) NSArray *invalidFieldKeys;
 
 /** Returns the current value of the specified field.
  *
@@ -171,7 +172,7 @@ typedef enum : NSInteger {
  *
  *  @returns A dictionary of all fields, keyed by field key.
  */
-- (NSDictionary *)modelValues;
+@property (nonatomic, readonly, copy) NSDictionary *modelValues;
 
 /** Set the value of the specified field.
  *
@@ -195,7 +196,7 @@ typedef enum : NSInteger {
  *
  *  @returns A form field.
  */
-- (EZFormField *)formFieldForFirstResponder;
+@property (nonatomic, readonly, strong) EZFormField *formFieldForFirstResponder;
 
 /** Supply a view that can be scrolled to keep the active form field visible when a keyboard is present.
  *

@@ -26,11 +26,11 @@
 #import "EZFormField.h"
 #import "EZFormFieldConcreteProtocol.h"
 
-typedef enum : NSInteger {
+typedef NS_ENUM(NSInteger, EZFormBooleanFieldState) {
     EZFormBooleanFieldStateAny = 0,
     EZFormBooleanFieldStateOn = 1,
     EZFormBooleanFieldStateOff = 2
-} EZFormBooleanFieldState;
+} ;
 
 
 /** A form field to handle boolean input.

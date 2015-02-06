@@ -33,6 +33,6 @@
 
 @property (assign, nonatomic) BOOL tapToBecomeFirstResponder;
 
-- (id)initWithFrame:(CGRect)frame label:(UILabel *)label;
+- (instancetype)initWithFrame:(CGRect)frame label:(UILabel *)label NS_DESIGNATED_INITIALIZER;
 
 @end

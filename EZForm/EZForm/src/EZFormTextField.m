@@ -292,7 +292,7 @@
 
 - (void)updateUI
 {
-    [self updateUIWithValue:[self fieldValue]];
+    [self updateUIWithValue:self.fieldValue];
 }
 
 - (BOOL)formFieldWithText:(NSString *)text shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -319,7 +319,7 @@
 {
     BOOL result = YES;
     
-    NSString *value = [self fieldValue];
+    NSString *value = self.modelValue;
     if (self.validationMinCharacters > 0 && [value length] < self.validationMinCharacters) {
 	result = NO;
     }
@@ -375,6 +375,14 @@
 {
     [self setFieldValue:textView.text canUpdateView:NO];
     [self updateValidityIndicators];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    #pragma unused(textView)
+
+    __strong EZForm *form = self.form;
+    [form formFieldInputDidEnd:self];
 }
 
 
@@ -448,7 +456,7 @@
 
 #pragma mark - Memory Management
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey])) {
 	_trimWhitespace = YES;

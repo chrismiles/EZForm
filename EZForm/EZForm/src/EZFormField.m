@@ -26,6 +26,7 @@
 #import "EZFormField+Private.h"
 #import "EZFormFieldConcreteProtocol.h"
 #import "EZForm+Private.h"
+#import "EZReversableValueTransformer.h"
 
 @interface EZFormField () {
     VALIDATOR validatorFn;
@@ -38,6 +39,7 @@
 
 @implementation EZFormField
 
+#pragma mark - Values
 
 - (id)fieldValue
 {
@@ -62,6 +64,23 @@
     if (![existingValue isEqual:value])
         [form formFieldDidChangeValue:self];
 }
+
+- (id)modelValue
+{
+    return self.valueTransformer.forwardBlock ? self.valueTransformer.forwardBlock(self.fieldValue) : self.fieldValue;
+}
+
+- (void)setModelValue:(id)modelValue
+{
+    [self setModelValue:modelValue canUpdateView:YES];
+}
+
+- (void)setModelValue:(id)modelValue canUpdateView:(BOOL)canUpdateView {
+    id fieldValue = self.valueTransformer.reverseBlock ? self.valueTransformer.reverseBlock(modelValue) : modelValue;
+    [self setFieldValue:fieldValue canUpdateView:canUpdateView];
+}
+
+#pragma mark - UIResponder
 
 - (void)becomeFirstResponder
 {
@@ -103,9 +122,19 @@
     return;
 }
 
+#pragma mark - Validation
+
 - (void)setValidationFunction:(VALIDATOR)validatorFunction
 {
     validatorFn = validatorFunction;
+}
+
+- (void)setValidator:(BOOL (^)(id value))validator
+{
+    validationBlocks = [[NSMutableArray alloc] init];
+    if (validator) {
+        [self addValidator:validator];
+    }
 }
 
 - (void)addValidator:(BOOL (^)(id value))validator
@@ -118,7 +147,7 @@
     BOOL result = YES;
     
     if (!_validationDisabled) {
-	id value = [self fieldValue];
+	id value = self.modelValue;
 	
 	for (unsigned i=0; result && i < [validationBlocks count]; i++) {
 	    BOOL (^validator)(id value) = validationBlocks[i];
@@ -166,7 +195,7 @@
 
 #pragma mark - Object lifecycle
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super init])) {
 	self.key = aKey;

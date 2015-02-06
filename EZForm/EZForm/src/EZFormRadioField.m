@@ -110,7 +110,7 @@
 
 - (NSString *)fieldDisplayValue
 {
-    return [self choiceValueForKey:[self actualFieldValue]];
+    return [self choiceValueForKey:[self actualFieldValue]] ?: [self actualFieldValue];
 }
 
 #pragma mark - Unwire views
@@ -123,13 +123,15 @@
 
 - (void)unwireInputView
 {
-    if ([self.userView.inputView isKindOfClass:[UIPickerView class]]) {
-	UIPickerView *pickerView = (UIPickerView *)self.userView.inputView;
-	if (pickerView.dataSource == self) pickerView.dataSource = nil;
-	if (pickerView.delegate == self) pickerView.delegate = nil;
+    if (self.userView.inputView != nil) {
+        if ([self.userView.inputView isKindOfClass:[UIPickerView class]]) {
+        UIPickerView *pickerView = (UIPickerView *)self.userView.inputView;
+        if (pickerView.dataSource == self) pickerView.dataSource = nil;
+        if (pickerView.delegate == self) pickerView.delegate = nil;
+        }
+        
+        self.userView.inputView = nil;
     }
-    
-    self.userView.inputView = nil;
 }
 
 

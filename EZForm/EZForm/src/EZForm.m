@@ -29,6 +29,8 @@
 #import "EZFormInvalidIndicatorTriangleExclamationView.h"
 #import "UIView+EZFormUtility.h"
 
+NSString * const EZFormChildFormPathSeparator = @".";
+
 #pragma mark - EZForm class extension
 
 @interface EZForm () {
@@ -47,6 +49,8 @@
 
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField;
 - (void)updateInputAccessoryForEditingFormField:(EZFormField *)formField;
+
+- (NSDictionary *)indexPathsAndFieldsForFirstResponderCapableFields;
 
 @end
 
@@ -86,6 +90,24 @@
 	    break;
 	}
     }
+    
+    // support for child forms
+    NSUInteger separatorIndex = NSNotFound;
+    if (result == nil && (separatorIndex = [key rangeOfString:EZFormChildFormPathSeparator].location) != NSNotFound && separatorIndex+1 < key.length) {
+        NSString *formKey = [key substringToIndex:separatorIndex];
+        NSString *fieldKey = [key substringFromIndex:separatorIndex+1];
+        
+        // find the child form
+        for (EZFormField *formField in self.formFields) {
+            if ([formField.key isEqual:formKey]) {
+                if ([formField isKindOfClass:[EZFormChildFormField class]]) {
+                    EZForm *childForm = ((EZFormChildFormField *)formField).childForm;
+                    result = [childForm formFieldForKey:fieldKey];
+                }
+                break;
+            }
+        }
+    }
 
     return result;
 }
@@ -104,16 +126,8 @@
 
 - (BOOL)isFieldValid:(NSString *)key
 {
-    BOOL result = NO;
-    
-    for (EZFormField *formField in self.formFields) {
-	if ([formField.key isEqualToString:key]) {
-	    result = [formField isValid];
-	    break;
-	}
-    }
-    
-    return result;
+    EZFormField *field = [self formFieldForKey:key];
+    return [field isValid];
 }
 
 - (NSArray *)invalidFieldKeys
@@ -122,7 +136,20 @@
     
     for (EZFormField *formField in self.formFields) {
 	if (![formField isValid]) {
-	    [keys addObject:[formField key]];
+            
+            if ([formField isKindOfClass:[EZFormChildFormField class]]) {
+                NSArray *invalidChildFormKeys = [((EZFormChildFormField *)formField).childForm invalidFieldKeys];
+                if (invalidChildFormKeys != nil && [invalidChildFormKeys count] > 0) {
+                    for (NSString *childKey in invalidChildFormKeys) {
+                        [keys addObject:[@[ formField.key, childKey ] componentsJoinedByString:EZFormChildFormPathSeparator]];
+                    }
+                } else {
+                    [keys addObject:formField.key];
+                }
+                
+            } else {
+                [keys addObject:[formField key]];
+            }
 	}
     }
     
@@ -137,12 +164,9 @@
 
 - (void)setModelValue:(id)value forKey:(NSString *)key
 {
-    for (EZFormField *formField in self.formFields) {
-	if ([formField.key isEqualToString:key]) {
+    EZFormField *formField = [self formFieldForKey:key];
+    if (formField != nil)
 		formField.modelValue = value;
-	    break;
-	}
-    }
 }
 
 - (NSDictionary *)modelValues
@@ -167,10 +191,17 @@
 {
     EZFormField *result = nil;
     for (EZFormField *formField in self.formFields) {
-	if ([formField isFirstResponder]) {
-	    result = formField;
-	    break;
-	}
+		if ([formField isFirstResponder]) {
+	    	result = formField;
+	   		break;
+		}
+        
+        // check with child forms
+        if ([formField isKindOfClass:[EZFormChildFormField class]]) {
+            result = [((EZFormChildFormField *)formField).childForm formFieldForFirstResponder];
+            if (result != nil)
+                break;
+        }
     }
     return result;
 }
@@ -395,30 +426,61 @@
 
 - (EZFormField *)firstResponderCapableFormFieldAfterField:(EZFormField *)formField searchForwards:(BOOL)searchForwards
 {
-    EZFormField *result = nil;
+    // find the index path of the field
+    NSDictionary *fields = [self indexPathsAndFieldsForFirstResponderCapableFields];
+    NSIndexPath *indexPath = nil;
     
-    NSUInteger fieldIndex = [self.formFields indexOfObject:formField];
-    if (fieldIndex != NSNotFound) {
-	NSInteger startIndex;
-	NSInteger indexIncrement;
-	if (searchForwards) {
-	    startIndex = (NSInteger)fieldIndex+1;
-	    indexIncrement = 1;
-	}
-	else {
-	    startIndex = (NSInteger)fieldIndex-1;
-	    indexIncrement = -1;
-	}
-	for (NSInteger index=startIndex; index >= 0 && index < (NSInteger)[self.formFields count]; index += indexIncrement) {
-	    EZFormField *aFormField = (self.formFields)[(NSUInteger)index];
-	    if ([aFormField canBecomeFirstResponder]) {
-		result = aFormField;
-		break;
-	    }
-	}
+    for (NSIndexPath *i in fields) {
+        if ([formField isEqual:[fields objectForKey:i]]) {
+            indexPath = i;
+            break;
+        }
     }
     
-    return result;
+    // we found it, look for the next/prev one
+    if (indexPath != nil) {
+        NSArray *sortedIndexPaths = [fields.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSIndexPath *path1, NSIndexPath *path2) {
+            return [path1 compare:path2];
+        }];
+        NSUInteger index = [sortedIndexPaths indexOfObject:indexPath];
+        if (index != NSNotFound) {
+            if (searchForwards && index+1 < [sortedIndexPaths count]) {
+                return [fields objectForKey:[sortedIndexPaths objectAtIndex:index+1]];
+            }
+            else if (!searchForwards && index > 0) {
+                return [fields objectForKey:[sortedIndexPaths objectAtIndex:index-1]];
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (NSDictionary *)indexPathsAndFieldsForFirstResponderCapableFields
+{
+    NSMutableDictionary *indexPaths = [[NSMutableDictionary alloc] initWithCapacity:0];
+    
+    NSUInteger count = [self.formFields count];
+    for (NSUInteger index = 0; index < count; index++) {
+        EZFormField *field = [self.formFields objectAtIndex:index];
+        if ([field isKindOfClass:[EZFormChildFormField class]]) {
+            NSDictionary *childIndexPaths = [((EZFormChildFormField *)field).childForm indexPathsAndFieldsForFirstResponderCapableFields];
+            for (NSIndexPath *childIndexPath in childIndexPaths) {
+                
+                // create the index path based on ourselves
+                NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:index];
+                for (NSUInteger i = 0; i < childIndexPath.length; i++)
+                    indexPath = [indexPath indexPathByAddingIndex:[childIndexPath indexAtPosition:i]];
+                
+                [indexPaths setObject:[childIndexPaths objectForKey:childIndexPath] forKey:indexPath];
+            }
+        } else
+        {
+            [indexPaths setObject:field forKey:[NSIndexPath indexPathWithIndex:index]];
+        }
+    }
+    
+    return [indexPaths copy];
 }
 
 - (void)selectFormFieldForInput:(EZFormField *)formField

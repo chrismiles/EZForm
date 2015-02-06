@@ -132,6 +132,45 @@
     self.userView.inputView = nil;
 }
 
+#pragma mark - Values
+
+- (void)setModelValue:(id)modelValue canUpdateView:(BOOL)canUpdateView
+{
+    if (self.valueTransformer != nil) {
+        modelValue = [self.valueTransformer transformedValue:modelValue];
+    }
+    
+    if ([modelValue isKindOfClass:[NSDictionary class]]) {
+
+        NSDictionary *dictionaryModelValue = (NSDictionary *)modelValue;
+
+        // compile new choices array
+        NSMutableArray *keys = [NSMutableArray array];
+        NSMutableArray *values = [NSMutableArray array];
+        
+        // save existing keys and values
+        [keys addObjectsFromArray:self.orderedKeys];
+        for (id key in self.orderedKeys) {
+            [values addObject:[self.choices objectForKey:key]];
+        }
+        
+        // now add in the new one
+        for (id key in dictionaryModelValue) {
+            [keys addObject:key];
+            [values addObject:[dictionaryModelValue objectForKey:key]];
+        }
+        
+        // now update those keys
+        [self setChoicesFromKeys:keys values:values];
+        
+        // and update the value
+        [self setFieldValue:dictionaryModelValue.allKeys.firstObject canUpdateView:canUpdateView];
+
+    } else {
+        [self setFieldValue:modelValue canUpdateView:canUpdateView];
+    }
+}
+
 
 #pragma mark - inputView
 

@@ -74,7 +74,7 @@
     UITextField *tetField = self.textField;
     tetField.text = nil;
     
-    self.randomNumber = arc4random_uniform(100);
+    self.randomNumber = (NSInteger)arc4random_uniform(100);
     UILabel *label = self.label;
     label.text = [NSString stringWithFormat:@"%td", self.randomNumber];
 }

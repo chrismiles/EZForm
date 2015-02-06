@@ -44,6 +44,8 @@ Features
  * Invalid field indicators. EZForm can automatically show invalid indicator views on text fields that fail validation. Invalid indicator views can be user-supplied or supplied by EZForm.
 
  * EZForm comes with an optional table view controller subclass that can be used to conveniently present radio choice selections, `EZFormRadioChoiceViewController`.
+ 
+ * Optional model value transformers for easy passing of values between your form, UI and model layers.
 
 
 Quick Start

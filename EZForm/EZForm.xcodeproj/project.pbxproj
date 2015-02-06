@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		5273AD5116DD0FEB0007C079 /* EZFormDateField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5273AD5016DD0FEB0007C079 /* EZFormDateField.m */; };
 		5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5273AD4F16DD0FEB0007C079 /* EZFormDateField.h */; };
-		5C1056481A0652A900A66940 /* EZReversableValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1056471A0652A900A66940 /* EZReversableValueTransformer.m */; };
-		5C10564B1A066BDD00A66940 /* EZReversableValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C1056461A0652A900A66940 /* EZReversableValueTransformer.h */; };
+		5C1056481A0652A900A66940 /* EZFormReversibleValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1056471A0652A900A66940 /* EZFormReversibleValueTransformer.m */; };
+		5C10564B1A066BDD00A66940 /* EZFormReversibleValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5C1056461A0652A900A66940 /* EZFormReversibleValueTransformer.h */; };
 		839EE8CB169529DE00B9DCA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839EE8CA169529DE00B9DCA8 /* Foundation.framework */; };
 		839EE90D16952A3D00B9DCA8 /* EZForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F516952A3D00B9DCA8 /* EZForm.m */; };
 		839EE90E16952A3D00B9DCA8 /* EZFormBooleanField.m in Sources */ = {isa = PBXBuildFile; fileRef = 839EE8F716952A3D00B9DCA8 /* EZFormBooleanField.m */; };
@@ -40,6 +40,8 @@
 		8874817916B90BB40063C5F6 /* EZFormMultiRadioFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */; };
 		88FFDCBD17754A3F00348C15 /* EZFormContinuousField.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */; };
 		88FFDCBE1775536B00348C15 /* EZFormContinuousField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */; };
+		E8EB70B71A8464B80014A4F8 /* EZFormValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB70B61A8464B80014A4F8 /* EZFormValueTransformer.m */; };
+		E8F0262C1A846AF700EBA939 /* EZFormValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8EB70B51A8464B80014A4F8 /* EZFormValueTransformer.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,7 +51,8 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				5C10564B1A066BDD00A66940 /* EZReversableValueTransformer.h in CopyFiles */,
+				E8F0262C1A846AF700EBA939 /* EZFormValueTransformer.h in CopyFiles */,
+				5C10564B1A066BDD00A66940 /* EZFormReversibleValueTransformer.h in CopyFiles */,
 				5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */,
 				83E75FEF169F7931004B13E9 /* EZFormInputControl.h in CopyFiles */,
 				839EE93516952D2E00B9DCA8 /* EZFormRadioChoiceViewController.h in CopyFiles */,
@@ -72,8 +75,8 @@
 /* Begin PBXFileReference section */
 		5273AD4F16DD0FEB0007C079 /* EZFormDateField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormDateField.h; sourceTree = "<group>"; };
 		5273AD5016DD0FEB0007C079 /* EZFormDateField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormDateField.m; sourceTree = "<group>"; };
-		5C1056461A0652A900A66940 /* EZReversableValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZReversableValueTransformer.h; sourceTree = "<group>"; };
-		5C1056471A0652A900A66940 /* EZReversableValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZReversableValueTransformer.m; sourceTree = "<group>"; };
+		5C1056461A0652A900A66940 /* EZFormReversibleValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormReversibleValueTransformer.h; sourceTree = "<group>"; };
+		5C1056471A0652A900A66940 /* EZFormReversibleValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormReversibleValueTransformer.m; sourceTree = "<group>"; };
 		839EE8C7169529DE00B9DCA8 /* libEZForm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEZForm.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		839EE8CA169529DE00B9DCA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		839EE8CE169529DE00B9DCA8 /* EZForm-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZForm-Prefix.pch"; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 		8874817716B90A370063C5F6 /* EZFormMultiRadioFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormMultiRadioFormField.m; sourceTree = "<group>"; };
 		88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormContinuousField.h; sourceTree = "<group>"; };
 		88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormContinuousField.m; sourceTree = "<group>"; };
+		E8EB70B51A8464B80014A4F8 /* EZFormValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZFormValueTransformer.h; sourceTree = "<group>"; };
+		E8EB70B61A8464B80014A4F8 /* EZFormValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZFormValueTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +134,10 @@
 		5CEFBD671A064ABC00B80865 /* Value Transformers */ = {
 			isa = PBXGroup;
 			children = (
-				5C1056461A0652A900A66940 /* EZReversableValueTransformer.h */,
-				5C1056471A0652A900A66940 /* EZReversableValueTransformer.m */,
+				5C1056461A0652A900A66940 /* EZFormReversibleValueTransformer.h */,
+				5C1056471A0652A900A66940 /* EZFormReversibleValueTransformer.m */,
+				E8EB70B51A8464B80014A4F8 /* EZFormValueTransformer.h */,
+				E8EB70B61A8464B80014A4F8 /* EZFormValueTransformer.m */,
 			);
 			name = "Value Transformers";
 			sourceTree = "<group>";
@@ -320,6 +327,7 @@
 				839EE90D16952A3D00B9DCA8 /* EZForm.m in Sources */,
 				839EE90E16952A3D00B9DCA8 /* EZFormBooleanField.m in Sources */,
 				839EE90F16952A3D00B9DCA8 /* EZFormCommonValidators.m in Sources */,
+				E8EB70B71A8464B80014A4F8 /* EZFormValueTransformer.m in Sources */,
 				839EE91016952A3D00B9DCA8 /* EZFormField.m in Sources */,
 				839EE91116952A3D00B9DCA8 /* EZFormGenericField.m in Sources */,
 				839EE91216952A3D00B9DCA8 /* EZFormInvalidIndicatorTriangleExclamationView.m in Sources */,
@@ -330,7 +338,7 @@
 				839EE91716952A3D00B9DCA8 /* UIView+EZFormUtility.m in Sources */,
 				83E75FED169F73A0004B13E9 /* EZFormInputControl.m in Sources */,
 				8874817816B90A380063C5F6 /* EZFormMultiRadioFormField.m in Sources */,
-				5C1056481A0652A900A66940 /* EZReversableValueTransformer.m in Sources */,
+				5C1056481A0652A900A66940 /* EZFormReversibleValueTransformer.m in Sources */,
 				5273AD5116DD0FEB0007C079 /* EZFormDateField.m in Sources */,
 				88FFDCBD17754A3F00348C15 /* EZFormContinuousField.m in Sources */,
 			);

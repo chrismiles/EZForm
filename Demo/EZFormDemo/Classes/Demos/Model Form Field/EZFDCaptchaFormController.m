@@ -53,10 +53,10 @@
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     numberFormatter.locale = [NSLocale currentLocale];
     numberFormatter.numberStyle = NSNumberFormatterSpellOutStyle;
-    captchaField.valueTransformer = [EZReversableValueTransformer reversableValueTransformerWithForwardBlock:^id(NSString *value) {
-        return [numberFormatter numberFromString:[value lowercaseString]];
-    } reverseBlock:^id(id value) {
+    captchaField.valueTransformer = [EZFormReversibleValueTransformer reversibleValueTransformerWithForwardBlock:^id(NSNumber *value) {
         return [numberFormatter stringFromNumber:value];
+    } reverseBlock:^id(id value) {
+        return [numberFormatter numberFromString:[value lowercaseString]];
     }];
     __weak id weak_self = self;
     [captchaField addValidator:^BOOL(id value) {

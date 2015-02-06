@@ -29,7 +29,6 @@ typedef BOOL (*VALIDATOR)(id);			    // function validator
 typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 
 @class EZForm;
-@class EZReversableValueTransformer;
 
 /** Abstract base class for form fields.
  *
@@ -50,7 +49,7 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  This allows to convert map values from the way they are presented in the UI to 
  model layer.
  */
-@property (nonatomic, strong) EZReversableValueTransformer *valueTransformer;
+@property (nonatomic, strong) NSValueTransformer *valueTransformer;
 
 /** Initialises an allocated EZFormField object with the specified key.
  *

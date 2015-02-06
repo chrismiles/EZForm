@@ -74,7 +74,7 @@
 
 #pragma mark - Object lifecycle
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -102,11 +102,23 @@
     return self;
 }
 
+- (void)setHidesPrevNextItem:(BOOL)hidesPrevNextItem
+{
+    _hidesPrevNextItem = hidesPrevNextItem;
+    [self layoutSubviews];
+}
+
 - (void)setDoneButtonPosition:(EZFormStandardInputAccessoryViewDoneButtonPosition)doneButtonPosition
 {
     _doneButtonPosition = doneButtonPosition;
+    [self layoutSubviews];
+}
 
-    switch (doneButtonPosition) {
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    switch (self.doneButtonPosition) {
         case EZFormStandardInputAccessoryViewDoneButtonPositionLeft: {
             [self setItems:@[self.doneItem, self.flexibleSpaceItem, self.prevNextItem]];
             break;
@@ -115,6 +127,12 @@
             [self setItems:@[self.prevNextItem, self.flexibleSpaceItem, self.doneItem]];
             break;
         }
+    }
+
+    if (self.hidesPrevNextItem) {
+        NSMutableArray * itemsCopy = [self.items mutableCopy];
+        [itemsCopy removeObject:self.prevNextItem];
+        self.items = [itemsCopy copy];
     }
 }
 

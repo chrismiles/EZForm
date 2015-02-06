@@ -159,21 +159,21 @@ NSString * const EZFormChildFormPathSeparator = @".";
 - (id)modelValueForKey:(NSString *)key
 {
     EZFormField *formField = [self formFieldForKey:key];
-    return formField != nil ? [formField fieldValue] : nil;
+    return formField.modelValue;
 }
 
 - (void)setModelValue:(id)value forKey:(NSString *)key
 {
     EZFormField *formField = [self formFieldForKey:key];
     if (formField != nil)
-        [formField setFieldValue:value];
+		formField.modelValue = value;
 }
 
 - (NSDictionary *)modelValues
 {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for (EZFormField *formField in self.formFields) {
-	[result setValue:[formField fieldValue] forKey:[formField key]];
+	[result setValue:formField.modelValue forKey:[formField key]];
     }
     return result;
 }
@@ -191,10 +191,10 @@ NSString * const EZFormChildFormPathSeparator = @".";
 {
     EZFormField *result = nil;
     for (EZFormField *formField in self.formFields) {
-	if ([formField isFirstResponder]) {
-	    result = formField;
-	    break;
-	}
+		if ([formField isFirstResponder]) {
+	    	result = formField;
+	   		break;
+		}
         
         // check with child forms
         if ([formField isKindOfClass:[EZFormChildFormField class]]) {
@@ -362,8 +362,8 @@ NSString * const EZFormChildFormPathSeparator = @".";
 	    _scrollViewInsetsWereSaved = YES;
 	}
 	
-	contentInset.bottom += intersectsRect.size.height;
-	scrollIndicatorInsets.bottom += intersectsRect.size.height;
+	contentInset.bottom += (intersectsRect.size.height - contentInset.bottom);
+	scrollIndicatorInsets.bottom += (intersectsRect.size.height - scrollIndicatorInsets.bottom);
 	
 	if (! UIEdgeInsetsEqualToEdgeInsets(scrollView.contentInset, contentInset) || ! UIEdgeInsetsEqualToEdgeInsets(scrollView.scrollIndicatorInsets, scrollIndicatorInsets)) {
 	    void (^insetChanges)(void) = ^{
@@ -539,7 +539,7 @@ NSString * const EZFormChildFormPathSeparator = @".";
 - (UIView *)inputAccessoryViewForType:(EZFormInputAccessoryType)type
 {
     UIView *inputAccessoryView = nil;
-    if (EZFormInputAccessoryTypeStandard == type || EZFormInputAccessoryTypeStandardLeftAligned == type) {
+    if (EZFormInputAccessoryTypeNone != type) {
 	if (nil == self.inputAccessoryStandardView) {
 	    // Create and cache it
 	    // It will be resized automatically to match keyboard
@@ -555,7 +555,10 @@ NSString * const EZFormChildFormPathSeparator = @".";
 
             accessoryView.translucent = self.inputAccessoryViewTranslucent;
 
-            if (type == EZFormInputAccessoryTypeStandardLeftAligned) {
+            if (type == EZFormInputAccessoryTypeDone || type == EZFormInputAccessoryTypeDoneLeftAligned) {
+                accessoryView.hidesPrevNextItem = YES;
+            }
+            if (type == EZFormInputAccessoryTypeStandardLeftAligned || type == EZFormInputAccessoryTypeDoneLeftAligned) {
                 accessoryView.doneButtonPosition = EZFormStandardInputAccessoryViewDoneButtonPositionLeft;
             }
 	    accessoryView.inputAccessoryViewDelegate = self;
@@ -672,7 +675,7 @@ NSString * const EZFormChildFormPathSeparator = @".";
 
 #pragma mark - Memory Management
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init])) {
 	self.formFields = [NSMutableArray array];

@@ -30,7 +30,7 @@
 - (void)formFieldInputDidEnd:(EZFormField *)formField;
 - (void)formFieldDidBeginEditing:(EZFormField *)formField;
 - (void)formFieldDidChangeValue:(EZFormField *)formField;
-- (UIView *)inputAccessoryView;
+@property (nonatomic, readonly, strong) UIView *inputAccessoryView;
 
 @end
 

@@ -29,7 +29,7 @@ typedef BOOL (*VALIDATOR)(id);			    // function validator
 typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 
 @class EZForm;
-
+@class EZReversableValueTransformer;
 
 /** Abstract base class for form fields.
  *
@@ -44,6 +44,13 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 @property (nonatomic, strong) UIView *inputAccessoryView;
 @property (nonatomic, copy) NSString *key;
 
+/**
+ Allows to specify transformer applied to the field value before it'll be handed
+ over to validation subsystem.
+ This allows to convert map values from the way they are presented in the UI to 
+ model layer.
+ */
+@property (nonatomic, strong) EZReversableValueTransformer *valueTransformer;
 
 /** Initialises an allocated EZFormField object with the specified key.
  *
@@ -51,21 +58,12 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  *
  *  @returns Initialised EZFormField object.
  */
-- (id)initWithKey:(NSString *)aKey;
+- (instancetype)initWithKey:(NSString *)aKey NS_DESIGNATED_INITIALIZER;
 
-/** Returns the current value of the field.
+/** The current value of the field as seen in the corresponding UI
+ *  @see setFieldValue:canUpdateView:
  */
-- (id)fieldValue;
-
-/** Updates the value of the field.
- *
- *  Any wired user view is updated with the new value.
- *
- *  Also see setFieldValue:canUpdateView:.
- *
- *  @param value The new value to set.
- */
-- (void)setFieldValue:(id)value;
+@property (nonatomic, strong) id fieldValue;
 
 /** Updates the value of the field and optionally updates a wired user view.
  *
@@ -76,6 +74,13 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  *  @param canUpdateView Whether to update a wired user view.
  */
 - (void)setFieldValue:(id)value canUpdateView:(BOOL)canUpdateView;
+
+/** Model value. If valueTransformer specified, it's used to map value the
+ *  @c fieldValue
+ */
+@property (nonatomic, strong) id modelValue;
+
+- (void)setModelValue:(id)modelValue canUpdateView:(BOOL)canUpdateView;
 
 /** Set a user-defined validator function.
  *
@@ -91,6 +96,21 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
  */
 - (void)setValidationFunction:(VALIDATOR)validatorFunction;
 
+/**
+ *  Sets the user-defined validator.
+ *
+ *  If there are other validators present, this function deletes
+ *  all of them and sets this validator.
+ *
+ *  For adding multiple validators look
+ *  addValidator:(BOOL (^)(id value))validator
+ *  method.
+ *
+ *  @param validator A block object containing the validation logic,
+ *                   or nil to clear all validators.
+ **/
+- (void)setValidator:(BOOL (^)(id value))validator;
+
 /** Adds a user-defined validator.
  *
  *  User-defined validators will be called, in order, to validate
@@ -105,7 +125,7 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 
 /** Returns a boolean indicating whether the field value is valid.
  */
-- (BOOL)isValid;
+@property (nonatomic, getter=isValid, readonly) BOOL valid;
 
 /** Requests the wired user control to become first responder.
  */
@@ -117,21 +137,21 @@ typedef BOOL (^EZFormFieldValidator)(id value);	    // block validator
 
 /** Returns whether the wired user control can become first responder.
  */
-- (BOOL)canBecomeFirstResponder;
+@property (nonatomic, readonly) BOOL canBecomeFirstResponder;
 
 /** Returns whether the wired user control is currently holding
  *  first responder status.
  */
-- (BOOL)isFirstResponder;
+@property (nonatomic, getter=isFirstResponder, readonly) BOOL firstResponder;
 
 /** Returns the wired user view or control.
  */
-- (UIView *)userView;
+@property (nonatomic, readonly, strong) UIView *userView;
 
 /** Returns a boolean indicating whether the wired user control
  *  accepts an input accessory.
  */
-- (BOOL)acceptsInputAccessory;
+@property (nonatomic, readonly) BOOL acceptsInputAccessory;
 
 /** Unwire and release any user-specified views that were attached to the form field.
  *

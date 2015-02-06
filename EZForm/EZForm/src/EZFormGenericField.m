@@ -24,10 +24,10 @@
 
 #import "EZFormGenericField.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, EZFormGenericFieldUserControlType) {
     EZFormGenericFieldUserControlTypeNone = 0,
     EZFormGenericFieldUserControlTypeLabel = 1,
-} EZFormGenericFieldUserControlType;
+} ;
 
 
 #pragma mark - EZFormGenericField class extension
@@ -80,7 +80,7 @@ typedef enum {
 
 - (void)updateUI
 {
-    [self updateUIWithValue:[self fieldValue]];
+    [self updateUIWithValue:self.fieldValue];
 }
 
 
@@ -90,9 +90,7 @@ typedef enum {
 {
     BOOL result = YES;
     
-    id value = [self fieldValue];
-    
-    if (self.validationNotNil && nil == value) {
+    if (self.validationNotNil && nil == self.modelValue) {
 	result = NO;
     }
     
@@ -155,7 +153,7 @@ typedef enum {
 
 #pragma mark - Memory Management
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey])) {
 

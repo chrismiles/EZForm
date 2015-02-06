@@ -25,12 +25,12 @@
 #import "EZFormBooleanField.h"
 #import "EZForm+Private.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, EZFormBooleanFieldUserControlType) {
     EZFormBooleanFieldUserControlTypeNone = 0,
     EZFormBooleanFieldUserControlTypeButton = 1,
     EZFormBooleanFieldUserControlTypeSwitch = 2,
     EZFormBooleanFieldUserControlTypeTableViewCell = 3
-} EZFormBooleanFieldUserControlType;
+} ;
 
 
 #pragma mark - EZFormBooleanField class extension
@@ -57,7 +57,7 @@ typedef enum {
 
 - (void)toggleValue
 {
-    [self setFieldValue:[NSNumber numberWithBool:!_internalValue]];
+    self.fieldValue = @(!_internalValue);
 }
 
 - (void)useButton:(UIButton *)button
@@ -122,12 +122,12 @@ typedef enum {
 - (void)buttonTouchUpAction:(UIButton *)button
 {
     button.selected = !button.selected;
-    [self setFieldValue:@(button.selected)];
+    self.fieldValue = @(button.selected);
 }
 
 - (void)switchValueChangedAction:(UISwitch *)switchControl
 {
-    [self setFieldValue:@(switchControl.on)];
+    self.fieldValue = @(switchControl.on);
 }
 
 - (void)updateUI

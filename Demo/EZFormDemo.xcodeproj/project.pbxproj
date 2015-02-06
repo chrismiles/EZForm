@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C2A07D11A7D37CD00478536 /* EZFDCaptchaFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2A07D01A7D37CD00478536 /* EZFDCaptchaFormController.m */; };
 		8329EAF2155339E900ED3F5E /* EZFDRegistrationFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8329EAF1155339E900ED3F5E /* EZFDRegistrationFormViewController.m */; };
 		8369763715494EA00070EDEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8369763615494EA00070EDEC /* UIKit.framework */; };
 		8369763915494EA00070EDEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8369763815494EA00070EDEC /* Foundation.framework */; };
@@ -32,13 +33,6 @@
 			remoteGlobalIDString = 839EE8C7169529DE00B9DCA8;
 			remoteInfo = EZForm;
 		};
-		8878CF5B17754938008D0B0B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8878CF5417754937008D0B0B /* EZForm.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 839EE8D8169529DE00B9DCA8;
-			remoteInfo = EZFormTests;
-		};
 		88FFDCB61775494C00348C15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8878CF5417754937008D0B0B /* EZForm.xcodeproj */;
@@ -49,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C2A07CF1A7D37CD00478536 /* EZFDCaptchaFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZFDCaptchaFormController.h; path = "Model Form Field/EZFDCaptchaFormController.h"; sourceTree = "<group>"; };
+		5C2A07D01A7D37CD00478536 /* EZFDCaptchaFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZFDCaptchaFormController.m; path = "Model Form Field/EZFDCaptchaFormController.m"; sourceTree = "<group>"; };
 		8329EAF0155339E900ED3F5E /* EZFDRegistrationFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EZFDRegistrationFormViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8329EAF1155339E900ED3F5E /* EZFDRegistrationFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EZFDRegistrationFormViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8369763215494EA00070EDEC /* EZFormDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZFormDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C2A07CE1A7D37A400478536 /* Model Form Fields */ = {
+			isa = PBXGroup;
+			children = (
+				5C2A07CF1A7D37CD00478536 /* EZFDCaptchaFormController.h */,
+				5C2A07D01A7D37CD00478536 /* EZFDCaptchaFormController.m */,
+			);
+			name = "Model Form Fields";
+			sourceTree = "<group>";
+		};
 		8329EAEE155339C700ED3F5E /* Registration Form */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +232,7 @@
 		83F3239F155227CE006FC7B2 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				5C2A07CE1A7D37A400478536 /* Model Form Fields */,
 				8329EAEE155339C700ED3F5E /* Registration Form */,
 				83E75E60169D12EE004B13E9 /* ScrollView Form */,
 				83F323A0155227CE006FC7B2 /* Simple Login Form */,
@@ -256,7 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				8878CF5A17754938008D0B0B /* libEZForm.a */,
-				8878CF5C17754938008D0B0B /* EZFormTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -289,7 +294,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = EZFD;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Chris Miles";
 			};
 			buildConfigurationList = 8369762C15494EA00070EDEC /* Build configuration list for PBXProject "EZFormDemo" */;
@@ -324,13 +329,6 @@
 			remoteRef = 8878CF5917754938008D0B0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8878CF5C17754938008D0B0B /* EZFormTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = EZFormTests.octest;
-			remoteRef = 8878CF5B17754938008D0B0B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -355,6 +353,7 @@
 				8369764315494EA00070EDEC /* main.m in Sources */,
 				8373217715512FB900DCC3FB /* EZFDAppDelegate.m in Sources */,
 				83F323A415522CBE006FC7B2 /* EZFDSimpleLoginFormViewController.m in Sources */,
+				5C2A07D11A7D37CD00478536 /* EZFDCaptchaFormController.m in Sources */,
 				83F323AF15527268006FC7B2 /* EZFDMainMenuViewController.m in Sources */,
 				8329EAF2155339E900ED3F5E /* EZFDRegistrationFormViewController.m in Sources */,
 				83E75E64169D1358004B13E9 /* EZFDScrollViewFormViewController.m in Sources */,
@@ -422,10 +421,12 @@
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -488,10 +489,12 @@
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CLANG_WARN__EXIT_TIME_DESTRUCTORS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;

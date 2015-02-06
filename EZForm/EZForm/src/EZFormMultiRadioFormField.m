@@ -72,7 +72,7 @@
     [self unsetActualFieldValue:value];
 
     if (self.mutuallyExclusiveChoice && [self.selectedChoiceKeys count] == 0 && ![value isEqual:self.mutuallyExclusiveChoice]) {
-        [self setFieldValue:self.mutuallyExclusiveChoice];
+        self.fieldValue = self.mutuallyExclusiveChoice;
     }
 
     if (canUpdateView && [(id<EZFormFieldConcrete>)self respondsToSelector:@selector(updateView)]) {
@@ -140,7 +140,7 @@
 
 #pragma mark - Object lifecycle
 
-- (id)initWithKey:(NSString *)aKey
+- (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super initWithKey:aKey])) {
         self.selectedChoiceKeys = [NSMutableArray array];

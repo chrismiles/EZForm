@@ -9,7 +9,7 @@ DESC
   s.license = 'MIT'
   s.author = { "Chris Miles" => "miles.chris@gmail.com" }
   s.source = { :git => "https://github.com/chrismiles/EZForm", :tag => s.version.to_s }
-  s.platform = :ios, '5.0'
+  s.platform = :ios, '6.0'
   s.source_files = 'EZForm/EZForm/src'
   s.framework = 'UIKit'
   s.requires_arc = true

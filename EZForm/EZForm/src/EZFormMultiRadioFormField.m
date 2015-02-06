@@ -119,7 +119,7 @@
 
 - (void)updateView
 {
-    NSString *fieldValue = ([self shouldDisplayItemCountIfMoreThanOne] && [self.selectedChoiceKeys count] > 1) ? [NSString stringWithFormat:@"%lu", (unsigned long)[self.selectedChoiceKeys count]] : [self fieldValuesJoinedByString:@", "];
+    NSString *fieldValue = [self fieldValuesJoinedByString:@", "];
     [self updateUIWithValue:fieldValue];
 }
 

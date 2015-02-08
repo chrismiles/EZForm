@@ -40,6 +40,7 @@
 		8874817916B90BB40063C5F6 /* EZFormMultiRadioFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8874817616B90A370063C5F6 /* EZFormMultiRadioFormField.h */; };
 		88FFDCBD17754A3F00348C15 /* EZFormContinuousField.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FFDCBC17754A3F00348C15 /* EZFormContinuousField.m */; };
 		88FFDCBE1775536B00348C15 /* EZFormContinuousField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88FFDCBB17754A3F00348C15 /* EZFormContinuousField.h */; };
+		E81576831A882D040005D1AB /* EZFormChildFormField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E839B7FD1A84875200385678 /* EZFormChildFormField.h */; };
 		E839B7FF1A84875200385678 /* EZFormChildFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = E839B7FE1A84875200385678 /* EZFormChildFormField.m */; };
 		E8EB70B71A8464B80014A4F8 /* EZFormValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB70B61A8464B80014A4F8 /* EZFormValueTransformer.m */; };
 		E8F0262C1A846AF700EBA939 /* EZFormValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8EB70B51A8464B80014A4F8 /* EZFormValueTransformer.h */; };
@@ -52,6 +53,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				E81576831A882D040005D1AB /* EZFormChildFormField.h in CopyFiles */,
 				E8F0262C1A846AF700EBA939 /* EZFormValueTransformer.h in CopyFiles */,
 				5C10564B1A066BDD00A66940 /* EZFormReversibleValueTransformer.h in CopyFiles */,
 				5273AD6416DD123B0007C079 /* EZFormDateField.h in CopyFiles */,

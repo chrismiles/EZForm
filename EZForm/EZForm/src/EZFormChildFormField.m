@@ -11,6 +11,10 @@
 #import "EZFormField+Private.h"
 #import "EZForm+Private.h"
 
+@interface EZFormChildFormField () <EZFormDelegate>
+
+@end
+
 @implementation EZFormChildFormField
 
 #pragma mark - Object lifecycle

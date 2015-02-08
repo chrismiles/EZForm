@@ -8,7 +8,8 @@
 
 #import "EZFormField.h"
 #import "EZFormFieldConcreteProtocol.h"
-#import "EZFormDelegate.h"
+
+@protocol EZFormDelegate;
 
 /**
  * A form field designed to encapsulate another EZForm object.
@@ -17,7 +18,7 @@
  * but instead used to enable dynamic length forms. That is, forms
  * that let you add/remove sections.
 **/
-@interface EZFormChildFormField : EZFormField <EZFormFieldConcrete, EZFormDelegate>
+@interface EZFormChildFormField : EZFormField <EZFormFieldConcrete>
 
 /**
  * The child form.

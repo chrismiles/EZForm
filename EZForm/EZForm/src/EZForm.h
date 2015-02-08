@@ -170,11 +170,14 @@ extern NSString * const EZFormChildFormPathSeparator;
  */
 - (id)modelValueForKey:(NSString *)key;
 
-/** Returns a dictionary of all field key->value pairs.
+/** A dictionary of all field key->value pairs.
+ *
+ * When setting the model values, only those values specified in the NSDictionary
+ * will be updated.
  *
  *  @returns A dictionary of all fields, keyed by field key.
  */
-@property (nonatomic, readonly, copy) NSDictionary *modelValues;
+@property (nonatomic, copy) NSDictionary *modelValues;
 
 /** Set the value of the specified field.
  *

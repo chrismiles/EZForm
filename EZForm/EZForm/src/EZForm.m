@@ -137,6 +137,7 @@ NSString * const EZFormChildFormPathSeparator = @".";
     for (EZFormField *formField in self.formFields) {
 	if (![formField isValid]) {
             
+            // ask any child form fields for their invalid keys, then prepend our field name
             if ([formField isKindOfClass:[EZFormChildFormField class]]) {
                 NSArray *invalidChildFormKeys = [((EZFormChildFormField *)formField).childForm invalidFieldKeys];
                 if (invalidChildFormKeys != nil && [invalidChildFormKeys count] > 0) {
@@ -165,8 +166,9 @@ NSString * const EZFormChildFormPathSeparator = @".";
 - (void)setModelValue:(id)value forKey:(NSString *)key
 {
     EZFormField *formField = [self formFieldForKey:key];
-    if (formField != nil)
-		formField.modelValue = value;
+    if (formField != nil) {
+        formField.modelValue = value;
+    }
 }
 
 - (NSDictionary *)modelValues
@@ -176,6 +178,22 @@ NSString * const EZFormChildFormPathSeparator = @".";
 	[result setValue:formField.modelValue forKey:[formField key]];
     }
     return result;
+}
+
+- (void)setModelValues:(NSDictionary *)modelValues
+{
+    if (modelValues == nil) {
+        modelValues = @{};
+    }
+    
+    for (EZFormField *formField in self.formFields) {
+        id value = [modelValues objectForKey:formField.key];
+        if (value != nil) {
+            
+            // set the value, or nil it if NSNull.
+            [formField setModelValue:([value isEqual:[NSNull null]] ? nil : value)];
+        }
+    }
 }
 
 - (void)resignFirstResponder

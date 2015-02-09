@@ -191,7 +191,38 @@ NSString * const EZFormChildFormPathSeparator = @".";
         if (value != nil) {
             
             // set the value, or nil it if NSNull.
-            [formField setModelValue:([value isEqual:[NSNull null]] ? nil : value)];
+            [formField setModelValue:([value isEqual:[NSNull null]] ? nil : value) canUpdateView:YES];
+        }
+    }
+}
+
+- (void)clearModelValues
+{
+    for (EZFormField *formField in self.formFields) {
+        [formField setModelValue:nil canUpdateView:YES];
+    }
+}
+
+- (id)transformedModelValue
+{
+    NSValueTransformer *transformer = self.formValueTransformer;
+    if (transformer == nil) {
+        return nil;
+    }
+    
+    return [transformer reverseTransformedValue:self.modelValues];
+}
+
+- (void)setTransformedModelValue:(id)transformedModelValue
+{
+    NSValueTransformer *transformer = self.formValueTransformer;
+    if (transformer != nil) {
+        
+        NSDictionary *values = [transformer transformedValue:transformedModelValue];
+        if (values == nil) {
+            [self clearModelValues];
+        } else if ([values isKindOfClass:[NSDictionary class]]) {
+            [self setModelValues:values];
         }
     }
 }

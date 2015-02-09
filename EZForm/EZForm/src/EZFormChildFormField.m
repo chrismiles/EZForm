@@ -71,6 +71,25 @@
     [self.childForm resignFirstResponder];
 }
 
+#pragma mark - Model Values
+
+- (id)modelValue
+{
+    return self.childForm.transformedModelValue ?: self.childForm.modelValues;
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
+- (void)setModelValue:(id)modelValue canUpdateView:(BOOL)canUpdateView
+{
+    if (self.childForm.formValueTransformer != nil) {
+        [self.childForm setTransformedModelValue:modelValue];
+    } else if ([modelValue isKindOfClass:[NSDictionary class]]) {
+        [self.childForm setModelValues:modelValue];
+    }
+}
+#pragma clang diagnostic pop
+
 #pragma mark - EZFormDelegate Method Forwarding
 
 - (void)form:(EZForm *)form didUpdateValueForField:(EZFormField *)formField modelIsValid:(BOOL)isValid

@@ -170,10 +170,10 @@ extern NSString * const EZFormChildFormPathSeparator;
  */
 - (id)modelValueForKey:(NSString *)key;
 
-/** A dictionary of all field key->value pairs.
+/** A dictionary of all field key->value pairs, with child form fields in nested dictionaries.
  *
  * When setting the model values, only those values specified in the NSDictionary
- * will be updated.
+ * will be updated. If using child forms, ensure that the nested dictionaries line up.
  *
  *  @returns A dictionary of all fields, keyed by field key.
  */
@@ -186,6 +186,43 @@ extern NSString * const EZFormChildFormPathSeparator;
  *  @param key The key of the field as a string.
  */
 - (void)setModelValue:(id)value forKey:(NSString *)key;
+
+/**
+ * Clears (nils) the values of all form fields.
+**/
+- (void)clearModelValues;
+
+/** A NSValueTransformer that can be used to transform this form to an object of another type.
+ *
+ * For example, you can use this to transform the form's modelValues dictionary into your model object for
+ * easy population. As per each field's -modelValueTransformer property, the forward transformation will
+ * populate the form values, while the reverse transformation will export the form's values.
+ *
+ * The NSValueTransformer specified is expected to work in the following manner:
+ *
+ * Forward Transformation:
+ *
+ * The input value can be any object. It is expected that your transformer will return
+ * an NSDictionary of formField key => values pairs that align with the fields in the form. Populating child
+ * forms can be performed via nested dictionaries (i.e. dict[@"child"][@"field"]). If the transformed
+ * value is nil the model values of the form will be cleared.
+ *
+ * Reverse Transformation:
+ *
+ * The input to the reverse transformer will be an NSDictionary of formField key => value mappings. Child
+ * form values will be in nested dictionaries. The reverse transformer should return any object, such as your model objects.
+**/
+@property (nonatomic, strong) NSValueTransformer *formValueTransformer;
+
+/**
+ * The transformed value of this form.
+ *
+ * This uses the -formValueTransformer property to convert the form's -modelValues dictionary into another object.
+ * This is typically used for converting exporting or importing the entire form at once, such as when using child forms.
+ *
+ * If no -formValueTransformer is present, this property will be nil.
+**/
+@property (nonatomic, weak) id transformedModelValue;
 
 /** Notifies the receiver to request all of its field controls to resign first responder.
  *

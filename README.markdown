@@ -138,6 +138,124 @@ viewDidUnload, which you can do with one method call:
 }
 ```
 
+You can also nest child EZForm instances inside fields and address them using a key path:
+
+```objective-c
+- (void)initializeForm
+{
+	// continues from above
+	
+    // add a child form field to the form
+    EZForm *addressForm = [[EZForm alloc] init];
+    EZFormChildFormField *address = [[EZFormChildFormField alloc] initWithKey:@"address" childForm:addressForm];
+    [_myForm addFormField:address];
+    
+    // add fields to the child form
+    EZFormTextField *line1 = [[EZFormTextField alloc] initWithKey:@"line1"];
+    [addressForm addFormField:line1];
+    EZFormTextField *line2 = [[EZFormTextField alloc] initWithKey:@"line2"];
+    [addressForm addFormField:line2];
+    EZFormTextField *suburb = [[EZFormTextField alloc] initWithKey:@"suburb"];
+    [addressForm addFormField:suburb];
+    EZFormTextField *state = [[EZFormTextField alloc] initWithKey:@"state"];
+    [addressForm addFormField:state];
+    EZFormTextField *postcode = [[EZFormTextField alloc] initWithKey:@"postcode"];
+    [addressForm addFormField:postcode];
+    
+    // now you can address those fields directly via a keypath, like so:
+    NSString *line1Value = [_myForm modelValueForKey:@"address.line1"];
+    
+    // or a nested dictionary via -modelValues:
+    NSDictionary *values = _myForm.modelValues;
+    
+    /**
+     * values is now:
+     * @{
+     *     @"name": @"Jane Citizen",
+     *     @"email": @"jane@citizen.com",
+     *     @"address": @{
+     *         @"line1": @"Address Line 1",
+     *         @"line2": @"Address Line 2",
+     *         @"suburb": @"Suburb",
+     *         @"state": @"State",
+     *         @"postcode": @"1234"
+     *     }
+     * }
+    **/
+}
+```
+
+When interacting with your UI or a model you can also supply NSValueTransformers to handle transforming your other object values into your field values.
+
+```objective-c
+- (void)initializeForm
+{
+	// continues from above
+	
+    // lets add coordinates to our address child form
+    EZFormGenericField *latitude = [[EZFormGenericField alloc] initWithKey:@"latitude"];
+    [addressForm addFormField:latitude];
+    EZFormGenericField *longitude = [[EZFormGenericField alloc] initWithKey:@"longitude"];
+    [addressForm addFormField:longitude];
+    
+    // the latitude/longitude informats might be obtained using a geo-coding service from the address details
+    // lets assume the service returns a Location object which has latitude and longtiude properties and add value transformers to obtain the correct values
+    latitude.valueTransformer = [EZFormValueTransformer valueTransformerWithKeyPath:@"latitude"];
+    longitude.valueTransformer = [EZFormValueTransformer valueTransformerWithKeyPath:@"longitude"];
+    
+    // similarly, you can apply a form value transformer to assist with the import or export of entire forms
+    _myForm.formValueTransformer = [EZFormReversibleValueTransformer reversibleValueTransformerWithForwardBlock:^id(id input) {
+        
+        // clear the form if the input is nil or invalid
+        if (input == nil || ![input isKindOfClass:[Person class]]) {
+            return nil;
+        }
+        
+        // lets map our Person object into the form
+        Person *person = (Person *)input;
+        
+        // only return the values you want to update. Use NSNull to clear (nil) field values
+        return @{
+                 @"name":		  person.fullName ?: [NSNull null],
+                 @"email":		  person.email ?: [NSNull null],
+                 @"address": @{
+                         @"line1":	  person.address.line1 ?: [NSNull null],
+                         @"line2":	  person.address.line2 ?: [NSNull null],
+                         @"suburb":	  person.address.city ?: [NSNull null],
+                         @"state":	  person.address.state ?: [NSNull null],
+                         @"postcode":  person.address.postcode ?: [NSNull null],
+                         @"latitude":  person.address.location != nil ? [NSString stringWithFormat:@"%.g", person.address.location.coordinate.latitude] : [NSNull null],
+                         @"longitude":  person.address.location != nil ? [NSString stringWithFormat:@"%.g", person.address.location.coordinate.longitude] : [NSNull null],
+                         }
+                 };
+        
+    } reverseBlock:^id(id input) {
+        
+        // our input is an NSDictionary returned by -modelValues.
+        NSDictionary *modelValues = (NSDictionary *)input;
+        
+        // Create our person object
+        Person *person = [[Person alloc] init];
+        person.fullName = modelValues[@"name"];
+        person.email = modelValues[@"email"];
+        
+        person.address = [[Address alloc] init];
+        person.address.line1 = modelValues[@"address"][@"line1"];
+        person.address.line2 = modelValues[@"address"][@"line2"];
+        person.address.city = modelValues[@"address"][@"suburb"];
+        person.address.state = modelValues[@"address"][@"state"];
+        person.address.postcode = modelValues[@"address"][@"postcode"];
+        
+        // transform the string values into a CLLocation object
+        CLLocationDegrees latitude = [modelValues[@"address"][@"latitude"] doubleValue];
+        CLLocationDegrees longitude = [modelValues[@"address"][@"longitude"] doubleValue];
+        person.address.location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+        
+        return person;
+    }];
+}
+```
+
 See the demo app source for more examples of how to work with EZForm.
 
 

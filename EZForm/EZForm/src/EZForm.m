@@ -434,7 +434,7 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
         NSString *fieldKey = [childFormField.childForm addObject:object toGroupWithKey:key.lastFormKeyComponent];
         
         // re-apply the form key path
-        return [NSString stringWithFormat:@"%@.%@", key.formKeyForParentField, fieldKey];
+        return [NSString stringWithFormat:@"%@%@%@", key.formKeyForParentField, EZFormChildFormPathSeparator, fieldKey];
     }
     
     // Create the form

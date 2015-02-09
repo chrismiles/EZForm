@@ -202,11 +202,19 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
         NSArray *formFields = [self formFieldsInGroupWithKey:key];
         if (formFields != nil && formFields.count > 0) {
             
-            // now we loop over the form fields in order and grab the value from the supplied array
-            for (NSUInteger index = 0; index < formFields.count; index++) {
-                EZFormChildFormField *field = formFields[index];
+            // now we loop over the values in order and grab set the value on the form fields
+            for (NSUInteger index = 0; index < values.count; index++) {
                 id value = values[index];
-                [field setModelValue:([value isEqual:[NSNull null]] ? nil : value) canUpdateView:YES];
+                
+                // only if we haven't gone off the end
+                if (index < formFields.count) {
+                    EZFormChildFormField *field = formFields[index];
+                    [field setModelValue:([value isEqual:[NSNull null]] ? nil : value) canUpdateView:YES];
+
+                // support the creation of new fields if we have any
+                } else if ([self formClassForChildFormGroupWithKey:key] != Nil) {
+                    [self addObject:value toGroupWithKey:key];
+                }
             }
         }
     }

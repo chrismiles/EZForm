@@ -28,8 +28,10 @@
 #import "EZFormStandardInputAccessoryView.h"
 #import "EZFormInvalidIndicatorTriangleExclamationView.h"
 #import "UIView+EZFormUtility.h"
+#import "NSString+EZFormPathUtility.h"
 
 NSString * const EZFormChildFormPathSeparator = @".";
+NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
 
 #pragma mark - EZForm class extension
 
@@ -46,6 +48,7 @@ NSString * const EZFormChildFormPathSeparator = @".";
 @property (nonatomic, strong)	NSMutableArray		*formFields;
 @property (nonatomic, strong)	UIView			*inputAccessoryStandardView;
 @property (nonatomic, strong)	UIView			*viewToAutoScroll;
+@property (nonatomic, strong)   NSMutableDictionary     *childFormClasses;
 
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField;
 - (void)updateInputAccessoryForEditingFormField:(EZFormField *)formField;
@@ -177,7 +180,7 @@ NSString * const EZFormChildFormPathSeparator = @".";
     for (EZFormField *formField in self.formFields) {
 	[result setValue:formField.modelValue forKey:[formField key]];
     }
-    return result;
+    return [self groupedValues:result];
 }
 
 - (void)setModelValues:(NSDictionary *)modelValues
@@ -186,6 +189,29 @@ NSString * const EZFormChildFormPathSeparator = @".";
         modelValues = @{};
     }
     
+    // check for any groups in the supplied modelValues
+    for (id key in modelValues) {
+        NSArray *values = [modelValues objectForKey:key];
+        
+        // we can't do anything if it is not an array
+        if (![values isKindOfClass:[NSArray class]]) {
+            continue;
+        }
+        
+        // we also need an array of form fields in a group with the same name
+        NSArray *formFields = [self formFieldsInGroupWithKey:key];
+        if (formFields != nil && formFields.count > 0) {
+            
+            // now we loop over the form fields in order and grab the value from the supplied array
+            for (NSUInteger index = 0; index < formFields.count; index++) {
+                EZFormChildFormField *field = formFields[index];
+                id value = values[index];
+                [field setModelValue:([value isEqual:[NSNull null]] ? nil : value) canUpdateView:YES];
+            }
+        }
+    }
+    
+    // now normal direct mapping
     for (EZFormField *formField in self.formFields) {
         id value = [modelValues objectForKey:formField.key];
         if (value != nil) {
@@ -194,6 +220,36 @@ NSString * const EZFormChildFormPathSeparator = @".";
             [formField setModelValue:([value isEqual:[NSNull null]] ? nil : value) canUpdateView:YES];
         }
     }
+}
+
+- (NSDictionary *)groupedValues:(NSDictionary *)values
+{
+    // group them
+    NSMutableDictionary *groupedValues = [[NSMutableDictionary alloc] initWithCapacity:0];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:EZFormGroupedFieldsRegularExpression options:NSRegularExpressionCaseInsensitive error:nil];
+    for (NSString *key in values)
+    {
+        NSTextCheckingResult *first = [regex firstMatchInString:key options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(0, key.length)];
+        if (first != nil && first.range.location != NSNotFound)
+        {
+            id value = [values objectForKey:key];
+            NSString *groupKey = [key substringWithRange:NSMakeRange(0, first.range.location)];
+            
+            NSMutableArray *group = [groupedValues objectForKey:groupKey];
+            if (group == nil)
+            {
+                group = [[NSMutableArray alloc] initWithCapacity:0];
+                [groupedValues setObject:group forKey:groupKey];
+            }
+            
+            [group addObject:value];
+        } else
+        {
+            [groupedValues setObject:[values objectForKey:key] forKey:key];
+        }
+    }
+    
+    return [groupedValues copy];
 }
 
 - (void)clearModelValues
@@ -258,6 +314,27 @@ NSString * const EZFormChildFormPathSeparator = @".";
 - (void)autoScrollViewForKeyboardInput:(UIView *)view
 {
     self.viewToAutoScroll = view;
+    
+    // pass it down to any child forms also
+    for (EZFormField *field in self.formFields) {
+        if ([field isKindOfClass:[EZFormChildFormField class]]) {
+            EZFormChildFormField *childFormField = (EZFormChildFormField *)field;
+            [childFormField.childForm autoScrollViewForKeyboardInput:view];
+        }
+    }
+}
+
+- (void)setInputAccessoryType:(EZFormInputAccessoryType)inputAccessoryType
+{
+    _inputAccessoryType = inputAccessoryType;
+    
+    // pass it down to any child forms also
+    for (EZFormField *field in self.formFields) {
+        if ([field isKindOfClass:[EZFormChildFormField class]]) {
+            EZFormChildFormField *childFormField = (EZFormChildFormField *)field;
+            childFormField.childForm.inputAccessoryType = inputAccessoryType;
+        }
+    }
 }
 
 + (UIView *)formInvalidIndicatorViewForType:(EZFormInvalidIndicatorViewType)invalidIndicatorViewType size:(CGSize)size
@@ -269,6 +346,137 @@ NSString * const EZFormChildFormPathSeparator = @".";
     }
     
     return invalidIndicatorView;
+}
+
+#pragma mark - Grouped Fields Support
+
+- (NSInteger)numberOfFieldsForChildFormGroupWithKey:(NSString *)key
+{
+    // regex for ensuring that we have a UUID'd suffix
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:EZFormGroupedFieldsRegularExpression options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSInteger matches = 0;
+    for (EZFormField *field in self.formFields) {
+        if ([field.key rangeOfString:key].location != NSNotFound && [regex rangeOfFirstMatchInString:field.key options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(key.length, field.key.length - key.length)].location != NSNotFound) {
+            matches++;
+        }
+    }
+    return matches;
+}
+
+- (id)formFieldInChildFormGroupWithKey:(NSString *)key atIndex:(NSUInteger)index
+{
+    // regex for ensuring that we have a UUID'd suffix
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:EZFormGroupedFieldsRegularExpression options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSUInteger currentIndex = 0;
+    for (EZFormField *field in self.formFields) {
+        if ([field.key rangeOfString:key].location != NSNotFound && [regex rangeOfFirstMatchInString:field.key options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(key.length, field.key.length - key.length)].location != NSNotFound) {
+            if (currentIndex == index) {
+                return field;
+            }
+            currentIndex++;
+        }
+    }
+    return nil;
+}
+
+- (NSArray *)formFieldsInGroupWithKey:(NSString *)key
+{
+    // regex for ensuring that we have a UUID'd suffix
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:EZFormGroupedFieldsRegularExpression options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSMutableArray *fields = [[NSMutableArray alloc] initWithCapacity:0];
+    for (EZFormField *field in self.formFields) {
+        if ([field.key rangeOfString:key].location != NSNotFound && [regex rangeOfFirstMatchInString:field.key options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(key.length, field.key.length - key.length)].location != NSNotFound) {
+            [fields addObject:field];
+        }
+    }
+    
+    if ([fields count] > 0)
+        return [fields copy];
+    
+    return @[];
+}
+
+- (Class)formClassForChildFormGroupWithKey:(NSString *)key
+{
+    NSString *className = nil;
+    if (self.childFormClasses != nil && [self.childFormClasses count] > 0) {
+        className = [self.childFormClasses objectForKey:key];
+    }
+    
+    return className == nil ? NULL : NSClassFromString(className);
+}
+
+- (void)setFormClass:(Class)klass forChildFormGroupWithKey:(NSString *)key
+{
+    if (self.childFormClasses == nil) {
+        self.childFormClasses = [[NSMutableDictionary alloc] initWithCapacity:0];
+    }
+    
+    [self.childFormClasses setObject:NSStringFromClass(klass) forKey:key];
+}
+
+- (NSString *)addObject:(id)object toGroupWithKey:(NSString *)key
+{
+    // pass this up to the parent
+    EZFormChildFormField *childFormField = [self formFieldForKey:key.formKeyForParentField];
+    if (childFormField != nil) {
+        NSString *fieldKey = [childFormField.childForm addObject:object toGroupWithKey:key.lastFormKeyComponent];
+        
+        // re-apply the form key path
+        return [NSString stringWithFormat:@"%@.%@", key.formKeyForParentField, fieldKey];
+    }
+    
+    // Create the form
+    Class klass = [self formClassForChildFormGroupWithKey:key];
+    NSAssert(klass != NULL, @"Class found not be found for form group %@.", key);
+    
+    // Create the form
+    EZForm *form = [[klass alloc] init];
+    NSAssert(form != nil, @"Could not create child form for key %@.", key);
+    
+    // do we have an object and a transformer for this form?
+    if (object != nil)
+    {
+        NSValueTransformer *transformer = [form formValueTransformer];
+        if (transformer != nil)
+            form = [transformer reverseTransformedValue:object];
+    }
+    
+    // we name the child form with a UUID on the end so it can be found and grouped later
+    NSString *fieldKey = [key stringByAppendingFormat:@"-%@", [[NSUUID UUID] UUIDString]];
+    EZFormChildFormField *field = [[EZFormChildFormField alloc] initWithKey:fieldKey childForm:form];
+    [self addFormField:field];
+    return field.key;
+}
+
+- (void)removeFormFieldWithKey:(NSString *)key
+{
+    // child form support
+    if ([key rangeOfString:EZFormChildFormPathSeparator].location != NSNotFound)
+    {
+        EZFormChildFormField *childFormField = [self formFieldForKey:key.formKeyForParentField];
+        if (childFormField != nil)
+        {
+            [childFormField.childForm removeFormFieldWithKey:key.lastFormKeyComponent];
+            return;
+        }
+    }
+    
+    EZFormField *matchedField = nil;
+    for (EZFormField *field in self.formFields)
+    {
+        if ([field.key isEqualToString:key])
+        {
+            matchedField = field;
+            break;
+        }
+    }
+    
+    if (matchedField != nil)
+        [self.formFields removeObject:matchedField];
 }
 
 

@@ -66,6 +66,7 @@ typedef NS_ENUM(NSInteger, EZFormInvalidIndicatorViewType) {
 
 @protocol EZFormDelegate;
 extern NSString * const EZFormChildFormPathSeparator;
+extern NSString * const EZFormGroupedFieldsRegularExpression;
 
 
 /** EZForm is a form handling and validation library.
@@ -211,6 +212,10 @@ extern NSString * const EZFormChildFormPathSeparator;
  *
  * The input to the reverse transformer will be an NSDictionary of formField key => value mappings. Child
  * form values will be in nested dictionaries. The reverse transformer should return any object, such as your model objects.
+ *
+ * WARNING: Be careful when mixing -formValueTransformer and individual field's -valueTransformer. EZForm will always respect
+ * the field's -valueTransformer, so expect that values might be transformed twice. For example, when importing to EZForm
+ * (forward transforming), you should be returning a value your field's -valueTransformer can handle.
 **/
 @property (nonatomic, strong) NSValueTransformer *formValueTransformer;
 
@@ -221,6 +226,10 @@ extern NSString * const EZFormChildFormPathSeparator;
  * This is typically used for converting exporting or importing the entire form at once, such as when using child forms.
  *
  * If no -formValueTransformer is present, this property will be nil.
+ *
+ * WARNING: Be careful when mixing -formValueTransformer and individual field's -valueTransformer. EZForm will always respect
+ * the field's -valueTransformer, so expect that values might be transformed twice. For example, when importing to EZForm
+ * (forward transforming), you should be returning a value your field's -valueTransformer can handle.
 **/
 @property (nonatomic, weak) id transformedModelValue;
 
@@ -286,6 +295,81 @@ extern NSString * const EZFormChildFormPathSeparator;
  *  Only valid if an auto scroll view is assigned with -autoScrollViewForKeyboardInput:.
  */
 - (void)scrollFormFieldToVisible:(EZFormField *)formField;
+
+/** @name Child Form Groups **/
+
+
+/**
+ * Returns the number of fields in the specified field group.
+ *
+ * Fields in the group are identified by the pattern key-<unique identifier>.
+ *
+ * @param   key         The key that identifies the form group.
+ * @returns             The number of fields in the form that are in this group. Returns zero if the group is not found.
+**/
+- (NSInteger)numberOfFieldsForChildFormGroupWithKey:(NSString *)key;
+
+/**
+ * Removes the specified field from the form.
+ *
+ * @param   key         The key for a form field.
+**/
+- (void)removeFormFieldWithKey:(NSString *)key;
+
+/**
+ * Retrieves the form field from the form group at the specified index.
+ *
+ * Fields in the group are identified by the pattern key-<unique identifier>.
+ *
+ * @param   key         The key that identifies the form group.
+ * @param   index       The index of a field within the group.
+ * @returns             An EZFormField subclass (typically an EZFormChildFormField) for the field at that index, otherwise nil.
+**/
+- (id)formFieldInChildFormGroupWithKey:(NSString *)key atIndex:(NSUInteger)index;
+
+/**
+ * Retrieves an array of all of the form fields in the specified form group.
+ *
+ * Fields in the group are identified by the pattern key-<unique identifier>.
+ *
+ * @param   key         The key that identifies the form group.
+ * @returns             An NSArray of all EZFormField objects (or subclasses thereof) in the specified group. Returns an empty array of the group is not found.
+**/
+- (NSArray *)formFieldsInGroupWithKey:(NSString *)key;
+
+/**
+ * Retrieves the EZForm subclass used for a particular child form group.
+ *
+ * This value is typically used to allow for easy additions of objects to the group. See -addObject:toGroupWithKey: for more.
+ *
+ * Fields in the group are identified by the pattern key-<unique identifier>.
+ *
+ * @param   key         The key that identifies the form group.
+ * @returns             The Class of an EZForm subclass that has been associated with this form group.
+**/
+- (Class)formClassForChildFormGroupWithKey:(NSString *)key;
+
+/**
+ * Associates an EZFormSubclass with the specified form group.
+ *
+ * This is typically used to allow for easy additions of objects to form groups. See -addObject:toGroupWithKey: for more.
+ *
+ * @param   klass       An EZForm subclass.
+ * @param   key         The key that identifies the form group.
+**/
+- (void)setFormClass:(Class)klass forChildFormGroupWithKey:(NSString *)key;
+
+/**
+ * Creates a new row/child form in the specified form group, populated with the specified object.
+ *
+ * This allows you to easy create a new row in the group, and using form transformers provide a initial value for the child
+ * form.
+ *
+ * @param   object      An object to be used (via a -formValueTransformer on your subclass) as the initial value for the child form.
+ * @param   key         The key that identifies the form group.
+ * @returns             The field key that identifies this object. This is typically in the form groupKey:<unique identifier>.
+**/
+- (NSString *)addObject:(id)object toGroupWithKey:(NSString *)key;
 
 @end
 

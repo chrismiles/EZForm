@@ -256,6 +256,168 @@ When interacting with your UI or a model you can also supply NSValueTransformers
 }
 ```
 
+Larger Example
+--------------
+
+This example demonstrates a complete Person form that provides a name and email field, as well as allowing multiple address child-forms to be added in a form group.
+
+```objective-c
+/**
+ * Some basic EZForm subclasses for our forms.
+**/
+@interface AddressForm : EZForm
+@end
+
+@interface PersonForm : EZForm
+@end
+
+@implementation PersonForm
+
+- (void)initialiseForm
+{
+    // Some fields (same as the ones above). Typically you configure your validations better than this
+    [self addFormField:[[EZFormTextField alloc] initWithKey:@"name"]];
+    [self addFormField:[[EZFormTextField alloc] initWithKey:@"email"]];
+
+    // set it up so that we can add in AddressForm instances
+    [self setFormClass:[AddressForm class] forChildFormGroupWithKey:@"addresses"];
+    
+    // we also have a form value transformer for easy translation
+    self.formValueTransformer = [EZFormReversibleValueTransformer reversibleValueTransformerWithForwardBlock:^id(id input) {
+        
+        // clear the form if the input is nil or invalid
+        if (input == nil || ![input isKindOfClass:[Person class]]) {
+            return nil;
+        }
+        
+        // map the Person into something the form can parse
+        Person *person = (Person *)input;
+        return @{
+             @"name":       person.fullName ?: [NSNull null],
+             @"email":      person.email ?: [NSNull null],
+             
+             // Because we supply a -formValueTransformer for the AddressForm subclass (which becomes the EZFormChildFormField's -valueTransformer
+             // we don't want to transform those values here or they will be transformed twice.
+             @"addresses":  person.addresses
+        };
+    
+    } reverseBlock:^id(id input) {
+        
+        // our input is an NSDictionary of all the form values
+        NSDictionary *modelValues = (NSDictionary *)input;
+        
+        // Create our person object
+        Person *person = [[Person alloc] init];
+        person.fullName = modelValues[@"name"];
+        person.email = modelValues[@"email"];
+        
+        // the AddressForm instances in the addresses group will already have been transformed by its own -formValueTransformer, so we
+        // can just pass it across. That is, modelValue[@"addresses"] will be an NSArray of Address objects.
+        person.addresses = modelValues[@"addresses"];
+        
+        return person;
+    }];
+}
+
+// Called by the UI to add a new address to the form, maybe via an "+ Add Address" button at the bottom of your table?
+- (void)addNewAddress
+{
+    // we can create a default Address object to be used for the initial valute population
+    // or just pass nil to leave everything blank.
+    [self addObject:nil toGroupWithKey:@"addresses"];
+}
+
+// Called by the UI to remove an address from the form, maybe in response to a swipe and delete event.
+- (void)removeAddressAtIndex:(NSUInteger)index
+{
+    EZFormChildFormField *field = [self formFieldInChildFormGroupWithKey:@"addresses" atIndex:index];
+    if (field != nil) {
+        [self removeFormFieldWithKey:field.key];
+    }
+}
+
+// Called by the UI to submit your form, like say a Done button.
+- (void)submitForm
+{
+    // let's pretend we have a nice SDK that encapsulates a well-formed Person object and sends it to our backend
+    Person *person = self.transformedModelValue;
+
+    [MagicalSDK updatePerson:person completion:^(BOOL success, NSError *error)
+    {
+        if (success) {
+            // handle success
+        } else {
+            // handle error
+        }
+    }];
+}
+
+@end
+
+@implementation AddressForm
+
+- (instancetype)init
+{
+    if ((self = [super init])) {
+        
+        // Some fields. Typically you configure your validations better than this
+        [self addFormField:[[EZFormTextField alloc] initWithKey:@"line1"]];
+        [self addFormField:[[EZFormTextField alloc] initWithKey:@"line2"]];
+        [self addFormField:[[EZFormTextField alloc] initWithKey:@"suburb"]];
+        [self addFormField:[[EZFormTextField alloc] initWithKey:@"state"]];
+        [self addFormField:[[EZFormTextField alloc] initWithKey:@"postcode"]];
+        [self addFormField:[[EZFormGenericField alloc] initWithKey:@"latitude"]];
+        [self addFormField:[[EZFormGenericField alloc] initWithKey:@"longitude"]];
+        
+        // we have a form value transformer for conversion between Address objects
+        self.formValueTransformer = [EZFormReversibleValueTransformer reversibleValueTransformerWithForwardBlock:^id(id input) {
+            
+            // clear the form if the input is nil or invalid
+            if (input == nil || ![input isKindOfClass:[AddressForm class]]) {
+                return nil;
+            }
+            
+            // lets map our Address object into the form
+            Address *address = (Address *)input;
+            
+            // only return the values you want to update. Use NSNull to clear (nil) field values
+            return @{
+                 @"line1":	  address.line1 ?: [NSNull null],
+                 @"line2":	  address.line2 ?: [NSNull null],
+                 @"suburb":	  address.city ?: [NSNull null],
+                 @"state":	  address.state ?: [NSNull null],
+                 @"postcode":  address.postcode ?: [NSNull null],
+                 @"latitude":  address.location != nil ? [NSString stringWithFormat:@"%.g", address.location.coordinate.latitude] : [NSNull null],
+                 @"longitude":  address.location != nil ? [NSString stringWithFormat:@"%.g", address.location.coordinate.longitude] : [NSNull null]
+             };
+            
+        } reverseBlock:^id(id input) {
+            
+            // our input is an NSDictionary returned by -modelValues.
+            NSDictionary *modelValues = (NSDictionary *)input;
+            
+            // Create our address object
+            Address *address = [[Address alloc] init];
+            address.line1 = modelValues[@"line1"];
+            address.line2 = modelValues[@"line2"];
+            address.city = modelValues[@"suburb"];
+            address.state = modelValues[@"state"];
+            address.postcode = modelValues[@"postcode"];
+            
+            // transform the string values into a CLLocation object
+            CLLocationDegrees latitude = [modelValues[@"latitude"] doubleValue];
+            CLLocationDegrees longitude = [modelValues[@"longitude"] doubleValue];
+            address.location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+            
+            return address;
+        }];
+    }
+    return self;
+}
+
+@end
+```
+
 See the demo app source for more examples of how to work with EZForm.
 
 

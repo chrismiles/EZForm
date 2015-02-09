@@ -82,7 +82,9 @@
 #pragma clang diagnostic ignored "-Wunused-parameter"
 - (void)setModelValue:(id)modelValue canUpdateView:(BOOL)canUpdateView
 {
-    if (self.childForm.formValueTransformer != nil) {
+    if (modelValue == nil) {
+        [self.childForm clearModelValues];
+    } else if (self.childForm.formValueTransformer != nil) {
         [self.childForm setTransformedModelValue:modelValue];
     } else if ([modelValue isKindOfClass:[NSDictionary class]]) {
         [self.childForm setModelValues:modelValue];

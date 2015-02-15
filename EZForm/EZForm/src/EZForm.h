@@ -128,6 +128,26 @@ extern NSString * const EZFormGroupedFieldsRegularExpression;
  */
 - (void)addFormField:(EZFormField *)formField;
 
+/**
+ * Inserts a field before another field.
+ *
+ * If the existing form field cannot be found the field will be added to the end.
+ *
+ * @param   formField       The form field to be inserted
+ * @param   key             The key of the existing form field.
+**/
+- (void)insertFormField:(EZFormField *)formField beforeKey:(NSString *)key;
+
+/**
+ * Inserts a field after another field.
+ *
+ * If the existing form field cannot be found the field will be added to the end.
+ *
+ * @param   formField       The form field to be inserted.
+ * @param   key             The key of the existing form field.
+**/
+- (void)insertFormField:(EZFormField *)formField afterKey:(NSString *)key;
+
 /** Returns the form field object for the key specified.
  *
  *  @param key The key of the form field to return.

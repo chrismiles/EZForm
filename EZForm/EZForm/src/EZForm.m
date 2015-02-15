@@ -84,6 +84,38 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
     }
 }
 
+- (void)insertFormField:(EZFormField *)formField beforeKey:(NSString *)key
+{
+    EZFormField *existing = [self formFieldForKey:@"key"];
+    if (existing == nil) {
+        [self addFormField:formField];
+
+    } else {
+        [self.formFields insertObject:formField atIndex:[self.formFields indexOfObject:existing]];
+        formField.form = self;
+        [self configureInputAccessoryForFormField:formField];
+    }
+}
+
+- (void)insertFormField:(EZFormField *)formField afterKey:(NSString *)key
+{
+    EZFormField *existing = [self formFieldForKey:@"key"];
+    if (existing == nil) {
+        [self addFormField:formField];
+        
+    } else {
+        NSUInteger existingIndex = [self.formFields indexOfObject:existing];
+        if ((existingIndex + 1) >= self.formFields.count) {
+            [self addFormField:formField];
+
+        } else {
+            [self.formFields insertObject:formField atIndex: + 1];
+            formField.form = self;
+            [self configureInputAccessoryForFormField:formField];
+        }
+    }
+}
+
 - (id)formFieldForKey:(NSString *)key
 {
     EZFormField *result = nil;

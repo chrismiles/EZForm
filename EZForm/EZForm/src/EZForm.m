@@ -49,6 +49,7 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
 @property (nonatomic, strong)	UIView			*inputAccessoryStandardView;
 @property (nonatomic, strong)	UIView			*viewToAutoScroll;
 @property (nonatomic, strong)   NSMutableDictionary     *childFormClasses;
+@property (nonatomic, weak)     EZForm          *parentForm;
 
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField;
 - (void)updateInputAccessoryForEditingFormField:(EZFormField *)formField;
@@ -873,10 +874,10 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField
 {
     if ([formField acceptsInputAccessory]) {
-	UIView *inputAccessoryView = [self inputAccessoryViewForType:self.inputAccessoryType];
-	if (inputAccessoryView) {
-	    formField.inputAccessoryView = inputAccessoryView;
-	}
+        UIView *inputAccessoryView = [self inputAccessoryViewForType:self.inputAccessoryType];
+        if (inputAccessoryView) {
+            formField.inputAccessoryView = inputAccessoryView;
+        }
     }
 }
 
@@ -884,11 +885,16 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
 {
     UIView<EZFormInputAccessoryViewProtocol> *inputAccessoryView = (UIView<EZFormInputAccessoryViewProtocol> *)[self inputAccessoryView];
     if (inputAccessoryView) {
-	EZFormField *previousFormField = [self firstResponderCapableFormFieldAfterField:formField searchForwards:NO];
-	EZFormField *nextFormField = [self firstResponderCapableFormFieldAfterField:formField searchForwards:YES];
-	
-	[inputAccessoryView setNextActionEnabled:(nextFormField != nil)];
-	[inputAccessoryView setPreviousActionEnabled:(previousFormField != nil)];
+        EZForm *form = self.parentForm;
+        if (form == nil) {
+            form = self;
+        }
+
+        EZFormField *previousFormField = [form firstResponderCapableFormFieldAfterField:formField searchForwards:NO];
+        EZFormField *nextFormField = [form firstResponderCapableFormFieldAfterField:formField searchForwards:YES];
+        
+        [inputAccessoryView setNextActionEnabled:(nextFormField != nil)];
+        [inputAccessoryView setPreviousActionEnabled:(previousFormField != nil)];
     }
 }
 
@@ -897,33 +903,48 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
 
 - (void)inputAccessoryViewDone
 {
-    [self resignFirstResponder];
+    EZForm *form = self.parentForm;
+    if (form == nil) {
+        form = self;
+    }
+    
+    [form resignFirstResponder];
 
-    __strong id<EZFormDelegate> delegate = self.delegate;
+    __strong id<EZFormDelegate> delegate = form.delegate;
     if ([delegate respondsToSelector:@selector(formInputAccessoryViewDone:)]) {
-	[delegate formInputAccessoryViewDone:self];
+        [delegate formInputAccessoryViewDone:self];
     }
 }
 
 - (void)inputAccessoryViewSelectedNextField
 {
-    EZFormField *currentFormField = [self formFieldForFirstResponder];
+    EZForm *form = self.parentForm;
+    if (form == nil) {
+        form = self;
+    }
+    
+    EZFormField *currentFormField = [form formFieldForFirstResponder];
     if (currentFormField) {
-	EZFormField *nextFormField = [self firstResponderCapableFormFieldAfterField:currentFormField searchForwards:YES];
-	if (nextFormField) {
-	    [self selectFormFieldForInput:nextFormField];
-	}
+        EZFormField *nextFormField = [form firstResponderCapableFormFieldAfterField:currentFormField searchForwards:YES];
+        if (nextFormField) {
+            [form selectFormFieldForInput:nextFormField];
+        }
     }
 }
 
 - (void)inputAccessoryViewSelectedPreviousField
 {
-    EZFormField *currentFormField = [self formFieldForFirstResponder];
+    EZForm *form = self.parentForm;
+    if (form == nil) {
+        form = self;
+    }
+    
+    EZFormField *currentFormField = [form formFieldForFirstResponder];
     if (currentFormField) {
-	EZFormField *nextFormField = [self firstResponderCapableFormFieldAfterField:currentFormField searchForwards:NO];
-	if (nextFormField) {
-	    [self selectFormFieldForInput:nextFormField];
-	}
+        EZFormField *nextFormField = [form firstResponderCapableFormFieldAfterField:currentFormField searchForwards:NO];
+        if (nextFormField) {
+            [form selectFormFieldForInput:nextFormField];
+        }
     }
 }
 

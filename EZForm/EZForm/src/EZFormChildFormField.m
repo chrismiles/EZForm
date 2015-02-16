@@ -30,6 +30,27 @@
     return self;
 }
 
+- (void)setForm:(EZForm *)form
+{
+    // pass it through to our child, if we have one
+    [super setForm:form];
+    
+    if (self.childForm != nil) {
+        [self.childForm setParentForm:form];
+    }
+}
+
+- (void)setChildForm:(EZForm *)childForm
+{
+    _childForm = childForm;
+    
+    // update the parent value, if we have one
+    EZForm *parentForm = self.form;
+    if (parentForm != nil) {
+        [childForm setParentForm:parentForm];
+    }
+}
+
 #pragma mark - EZFormFieldConcrete Methods
 
 - (id)actualFieldValue

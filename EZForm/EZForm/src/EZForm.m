@@ -765,13 +765,12 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
                 
                 // create the index path based on ourselves
                 NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:index];
-                for (NSUInteger i = 0; i < childIndexPath.length; i++)
+                for (NSUInteger i = 0; i < childIndexPath.length; i++) {
                     indexPath = [indexPath indexPathByAddingIndex:[childIndexPath indexAtPosition:i]];
-                
+                }
                 [indexPaths setObject:[childIndexPaths objectForKey:childIndexPath] forKey:indexPath];
             }
-        } else
-        {
+        } else if ([field canBecomeFirstResponder]) {
             [indexPaths setObject:field forKey:[NSIndexPath indexPathWithIndex:index]];
         }
     }

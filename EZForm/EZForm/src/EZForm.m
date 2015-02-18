@@ -87,7 +87,7 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
 
 - (void)insertFormField:(EZFormField *)formField beforeKey:(NSString *)key
 {
-    EZFormField *existing = [self formFieldForKey:@"key"];
+    EZFormField *existing = [self formFieldForKey:key];
     if (existing == nil) {
         [self addFormField:formField];
 
@@ -100,7 +100,7 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
 
 - (void)insertFormField:(EZFormField *)formField afterKey:(NSString *)key
 {
-    EZFormField *existing = [self formFieldForKey:@"key"];
+    EZFormField *existing = [self formFieldForKey:key];
     if (existing == nil) {
         [self addFormField:formField];
         
@@ -110,7 +110,7 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
             [self addFormField:formField];
 
         } else {
-            [self.formFields insertObject:formField atIndex: + 1];
+            [self.formFields insertObject:formField atIndex:existingIndex + 1];
             formField.form = self;
             [self configureInputAccessoryForFormField:formField];
         }
@@ -209,11 +209,36 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
 
 - (NSDictionary *)modelValues
 {
+    // regular expression used for detecting form groups
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:EZFormGroupedFieldsRegularExpression options:NSRegularExpressionCaseInsensitive error:nil];
+
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for (EZFormField *formField in self.formFields) {
-	[result setValue:formField.modelValue forKey:[formField key]];
+        
+        // is this part of a form group?
+        NSTextCheckingResult *first = [regex firstMatchInString:formField.key options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(0, formField.key.length)];
+        if (first != nil && first.range.location != NSNotFound)
+        {
+            NSString *groupKey = [formField.key substringWithRange:NSMakeRange(0, first.range.location)];
+            
+            // does the group already exist?
+            NSMutableArray *group = [result objectForKey:groupKey];
+            
+            // nope, add it to the dictionary
+            if (group == nil) {
+                group = [NSMutableArray array];
+                [result setObject:group forKey:groupKey];
+            }
+
+            // add the form field into the group (which is already in the dictionary)
+            [group addObject:formField.modelValue];
+
+        } else {
+            // not part of a form group
+            [result setValue:formField.modelValue forKey:[formField key]];
+        }
     }
-    return [self groupedValues:result];
+    return result;
 }
 
 - (void)setModelValues:(NSDictionary *)modelValues
@@ -259,36 +284,6 @@ NSString * const EZFormGroupedFieldsRegularExpression = @"-[0-9a-f]{8}-[0-9a-f]{
             [formField setModelValue:([value isEqual:[NSNull null]] ? nil : value) canUpdateView:YES];
         }
     }
-}
-
-- (NSDictionary *)groupedValues:(NSDictionary *)values
-{
-    // group them
-    NSMutableDictionary *groupedValues = [[NSMutableDictionary alloc] initWithCapacity:0];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:EZFormGroupedFieldsRegularExpression options:NSRegularExpressionCaseInsensitive error:nil];
-    for (NSString *key in values)
-    {
-        NSTextCheckingResult *first = [regex firstMatchInString:key options:NSMatchingWithoutAnchoringBounds range:NSMakeRange(0, key.length)];
-        if (first != nil && first.range.location != NSNotFound)
-        {
-            id value = [values objectForKey:key];
-            NSString *groupKey = [key substringWithRange:NSMakeRange(0, first.range.location)];
-            
-            NSMutableArray *group = [groupedValues objectForKey:groupKey];
-            if (group == nil)
-            {
-                group = [[NSMutableArray alloc] initWithCapacity:0];
-                [groupedValues setObject:group forKey:groupKey];
-            }
-            
-            [group addObject:value];
-        } else
-        {
-            [groupedValues setObject:[values objectForKey:key] forKey:key];
-        }
-    }
-    
-    return [groupedValues copy];
 }
 
 - (void)clearModelValues

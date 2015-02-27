@@ -23,9 +23,7 @@
 {
     if ((self = [self initWithKey:aKey])) {
         self.childForm = aForm;
-        
-        if (aForm.delegate == nil)
-            aForm.delegate = self;
+        [self configureChildForm:aForm];
     }
     return self;
 }
@@ -36,7 +34,7 @@
     [super setForm:form];
     
     if (self.childForm != nil) {
-        [self.childForm setParentForm:form];
+        [self configureChildForm:self.childForm];
     }
 }
 
@@ -47,8 +45,21 @@
     // update the parent value, if we have one
     EZForm *parentForm = self.form;
     if (parentForm != nil) {
-        [childForm setParentForm:parentForm];
+        [self configureChildForm:self.childForm];
     }
+}
+
+- (void)configureChildForm:(EZForm *)childForm
+{
+    if (childForm.delegate == nil) {
+        childForm.delegate = self;
+    }
+    if (childForm.inputAccessoryView == nil) {
+        EZForm *parentForm = self.form;
+        childForm.inputAccessoryType = parentForm.inputAccessoryType;
+        childForm.inputAccessoryView = parentForm.inputAccessoryView;
+    }
+    [childForm setParentForm:self.form];
 }
 
 #pragma mark - EZFormFieldConcrete Methods
@@ -90,6 +101,12 @@
 {
     NSAssert(self.childForm != nil, @"The child form must be created before you can interact with the field.");
     [self.childForm resignFirstResponder];
+}
+
+- (void)unwireUserViews
+{
+    NSAssert(self.childForm != nil, @"The child form must be created before you can interact with the field.");
+    [self.childForm unwireUserViews];
 }
 
 #pragma mark - Model Values

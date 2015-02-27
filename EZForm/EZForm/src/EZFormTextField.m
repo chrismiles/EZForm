@@ -100,7 +100,7 @@
 {
     UITextField *textField = (UITextField *)self.userControl;
     textField.delegate = self;
-    [textField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
+    [textField addTarget:self action:@selector(textFieldAllEditingEvents:) forControlEvents:UIControlEventAllEditingEvents];
     [textField addTarget:self action:@selector(textFieldEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textField addTarget:self action:@selector(textFieldEditingDidEnd:) forControlEvents:UIControlEventEditingDidEnd];
 }
@@ -145,7 +145,7 @@
 - (void)unwireTextField
 {
     UITextField *textField = (UITextField *)self.userControl;
-    [textField removeTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
+    [textField removeTarget:self action:@selector(textFieldAllEditingEvents:) forControlEvents:UIControlEventAllEditingEvents];
     [textField removeTarget:self action:@selector(textFieldEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [textField removeTarget:self action:@selector(textFieldEditingDidEnd:) forControlEvents:UIControlEventEditingDidEnd];
     if (textField.delegate == self) textField.delegate = nil;
@@ -175,10 +175,9 @@
     self.userControl = nil;
 }
 
-
 #pragma mark - Text field control events
 
-- (void)textFieldEditingChanged:(id)sender
+- (void)textFieldAllEditingEvents:(id)sender
 {
     UITextField *textField = (UITextField *)sender;
     [self setFieldValue:textField.text canUpdateView:NO];

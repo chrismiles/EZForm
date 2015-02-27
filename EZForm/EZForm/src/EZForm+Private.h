@@ -30,7 +30,6 @@
 - (void)formFieldInputDidEnd:(EZFormField *)formField;
 - (void)formFieldDidBeginEditing:(EZFormField *)formField;
 - (void)formFieldDidChangeValue:(EZFormField *)formField;
-@property (nonatomic, readonly, strong) UIView *inputAccessoryView;
 
 // for child forms when they need to redirect queries back to the parent (i.e. for navigation)
 - (void)setParentForm:(EZForm *)form;

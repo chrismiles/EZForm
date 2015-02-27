@@ -42,7 +42,6 @@
 }
 
 @property (nonatomic, strong)	NSMutableArray		*formFields;
-@property (nonatomic, strong)	UIView			*inputAccessoryStandardView;
 @property (nonatomic, strong)	UIView			*viewToAutoScroll;
 
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField;
@@ -474,14 +473,14 @@
 
 #pragma mark - Input Accessories
 
-- (UIView *)inputAccessoryViewForType:(EZFormInputAccessoryType)type
+- (UIView<EZFormInputAccessoryViewProtocol> *)inputAccessoryViewForType:(EZFormInputAccessoryType)type
 {
-    UIView *inputAccessoryView = nil;
+    UIView<EZFormInputAccessoryViewProtocol> *inputAccessoryView = nil;
     if (EZFormInputAccessoryTypeNone != type) {
-	if (nil == self.inputAccessoryStandardView) {
-	    // Create and cache it
-	    // It will be resized automatically to match keyboard
-	    EZFormStandardInputAccessoryView *accessoryView = [[EZFormStandardInputAccessoryView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
+        if (nil == _inputAccessoryView) {
+            // Create and cache it
+            // It will be resized automatically to match keyboard
+            EZFormStandardInputAccessoryView *accessoryView = [[EZFormStandardInputAccessoryView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
             if (self.inputAccessoryViewTintColor)
             {
                 accessoryView.tintColor = self.inputAccessoryViewTintColor;
@@ -499,18 +498,13 @@
             if (type == EZFormInputAccessoryTypeStandardLeftAligned || type == EZFormInputAccessoryTypeDoneLeftAligned) {
                 accessoryView.doneButtonPosition = EZFormStandardInputAccessoryViewDoneButtonPositionLeft;
             }
-	    accessoryView.inputAccessoryViewDelegate = self;
-	    self.inputAccessoryStandardView = accessoryView;
-	}
-	inputAccessoryView = self.inputAccessoryStandardView;
+            accessoryView.inputAccessoryViewDelegate = self;
+            self.inputAccessoryView = accessoryView;
+        }
+        inputAccessoryView = self.inputAccessoryView;
     }
     
     return inputAccessoryView;
-}
-
-- (UIView *)inputAccessoryView
-{
-    return [self inputAccessoryViewForType:self.inputAccessoryType];
 }
 
 - (void)configureInputAccessoryForFormField:(EZFormField *)formField
@@ -530,11 +524,20 @@
 	EZFormField *previousFormField = [self firstResponderCapableFormFieldAfterField:formField searchForwards:NO];
 	EZFormField *nextFormField = [self firstResponderCapableFormFieldAfterField:formField searchForwards:YES];
 	
+	[inputAccessoryView setInputAccessoryViewDelegate:self];
 	[inputAccessoryView setNextActionEnabled:(nextFormField != nil)];
 	[inputAccessoryView setPreviousActionEnabled:(previousFormField != nil)];
     }
 }
 
+- (UIView<EZFormInputAccessoryViewProtocol> *)inputAccessoryView
+{
+    if (_inputAccessoryView != nil) {
+        return _inputAccessoryView;
+    }
+    
+    return [self inputAccessoryViewForType:self.inputAccessoryType];
+}
 
 #pragma mark - EZFormInputAccessoryViewDelegate methods
 

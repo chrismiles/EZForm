@@ -56,7 +56,8 @@ typedef NS_ENUM(NSInteger, EZFormInputAccessoryType) {
     EZFormInputAccessoryTypeStandard, //done button on the right
     EZFormInputAccessoryTypeStandardLeftAligned, //done button on the left
     EZFormInputAccessoryTypeDone, //done button on the right, no prev/next item
-    EZFormInputAccessoryTypeDoneLeftAligned //done button on the left, no prev/next item
+    EZFormInputAccessoryTypeDoneLeftAligned, //done button on the left, no prev/next item
+    EZFormInputAccessoryTypeCustom  // completely custom, provide a UIView which implements <EZFormInputAccessoryViewProtocol> via -inputAccessoryView
 } ;
 
 typedef NS_ENUM(NSInteger, EZFormInvalidIndicatorViewType) {
@@ -97,9 +98,23 @@ typedef NS_ENUM(NSInteger, EZFormInvalidIndicatorViewType) {
  *  automatically wired up to select the next and previous text
  *  input fields.
  *
+ *  You can set this to EZFormInputAccessoryTypeCustom and provide a
+ *  custom UIView via -inputAccessoryView.
+ *
  *  By default, no input accessory is used.
  */
 @property (nonatomic, assign) EZFormInputAccessoryType inputAccessoryType;
+
+/** Provide a custom input accessory to use for text input fields.
+ *
+ * You should set -inputAccessoryType to EZFormInputAccessoryTypeCustom, and then
+ * set a value on this property.
+ *
+ * Your custom UIView *must* implement <EZFormInputAccessoryViewProtocol>. If you wish
+ * for your custom input accessory to support the standard previous, next and done controls
+ * you can call back to the -inputAccessoryViewDelegate object on your custom accessory.
+ */
+@property (nonatomic, strong) UIView<EZFormInputAccessoryViewProtocol> *inputAccessoryView;
 
 @property (nonatomic, strong) UIColor *inputAccessoryViewTintColor;
 @property (nonatomic, strong) UIColor *inputAccessoryViewBarTintColor NS_AVAILABLE_IOS(7_0);

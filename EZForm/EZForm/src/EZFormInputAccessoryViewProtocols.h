@@ -34,6 +34,7 @@
 
 @protocol EZFormInputAccessoryViewProtocol <NSObject>
 
+- (void)setInputAccessoryViewDelegate:(id<EZFormInputAccessoryViewDelegate>)delegate;
 - (void)setNextActionEnabled:(BOOL)enabled;
 - (void)setPreviousActionEnabled:(BOOL)enabled;
 

@@ -580,20 +580,18 @@
 {
     _visibleKeyboardFrame = [[notification userInfo][UIKeyboardFrameEndUserInfoKey] CGRectValue];
     _keyboardAnimationDuration = [[notification userInfo][UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
-    BOOL shouldAutoScroll = (self.viewToAutoScroll && (! [self.viewToAutoScroll isKindOfClass:[UITableView class]]));
+
+    EZFormField *formField = [self formFieldForFirstResponder];
+    BOOL shouldAutoScroll = (self.viewToAutoScroll && (! [self.viewToAutoScroll isKindOfClass:[UITableView class]]) && formField);
     // Exception for table views: they will scroll automatically to reveal field holding first responder
-    
+
     if (shouldAutoScroll) {
-	
-	if ([self.viewToAutoScroll isKindOfClass:[UIScrollView class]] && ! [self.viewToAutoScroll isKindOfClass:[UITableView class]]) {
-	    [self adjustScrollViewForVisibleKeyboard];
-	}
-	
-	EZFormField *formField = [self formFieldForFirstResponder];
-	if (formField) {
-	    [self scrollFormFieldToVisible:formField];
-	}
+
+        if ([self.viewToAutoScroll isKindOfClass:[UIScrollView class]] && ! [self.viewToAutoScroll isKindOfClass:[UITableView class]]) {
+            [self adjustScrollViewForVisibleKeyboard];
+        }
+
+        [self scrollFormFieldToVisible:formField];
     }
 }
 

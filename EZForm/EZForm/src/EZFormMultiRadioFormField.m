@@ -42,6 +42,7 @@
 @end
 
 @implementation EZFormMultiRadioFormField
+@dynamic fieldValue;
 
 #pragma mark - Public methods
 

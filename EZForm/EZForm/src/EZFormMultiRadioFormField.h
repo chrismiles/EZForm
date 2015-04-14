@@ -46,7 +46,7 @@
  *
  *  Returns an NSArray of selected keys and nil if no keys are selected.
  */
-@property (nonatomic, readonly, strong) id fieldValue;
+@property (nonatomic, strong) id fieldValue;
 
 /** Joins all the field values with a given string
  *

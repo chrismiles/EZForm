@@ -43,7 +43,6 @@
 @interface EZFormRadioField () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, copy) NSArray *orderedKeys;
-@property (nonatomic, copy) NSString *selectedChoiceKey;
 
 @end
 
@@ -301,6 +300,7 @@
 - (void)pickerView:(__unused UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
 {
     NSString *key = [self choiceKeyAtIndex:(NSUInteger)row];
+    _selectedChoiceKey = key;
     [self setFieldValue:key canUpdateView:YES];
     [self updateValidityIndicators];
 }

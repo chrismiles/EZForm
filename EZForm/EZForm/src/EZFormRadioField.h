@@ -115,4 +115,10 @@
  */
 @property (nonatomic, readonly, copy) NSString *fieldDisplayValue;
 
+/** Returns the current selected key
+ *
+ *  @return Returns the current choice selected key
+ */
+@property (readonly, nonatomic, copy) NSString *selectedChoiceKey;
+
 @end

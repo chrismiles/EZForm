@@ -99,7 +99,12 @@
 - (void)form:(EZForm *)form didUpdateValueForField:(EZFormField *)formField modelIsValid:(BOOL)isValid
 {
     #pragma unused(form)
-    DLog(@"formField: %@ isValid: %@", formField, (isValid?@"YES":@"NO"));
+    DLog(@"formField: %@ isValid: %@ selected", formField, (isValid?@"YES":@"NO"));
+    
+    if ([formField isKindOfClass:[EZFormRadioField class]]) {
+        DLog(@"Selected key: %@ ", [(EZFormRadioField *)formField selectedChoiceKey]);
+    }
+    
 }
 
 - (void)formInputFinishedOnLastField:(EZForm *)form

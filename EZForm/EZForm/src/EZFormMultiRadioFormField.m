@@ -142,13 +142,19 @@
         // save existing keys and values
         [keys addObjectsFromArray:self.choices.allKeys];
         for (id key in self.orderedKeys) {
-            [values addObject:[self.choices objectForKey:key]];
+            id objForKey = [self.choices objectForKey:key];
+            if (objForKey) {
+                [values addObject:objForKey];
+            }
         }
         
         // now add in the new one
         for (id key in dictionaryModelValue) {
             [keys addObject:key];
-            [values addObject:[dictionaryModelValue objectForKey:key]];
+            id objForKey = [dictionaryModelValue objectForKey:key];
+            if (objForKey) {
+                [values addObject:objForKey];
+            }
         }
         
         // now update those keys

@@ -60,7 +60,10 @@
             
             NSMutableArray *keys = [NSMutableArray array];
             for (id i in (NSArray *)input) {
-                [keys addObject:[i valueForKeyPath:keyPath]];
+                id valueForKeypPath = [i valueForKeyPath:keyPath];
+                if (valueForKeypPath) {
+                    [keys addObject:valueForKeypPath];
+                }
             }
             return [keys copy];
         }

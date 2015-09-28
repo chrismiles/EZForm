@@ -259,48 +259,6 @@ static NSString * const EZFDRegistrationFormRatingKey = @"rating";
     [self updateRegisterButtonForFormValidity];
 }
 
-- (void)viewDidUnload
-{
-    [self setAcceptTermsFieldTableViewCell:nil];
-    [self setAgeTextField:nil];
-    [self setBioTextView:nil];
-    [self setEmailTextField:nil];
-    [self setFirstnameTextField:nil];
-    [self setGenderFieldLabel:nil];
-    [self setLastnameTextField:nil];
-    [self setSubscribeFieldTableViewCell:nil];
-    
-    [self setRegisterButton:nil];
-    [self setFirstNameTableViewCell:nil];
-    [self setLastnameTableViewCell:nil];
-    [self setAgeTableViewCell:nil];
-    [self setGenderTableViewCell:nil];
-    [self setEmailTableViewCell:nil];
-    [self setBioTableViewCell:nil];
-    [self setLikesFieldLabel:nil];
-    [self setLikesFieldLabel:nil];
-    [self setDateTableViewCell:nil];
-    [self setDateTextField:nil];
-    [self setRatingSlider:nil];
-    [self setRatingTableViewCell:nil];
-
-    [super viewDidUnload];
-    
-    [self.registrationForm unwireUserViews];
-    self.formCells = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-	return YES;
-    }
-    else {
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    }
-}
-
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

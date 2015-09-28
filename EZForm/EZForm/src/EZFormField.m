@@ -198,6 +198,11 @@
 
 #pragma mark - Object lifecycle
 
+- (instancetype)init
+{
+    return [self initWithKey:@"EZFormUnknownKey"];
+}
+
 - (instancetype)initWithKey:(NSString *)aKey
 {
     if ((self = [super init])) {

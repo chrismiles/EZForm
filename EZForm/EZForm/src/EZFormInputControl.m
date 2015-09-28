@@ -37,17 +37,37 @@
 @dynamic text;
 @dynamic tapToBecomeFirstResponder;
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    return [self initWithFrame:frame label:nil];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    CGRect rect = [aDecoder decodeCGRectForKey:@"frame"];
+    UILabel *wrappedView = [aDecoder decodeObjectForKey:@"wrappedView"];
+    
+    return [self initWithFrame:rect label:wrappedView];
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeCGRect:self.frame forKey:@"frame"];
+    [aCoder encodeObject:self.wrappedView forKey:@"wrappedView"];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame label:(UILabel *)label
 {
     self = [super initWithFrame:frame];
     if (self) {
 	self.wrappedView = label;
-	self.userInteractionEnabled = YES;
-	
-	label.frame = self.bounds;
-	label.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-	[self addSubview:label];
+        self.userInteractionEnabled = YES;
+        
+        if (self.wrappedView) {
+            self.wrappedView.frame = self.bounds;
+            self.wrappedView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+            [self addSubview:self.wrappedView];
+        }
     }
     return self;
 }

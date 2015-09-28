@@ -37,7 +37,7 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if (self.navigationController) {
 	/* If managed by a nav controller then return rotation choice of previous view

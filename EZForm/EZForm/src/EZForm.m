@@ -259,18 +259,23 @@
         }
     }
     else if ([self.viewToAutoScroll isKindOfClass:[UIScrollView class]]) {
-	if (! CGRectIsEmpty(self.autoScrollForKeyboardInputVisibleRect)) {
-	    CGRect scrollRect = CGRectInset(self.autoScrollForKeyboardInputVisibleRect, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
-	    [(UIScrollView *)self.viewToAutoScroll scrollRectToVisible:scrollRect animated:YES];
-	}
-	else {
-	    UIView *formFieldView = [formField userView];
-	    if (formFieldView) {
-		CGRect convertedFrame = [formFieldView.superview convertRect:formFieldView.frame toView:self.viewToAutoScroll];
-		convertedFrame = CGRectInset(convertedFrame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
-		[(UIScrollView *)self.viewToAutoScroll scrollRectToVisible:convertedFrame animated:YES];
-	    }
-	}
+      UIScrollView *scrollViewToAutoScroll = (UIScrollView *)self.viewToAutoScroll;
+      if (! CGRectIsEmpty(self.autoScrollForKeyboardInputVisibleRect)) {
+        CGRect scrollRect = CGRectInset(self.autoScrollForKeyboardInputVisibleRect, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
+        [scrollViewToAutoScroll scrollRectToVisible:scrollRect animated:YES];
+      }
+      else {
+        UIView *formFieldView = [formField userView];
+        if (formFieldView) {
+          CGRect convertedFrame = [formFieldView.superview convertRect:formFieldView.frame toView:self.viewToAutoScroll];
+          convertedFrame = CGRectInset(convertedFrame, -self.autoScrollForKeyboardInputPaddingSize.width, -self.autoScrollForKeyboardInputPaddingSize.height); // add some padding
+          if ([scrollViewToAutoScroll isPagingEnabled]) {
+            convertedFrame.origin.x = floor(convertedFrame.origin.x / scrollViewToAutoScroll.bounds.size.width) * scrollViewToAutoScroll.bounds.size.width;
+            convertedFrame.size.width = scrollViewToAutoScroll.bounds.size.width;
+          }
+          [scrollViewToAutoScroll scrollRectToVisible:convertedFrame animated:YES];
+        }
+      }
     }
     else if ([self.viewToAutoScroll isKindOfClass:[UIView class]]) {
 	/* Scroll an arbitrary view by adjusting its frame enough to reveal the form field view
